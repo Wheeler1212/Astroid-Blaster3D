@@ -1,0 +1,1920 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>top-level-items</key>
+	<array>
+		<dict>
+			<key>children</key>
+			<array>
+				<dict>
+					<key>destination</key>
+					<dict>
+						<key>location-parameters</key>
+						<dict>
+							<key>EndingColumnNumber</key>
+							<string>0</string>
+							<key>EndingLineNumber</key>
+							<string>514</string>
+							<key>StartingColumnNumber</key>
+							<string>0</string>
+							<key>StartingLineNumber</key>
+							<string>513</string>
+							<key>Timestamp</key>
+							<string>764454531.815451</string>
+						</dict>
+						<key>rebasable-url</key>
+						<dict>
+							<key>base</key>
+							<string>workspace</string>
+							<key>payload</key>
+							<dict>
+								<key>relative-path</key>
+								<string>Astroid Blaster3D/GameStartAnimation.swift</string>
+							</dict>
+						</dict>
+					</dict>
+					<key>text-context</key>
+					<dict>
+						<key>focused</key>
+						<string>    
+</string>
+						<key>leading</key>
+						<string>//        // hideOverlay()  // Ausblenden
+//    }
+</string>
+						<key>trailing</key>
+						<string>    // Animation vom Level zur Bonusrunde
+    func animateTwinShipWithFullAnimation() {
+        slowDownStars = true // Sterne langsam abbremsen
+</string>
+					</dict>
+					<key>title</key>
+					<string>animateTwinShip - Mit</string>
+					<key>type</key>
+					<string>bookmark</string>
+				</dict>
+				<dict>
+					<key>destination</key>
+					<dict>
+						<key>location-parameters</key>
+						<dict>
+							<key>EndingColumnNumber</key>
+							<string>0</string>
+							<key>EndingLineNumber</key>
+							<string>439</string>
+							<key>StartingColumnNumber</key>
+							<string>2</string>
+							<key>StartingLineNumber</key>
+							<string>438</string>
+							<key>Timestamp</key>
+							<string>766956135.1680419</string>
+						</dict>
+						<key>rebasable-url</key>
+						<dict>
+							<key>base</key>
+							<string>workspace</string>
+							<key>payload</key>
+							<dict>
+								<key>relative-path</key>
+								<string>Astroid Blaster3D/GameStartAnimation.swift</string>
+							</dict>
+						</dict>
+					</dict>
+					<key>text-context</key>
+					<dict>
+						<key>focused</key>
+						<string>    
+</string>
+						<key>leading</key>
+						<string>        return degrees * CGFloat.pi / 180
+    }
+//</string>
+						<key>trailing</key>
+						<string>//    // Kurzversion der Animation
+//    func animateTwinShip() {
+//        
+</string>
+					</dict>
+					<key>title</key>
+					<string>animateTwinShip - Ohne</string>
+					<key>type</key>
+					<string>bookmark</string>
+				</dict>
+				<dict>
+					<key>destination</key>
+					<dict>
+						<key>location-parameters</key>
+						<dict>
+							<key>EndingColumnNumber</key>
+							<string>0</string>
+							<key>EndingLineNumber</key>
+							<string>8</string>
+							<key>StartingColumnNumber</key>
+							<string>11</string>
+							<key>StartingLineNumber</key>
+							<string>7</string>
+							<key>Timestamp</key>
+							<string>761769953.80239</string>
+						</dict>
+						<key>rebasable-url</key>
+						<dict>
+							<key>base</key>
+							<string>workspace</string>
+							<key>payload</key>
+							<dict>
+								<key>relative-path</key>
+								<string>Astroid Blaster3D/GameStartAnimation.swift</string>
+							</dict>
+						</dict>
+					</dict>
+					<key>text-context</key>
+					<dict>
+						<key>focused</key>
+						<string>
+</string>
+						<key>leading</key>
+						<string>
+extension GameViewController {
+           </string>
+						<key>trailing</key>
+						<string>    // Startet schrittweise die Eingangs-Animation
+    func startGameIntro() {
+        DispatchQueue.main.async { [self] in
+</string>
+					</dict>
+					<key>title</key>
+					<string>showStartAnimation</string>
+					<key>type</key>
+					<string>bookmark</string>
+				</dict>
+				<dict>
+					<key>destination</key>
+					<dict>
+						<key>location-parameters</key>
+						<dict>
+							<key>EndingColumnNumber</key>
+							<string>0</string>
+							<key>EndingLineNumber</key>
+							<string>48</string>
+							<key>StartingColumnNumber</key>
+							<string>0</string>
+							<key>StartingLineNumber</key>
+							<string>47</string>
+							<key>Timestamp</key>
+							<string>764454531.815426</string>
+						</dict>
+						<key>rebasable-url</key>
+						<dict>
+							<key>base</key>
+							<string>workspace</string>
+							<key>payload</key>
+							<dict>
+								<key>relative-path</key>
+								<string>Astroid Blaster3D/GameStartAnimation.swift</string>
+							</dict>
+						</dict>
+					</dict>
+					<key>text-context</key>
+					<dict>
+						<key>focused</key>
+						<string>    
+</string>
+						<key>leading</key>
+						<string>        }
+    }
+</string>
+						<key>trailing</key>
+						<string>    // MARK: - Animate Probe
+    func startAnimationProbe() {
+        // Startposition der Probe und sichtbar machen
+</string>
+					</dict>
+					<key>title</key>
+					<string>Start Animation Probe</string>
+					<key>type</key>
+					<string>bookmark</string>
+				</dict>
+				<dict>
+					<key>destination</key>
+					<dict>
+						<key>location-parameters</key>
+						<dict>
+							<key>EndingColumnNumber</key>
+							<string>0</string>
+							<key>EndingLineNumber</key>
+							<string>276</string>
+							<key>StartingColumnNumber</key>
+							<string>0</string>
+							<key>StartingLineNumber</key>
+							<string>275</string>
+							<key>Timestamp</key>
+							<string>764454531.815389</string>
+						</dict>
+						<key>rebasable-url</key>
+						<dict>
+							<key>base</key>
+							<string>workspace</string>
+							<key>payload</key>
+							<dict>
+								<key>relative-path</key>
+								<string>Astroid Blaster3D/GameStartAnimation.swift</string>
+							</dict>
+						</dict>
+					</dict>
+					<key>text-context</key>
+					<dict>
+						<key>focused</key>
+						<string>
+</string>
+						<key>leading</key>
+						<string>        starYellowNode.runAction(moveActionYellowStar)
+    }
+</string>
+						<key>trailing</key>
+						<string>    // MARK: - Animate TwinShip
+// Verfolger TwinShip starten und SpaceProbe hinterherfliegen
+        
+</string>
+					</dict>
+					<key>title</key>
+					<string>Start Animation For Ship</string>
+					<key>type</key>
+					<string>bookmark</string>
+				</dict>
+			</array>
+			<key>title</key>
+			<string>Animationen</string>
+			<key>type</key>
+			<string>group</string>
+		</dict>
+		<dict>
+			<key>children</key>
+			<array>
+				<dict>
+					<key>children</key>
+					<array>
+						<dict>
+							<key>destination</key>
+							<dict>
+								<key>location-parameters</key>
+								<dict>
+									<key>EndingColumnNumber</key>
+									<string>0</string>
+									<key>EndingLineNumber</key>
+									<string>178</string>
+									<key>StartingColumnNumber</key>
+									<string>0</string>
+									<key>StartingLineNumber</key>
+									<string>177</string>
+									<key>Timestamp</key>
+									<string>785433767.541965</string>
+								</dict>
+								<key>rebasable-url</key>
+								<dict>
+									<key>base</key>
+									<string>workspace</string>
+									<key>payload</key>
+									<dict>
+										<key>relative-path</key>
+										<string>Astroid Blaster3D/Objects Manager/SpaceObjectsFactory.swift</string>
+									</dict>
+								</dict>
+							</dict>
+							<key>text-context</key>
+							<dict>
+								<key>focused</key>
+								<string>    // MARK: - Asteroid
+</string>
+								<key>leading</key>
+								<string>    }
+    
+</string>
+								<key>trailing</key>
+								<string>    func createAsteroids(count: Int, offsetNumber: Int) {
+        
+        let burstAsteroid = offsetNumber != 0   // Wenn true dann werden die Großen erzeugt
+</string>
+							</dict>
+							<key>title</key>
+							<string>createAsteroids()</string>
+							<key>type</key>
+							<string>bookmark</string>
+						</dict>
+						<dict>
+							<key>destination</key>
+							<dict>
+								<key>location-parameters</key>
+								<dict>
+									<key>EndingColumnNumber</key>
+									<string>0</string>
+									<key>EndingLineNumber</key>
+									<string>370</string>
+									<key>StartingColumnNumber</key>
+									<string>0</string>
+									<key>StartingLineNumber</key>
+									<string>369</string>
+									<key>Timestamp</key>
+									<string>785432646.735059</string>
+								</dict>
+								<key>rebasable-url</key>
+								<dict>
+									<key>base</key>
+									<string>workspace</string>
+									<key>payload</key>
+									<dict>
+										<key>relative-path</key>
+										<string>Astroid Blaster3D/GameManager.swift</string>
+									</dict>
+								</dict>
+							</dict>
+							<key>text-context</key>
+							<dict>
+								<key>focused</key>
+								<string>        
+</string>
+								<key>leading</key>
+								<string>        }
+    } //-----------------------------------------------------
+</string>
+								<key>trailing</key>
+								<string>    // FIXME: Größe für die unterschiedlichen Level ???
+    /// Über "func startTimerAsteroid()" wiederkehrend gestartet
+    @objc func setAsteroidToStart()  {
+</string>
+							</dict>
+							<key>title</key>
+							<string>Set Asteroid Position to Start</string>
+							<key>type</key>
+							<string>bookmark</string>
+						</dict>
+						<dict>
+							<key>destination</key>
+							<dict>
+								<key>location-parameters</key>
+								<dict>
+									<key>EndingColumnNumber</key>
+									<string>0</string>
+									<key>EndingLineNumber</key>
+									<string>170</string>
+									<key>StartingColumnNumber</key>
+									<string>0</string>
+									<key>StartingLineNumber</key>
+									<string>169</string>
+									<key>Timestamp</key>
+									<string>785432646.735045</string>
+								</dict>
+								<key>rebasable-url</key>
+								<dict>
+									<key>base</key>
+									<string>workspace</string>
+									<key>payload</key>
+									<dict>
+										<key>relative-path</key>
+										<string>Astroid Blaster3D/GameManager.swift</string>
+									</dict>
+								</dict>
+							</dict>
+							<key>text-context</key>
+							<dict>
+								<key>focused</key>
+								<string>
+</string>
+								<key>leading</key>
+								<string>    }   
+    
+</string>
+								<key>trailing</key>
+								<string>    //--------------------------------------------------------------------------------------
+
+
+</string>
+							</dict>
+							<key>title</key>
+							<string>Kollision Fire mit Asteroid</string>
+							<key>type</key>
+							<string>bookmark</string>
+						</dict>
+						<dict>
+							<key>destination</key>
+							<dict>
+								<key>location-parameters</key>
+								<dict>
+									<key>EndingColumnNumber</key>
+									<string>0</string>
+									<key>EndingLineNumber</key>
+									<string>231</string>
+									<key>StartingColumnNumber</key>
+									<string>0</string>
+									<key>StartingLineNumber</key>
+									<string>230</string>
+									<key>Timestamp</key>
+									<string>785432646.735083</string>
+								</dict>
+								<key>rebasable-url</key>
+								<dict>
+									<key>base</key>
+									<string>workspace</string>
+									<key>payload</key>
+									<dict>
+										<key>relative-path</key>
+										<string>Astroid Blaster3D/GameManager.swift</string>
+									</dict>
+								</dict>
+							</dict>
+							<key>text-context</key>
+							<dict>
+								<key>focused</key>
+								<string>    // Alle AsteroidsNodes die den Bildschirm verlassen auf Parkposition setzten
+</string>
+								<key>leading</key>
+								<string>    
+// MARK: Clean Scene
+</string>
+								<key>trailing</key>
+								<string>    func cleanAsteroids() {
+        // Wenn "Asteroid" oder "Fire" den Bildschirm verlässt
+        for node in gameScene.rootNode.childNodes {
+</string>
+							</dict>
+							<key>title</key>
+							<string>Clean Asteroids()</string>
+							<key>type</key>
+							<string>bookmark</string>
+						</dict>
+					</array>
+					<key>title</key>
+					<string>Asteroid</string>
+					<key>type</key>
+					<string>group</string>
+				</dict>
+				<dict>
+					<key>children</key>
+					<array/>
+					<key>title</key>
+					<string>TwinShip</string>
+					<key>type</key>
+					<string>group</string>
+				</dict>
+				<dict>
+					<key>children</key>
+					<array>
+						<dict>
+							<key>destination</key>
+							<dict>
+								<key>location-parameters</key>
+								<dict>
+									<key>EndingColumnNumber</key>
+									<string>0</string>
+									<key>EndingLineNumber</key>
+									<string>316</string>
+									<key>StartingColumnNumber</key>
+									<string>0</string>
+									<key>StartingLineNumber</key>
+									<string>315</string>
+									<key>Timestamp</key>
+									<string>785432646.7350889</string>
+								</dict>
+								<key>rebasable-url</key>
+								<dict>
+									<key>base</key>
+									<string>workspace</string>
+									<key>payload</key>
+									<dict>
+										<key>relative-path</key>
+										<string>Astroid Blaster3D/GameManager.swift</string>
+									</dict>
+								</dict>
+							</dict>
+							<key>text-context</key>
+							<dict>
+								<key>focused</key>
+								<string>    
+</string>
+								<key>leading</key>
+								<string>        }
+    }
+</string>
+								<key>trailing</key>
+								<string>    /// Löscht Feuerbälle aus fireNodeRight/fireNodeLeft, die die Bildgrenze (2D) oder Distanz (3D) überschreiten
+    func cleanFire() {
+        if !bonusRoundIsActive {
+</string>
+							</dict>
+							<key>title</key>
+							<string>Clean Fire</string>
+							<key>type</key>
+							<string>bookmark</string>
+						</dict>
+						<dict>
+							<key>destination</key>
+							<dict>
+								<key>location-parameters</key>
+								<dict>
+									<key>EndingColumnNumber</key>
+									<string>0</string>
+									<key>EndingLineNumber</key>
+									<string>315</string>
+									<key>StartingColumnNumber</key>
+									<string>0</string>
+									<key>StartingLineNumber</key>
+									<string>314</string>
+									<key>Timestamp</key>
+									<string>785312576.861483</string>
+								</dict>
+								<key>rebasable-url</key>
+								<dict>
+									<key>base</key>
+									<string>workspace</string>
+									<key>payload</key>
+									<dict>
+										<key>relative-path</key>
+										<string>Astroid Blaster3D/InputManager.swift</string>
+									</dict>
+								</dict>
+							</dict>
+							<key>text-context</key>
+							<dict>
+								<key>focused</key>
+								<string>    
+</string>
+								<key>leading</key>
+								<string>        shipDampingFactor = maxDamping - (dampingRange * birthRateFactor)  // Linear interpolieren
+    }
+</string>
+								<key>trailing</key>
+								<string>    func animateFire() {
+        if bonusRoundIsEnabled {
+            
+</string>
+							</dict>
+							<key>title</key>
+							<string>Animate Fire</string>
+							<key>type</key>
+							<string>bookmark</string>
+						</dict>
+						<dict>
+							<key>destination</key>
+							<dict>
+								<key>location-parameters</key>
+								<dict>
+									<key>EndingColumnNumber</key>
+									<string>0</string>
+									<key>EndingLineNumber</key>
+									<string>81</string>
+									<key>StartingColumnNumber</key>
+									<string>0</string>
+									<key>StartingLineNumber</key>
+									<string>80</string>
+									<key>Timestamp</key>
+									<string>785433767.541981</string>
+								</dict>
+								<key>rebasable-url</key>
+								<dict>
+									<key>base</key>
+									<string>workspace</string>
+									<key>payload</key>
+									<dict>
+										<key>relative-path</key>
+										<string>Astroid Blaster3D/Objects Manager/SpaceObjectsFactory.swift</string>
+									</dict>
+								</dict>
+							</dict>
+							<key>text-context</key>
+							<dict>
+								<key>focused</key>
+								<string>    
+</string>
+								<key>leading</key>
+								<string>    }
+  
+</string>
+								<key>trailing</key>
+								<string>    // MARK: - Fire
+    func createFireLeft(position: SCNVector3) {
+        
+</string>
+							</dict>
+							<key>title</key>
+							<string>Create Fire</string>
+							<key>type</key>
+							<string>bookmark</string>
+						</dict>
+					</array>
+					<key>title</key>
+					<string>Fire</string>
+					<key>type</key>
+					<string>group</string>
+				</dict>
+				<dict>
+					<key>children</key>
+					<array>
+						<dict>
+							<key>destination</key>
+							<dict>
+								<key>location-parameters</key>
+								<dict>
+									<key>EndingColumnNumber</key>
+									<string>0</string>
+									<key>EndingLineNumber</key>
+									<string>15</string>
+									<key>StartingColumnNumber</key>
+									<string>0</string>
+									<key>StartingLineNumber</key>
+									<string>15</string>
+									<key>Timestamp</key>
+									<string>767085216.951908</string>
+								</dict>
+								<key>rebasable-url</key>
+								<dict>
+									<key>base</key>
+									<string>workspace</string>
+									<key>payload</key>
+									<dict>
+										<key>relative-path</key>
+										<string>Astroid Blaster3D/GameSetup.swift</string>
+									</dict>
+								</dict>
+							</dict>
+							<key>text-context</key>
+							<dict>
+								<key>focused</key>
+								<string></string>
+								<key>leading</key>
+								<string>
+extension GameViewController {
+</string>
+								<key>trailing</key>
+								<string>
+}
+</string>
+							</dict>
+							<key>title</key>
+							<string>Setup Hintergrundsterne</string>
+							<key>type</key>
+							<string>bookmark</string>
+						</dict>
+						<dict>
+							<key>destination</key>
+							<dict>
+								<key>location-parameters</key>
+								<dict>
+									<key>EndingColumnNumber</key>
+									<string>0</string>
+									<key>EndingLineNumber</key>
+									<string>569</string>
+									<key>StartingColumnNumber</key>
+									<string>0</string>
+									<key>StartingLineNumber</key>
+									<string>568</string>
+									<key>Timestamp</key>
+									<string>785432646.735013</string>
+								</dict>
+								<key>rebasable-url</key>
+								<dict>
+									<key>base</key>
+									<string>workspace</string>
+									<key>payload</key>
+									<dict>
+										<key>relative-path</key>
+										<string>Astroid Blaster3D/GameManager.swift</string>
+									</dict>
+								</dict>
+							</dict>
+							<key>text-context</key>
+							<dict>
+								<key>focused</key>
+								<string>    
+</string>
+								<key>leading</key>
+								<string>    }
+    //--------------------------------------------------------------------------------------
+</string>
+								<key>trailing</key>
+								<string>    // Sterne bewegen
+    func moveBackgroundStars() {
+        guard startBackgroundStars else { return }
+</string>
+							</dict>
+							<key>title</key>
+							<string>Move BackgroundStars</string>
+							<key>type</key>
+							<string>bookmark</string>
+						</dict>
+					</array>
+					<key>title</key>
+					<string>Background Stars</string>
+					<key>type</key>
+					<string>group</string>
+				</dict>
+			</array>
+			<key>title</key>
+			<string>Objekte</string>
+			<key>type</key>
+			<string>group</string>
+		</dict>
+		<dict>
+			<key>children</key>
+			<array>
+				<dict>
+					<key>destination</key>
+					<dict>
+						<key>location-parameters</key>
+						<dict>
+							<key>EndingColumnNumber</key>
+							<string>0</string>
+							<key>EndingLineNumber</key>
+							<string>1</string>
+							<key>StartingColumnNumber</key>
+							<string>0</string>
+							<key>StartingLineNumber</key>
+							<string>0</string>
+							<key>Timestamp</key>
+							<string>785529929.938646</string>
+						</dict>
+						<key>rebasable-url</key>
+						<dict>
+							<key>base</key>
+							<string>workspace</string>
+							<key>payload</key>
+							<dict>
+								<key>relative-path</key>
+								<string>Astroid Blaster3D/GameViewController.swift</string>
+							</dict>
+						</dict>
+					</dict>
+					<key>text-context</key>
+					<dict>
+						<key>focused</key>
+						<string>    //
+</string>
+						<key>leading</key>
+						<string></string>
+						<key>trailing</key>
+						<string>    //  GameViewController.swift
+    //
+    //  Created by Günter Voit on 14.08.24.
+</string>
+					</dict>
+					<key>title</key>
+					<string>Variablen Deklaration</string>
+					<key>type</key>
+					<string>bookmark</string>
+				</dict>
+				<dict>
+					<key>destination</key>
+					<dict>
+						<key>location-parameters</key>
+						<dict>
+							<key>EndingColumnNumber</key>
+							<string>0</string>
+							<key>EndingLineNumber</key>
+							<string>170</string>
+							<key>StartingColumnNumber</key>
+							<string>0</string>
+							<key>StartingLineNumber</key>
+							<string>169</string>
+							<key>Timestamp</key>
+							<string>785432646.7350529</string>
+						</dict>
+						<key>rebasable-url</key>
+						<dict>
+							<key>base</key>
+							<string>workspace</string>
+							<key>payload</key>
+							<dict>
+								<key>relative-path</key>
+								<string>Astroid Blaster3D/GameManager.swift</string>
+							</dict>
+						</dict>
+					</dict>
+					<key>text-context</key>
+					<dict>
+						<key>focused</key>
+						<string>
+</string>
+						<key>leading</key>
+						<string>    }   
+    
+</string>
+						<key>trailing</key>
+						<string>    //--------------------------------------------------------------------------------------
+
+
+</string>
+					</dict>
+					<key>title</key>
+					<string>Move to Parkposition</string>
+					<key>type</key>
+					<string>bookmark</string>
+				</dict>
+				<dict>
+					<key>destination</key>
+					<dict>
+						<key>location-parameters</key>
+						<dict>
+							<key>EndingColumnNumber</key>
+							<string>0</string>
+							<key>EndingLineNumber</key>
+							<string>448</string>
+							<key>StartingColumnNumber</key>
+							<string>0</string>
+							<key>StartingLineNumber</key>
+							<string>447</string>
+							<key>Timestamp</key>
+							<string>785529607.273862</string>
+						</dict>
+						<key>rebasable-url</key>
+						<dict>
+							<key>base</key>
+							<string>workspace</string>
+							<key>payload</key>
+							<dict>
+								<key>relative-path</key>
+								<string>Astroid Blaster3D/GameViewController.swift</string>
+							</dict>
+						</dict>
+					</dict>
+					<key>text-context</key>
+					<dict>
+						<key>focused</key>
+						<string>    //MARK: ViewDidLoad
+</string>
+						<key>leading</key>
+						<string>    
+
+</string>
+						<key>trailing</key>
+						<string>    override func viewDidLoad() {
+        super.viewDidLoad()
+
+</string>
+					</dict>
+					<key>title</key>
+					<string>viewDidLoad()</string>
+					<key>type</key>
+					<string>bookmark</string>
+				</dict>
+				<dict>
+					<key>destination</key>
+					<dict>
+						<key>location-parameters</key>
+						<dict>
+							<key>EndingColumnNumber</key>
+							<string>0</string>
+							<key>EndingLineNumber</key>
+							<string>529</string>
+							<key>StartingColumnNumber</key>
+							<string>0</string>
+							<key>StartingLineNumber</key>
+							<string>528</string>
+							<key>Timestamp</key>
+							<string>785432646.7350661</string>
+						</dict>
+						<key>rebasable-url</key>
+						<dict>
+							<key>base</key>
+							<string>workspace</string>
+							<key>payload</key>
+							<dict>
+								<key>relative-path</key>
+								<string>Astroid Blaster3D/GameManager.swift</string>
+							</dict>
+						</dict>
+					</dict>
+					<key>text-context</key>
+					<dict>
+						<key>focused</key>
+						<string>    
+</string>
+						<key>leading</key>
+						<string>    //--------------------------------------------------------------------------------------
+
+</string>
+						<key>trailing</key>
+						<string>    func rotateObjectRandomly(_ node: SCNNode, withFadeIn: Bool = false, fadeInDuration: TimeInterval = 1.0) {
+        // Zufällige Rotationswerte – nur um Y-Achse
+        let randomY = Float.random(in: -Float.pi...Float.pi)
+</string>
+					</dict>
+					<key>title</key>
+					<string>Rotate Object Randomly</string>
+					<key>type</key>
+					<string>bookmark</string>
+				</dict>
+				<dict>
+					<key>destination</key>
+					<dict>
+						<key>location-parameters</key>
+						<dict>
+							<key>EndingColumnNumber</key>
+							<string>0</string>
+							<key>EndingLineNumber</key>
+							<string>497</string>
+							<key>StartingColumnNumber</key>
+							<string>0</string>
+							<key>StartingLineNumber</key>
+							<string>496</string>
+							<key>Timestamp</key>
+							<string>785432646.735072</string>
+						</dict>
+						<key>rebasable-url</key>
+						<dict>
+							<key>base</key>
+							<string>workspace</string>
+							<key>payload</key>
+							<dict>
+								<key>relative-path</key>
+								<string>Astroid Blaster3D/GameManager.swift</string>
+							</dict>
+						</dict>
+					</dict>
+					<key>text-context</key>
+					<dict>
+						<key>focused</key>
+						<string>
+</string>
+						<key>leading</key>
+						<string>    }
+    //--------------------------------------------------------------------------------------
+</string>
+						<key>trailing</key>
+						<string>    // Zufällige Bewegung von übergebenen Node
+    func moveObjectRandomly(_ node: SCNNode,
+                            _ xRange: ClosedRange&lt;Float&gt;,
+</string>
+					</dict>
+					<key>title</key>
+					<string>Move Object Randomly</string>
+					<key>type</key>
+					<string>bookmark</string>
+				</dict>
+				<dict>
+					<key>destination</key>
+					<dict>
+						<key>location-parameters</key>
+						<dict>
+							<key>EndingColumnNumber</key>
+							<string>0</string>
+							<key>EndingLineNumber</key>
+							<string>81</string>
+							<key>StartingColumnNumber</key>
+							<string>0</string>
+							<key>StartingLineNumber</key>
+							<string>80</string>
+							<key>Timestamp</key>
+							<string>785432646.735095</string>
+						</dict>
+						<key>rebasable-url</key>
+						<dict>
+							<key>base</key>
+							<string>workspace</string>
+							<key>payload</key>
+							<dict>
+								<key>relative-path</key>
+								<string>Astroid Blaster3D/GameManager.swift</string>
+							</dict>
+						</dict>
+					</dict>
+					<key>text-context</key>
+					<dict>
+						<key>focused</key>
+						<string>
+</string>
+						<key>leading</key>
+						<string>        }
+    }
+</string>
+						<key>trailing</key>
+						<string>    // Diverse Werte die beim erreichen des NextLevel erhöht werden werden
+    func nextLevelUpdate() {
+        
+</string>
+					</dict>
+					<key>title</key>
+					<string>nextLevelUpdate()</string>
+					<key>type</key>
+					<string>bookmark</string>
+				</dict>
+			</array>
+			<key>title</key>
+			<string>System</string>
+			<key>type</key>
+			<string>group</string>
+		</dict>
+		<dict>
+			<key>children</key>
+			<array>
+				<dict>
+					<key>destination</key>
+					<dict>
+						<key>location-parameters</key>
+						<dict>
+							<key>EndingColumnNumber</key>
+							<string>0</string>
+							<key>EndingLineNumber</key>
+							<string>15</string>
+							<key>StartingColumnNumber</key>
+							<string>0</string>
+							<key>StartingLineNumber</key>
+							<string>15</string>
+							<key>Timestamp</key>
+							<string>767085216.951894</string>
+						</dict>
+						<key>rebasable-url</key>
+						<dict>
+							<key>base</key>
+							<string>workspace</string>
+							<key>payload</key>
+							<dict>
+								<key>relative-path</key>
+								<string>Astroid Blaster3D/GameSetup.swift</string>
+							</dict>
+						</dict>
+					</dict>
+					<key>text-context</key>
+					<dict>
+						<key>focused</key>
+						<string></string>
+						<key>leading</key>
+						<string>
+extension GameViewController {
+</string>
+						<key>trailing</key>
+						<string>
+}
+</string>
+					</dict>
+					<key>title</key>
+					<string>Change Game Scene Background</string>
+					<key>type</key>
+					<string>bookmark</string>
+				</dict>
+				<dict>
+					<key>destination</key>
+					<dict>
+						<key>location-parameters</key>
+						<dict>
+							<key>EndingColumnNumber</key>
+							<string>0</string>
+							<key>EndingLineNumber</key>
+							<string>15</string>
+							<key>StartingColumnNumber</key>
+							<string>0</string>
+							<key>StartingLineNumber</key>
+							<string>15</string>
+							<key>Timestamp</key>
+							<string>767085216.9518991</string>
+						</dict>
+						<key>rebasable-url</key>
+						<dict>
+							<key>base</key>
+							<string>workspace</string>
+							<key>payload</key>
+							<dict>
+								<key>relative-path</key>
+								<string>Astroid Blaster3D/GameSetup.swift</string>
+							</dict>
+						</dict>
+					</dict>
+					<key>text-context</key>
+					<dict>
+						<key>focused</key>
+						<string></string>
+						<key>leading</key>
+						<string>
+extension GameViewController {
+</string>
+						<key>trailing</key>
+						<string>
+}
+</string>
+					</dict>
+					<key>title</key>
+					<string>Setup Settings View</string>
+					<key>type</key>
+					<string>bookmark</string>
+				</dict>
+				<dict>
+					<key>destination</key>
+					<dict>
+						<key>location-parameters</key>
+						<dict>
+							<key>EndingColumnNumber</key>
+							<string>0</string>
+							<key>EndingLineNumber</key>
+							<string>15</string>
+							<key>StartingColumnNumber</key>
+							<string>0</string>
+							<key>StartingLineNumber</key>
+							<string>15</string>
+							<key>Timestamp</key>
+							<string>767085216.951924</string>
+						</dict>
+						<key>rebasable-url</key>
+						<dict>
+							<key>base</key>
+							<string>workspace</string>
+							<key>payload</key>
+							<dict>
+								<key>relative-path</key>
+								<string>Astroid Blaster3D/GameSetup.swift</string>
+							</dict>
+						</dict>
+					</dict>
+					<key>text-context</key>
+					<dict>
+						<key>focused</key>
+						<string></string>
+						<key>leading</key>
+						<string>
+extension GameViewController {
+</string>
+						<key>trailing</key>
+						<string>
+}
+</string>
+					</dict>
+					<key>title</key>
+					<string>Button Builder</string>
+					<key>type</key>
+					<string>bookmark</string>
+				</dict>
+			</array>
+			<key>title</key>
+			<string>Setup Start-View</string>
+			<key>type</key>
+			<string>group</string>
+		</dict>
+		<dict>
+			<key>children</key>
+			<array>
+				<dict>
+					<key>destination</key>
+					<dict>
+						<key>location-parameters</key>
+						<dict>
+							<key>EndingColumnNumber</key>
+							<string>0</string>
+							<key>EndingLineNumber</key>
+							<string>15</string>
+							<key>StartingColumnNumber</key>
+							<string>0</string>
+							<key>StartingLineNumber</key>
+							<string>14</string>
+							<key>Timestamp</key>
+							<string>785437847.803578</string>
+						</dict>
+						<key>rebasable-url</key>
+						<dict>
+							<key>base</key>
+							<string>workspace</string>
+							<key>payload</key>
+							<dict>
+								<key>relative-path</key>
+								<string>Astroid Blaster3D/EnemyManager.swift</string>
+							</dict>
+						</dict>
+					</dict>
+					<key>text-context</key>
+					<dict>
+						<key>focused</key>
+						<string>    func scheduleNextEnemy(_ enemy: EnemyType) {
+</string>
+						<key>leading</key>
+						<string>extension GameViewController {
+    
+</string>
+						<key>trailing</key>
+						<string>        let spawnDelayRange = 15.0...17.0
+
+        //#10 watchdog.functionWasCalled()
+</string>
+					</dict>
+					<key>title</key>
+					<string>Schedule Next Enemy</string>
+					<key>type</key>
+					<string>bookmark</string>
+				</dict>
+			</array>
+			<key>title</key>
+			<string>Enemy</string>
+			<key>type</key>
+			<string>group</string>
+		</dict>
+		<dict>
+			<key>children</key>
+			<array>
+				<dict>
+					<key>children</key>
+					<array>
+						<dict>
+							<key>destination</key>
+							<dict>
+								<key>location-parameters</key>
+								<dict>
+									<key>EndingColumnNumber</key>
+									<string>0</string>
+									<key>EndingLineNumber</key>
+									<string>10</string>
+									<key>StartingColumnNumber</key>
+									<string>0</string>
+									<key>StartingLineNumber</key>
+									<string>9</string>
+									<key>Timestamp</key>
+									<string>767525211.062952</string>
+								</dict>
+								<key>rebasable-url</key>
+								<dict>
+									<key>base</key>
+									<string>workspace</string>
+									<key>payload</key>
+									<dict>
+										<key>relative-path</key>
+										<string>Astroid Blaster3D/InputManager.swift</string>
+									</dict>
+								</dict>
+							</dict>
+							<key>text-context</key>
+							<dict>
+								<key>focused</key>
+								<string>
+</string>
+								<key>leading</key>
+								<string>import SceneKit
+
+</string>
+								<key>trailing</key>
+								<string>extension GameViewController {
+    
+// MARK: Touch Steuerung
+</string>
+							</dict>
+							<key>title</key>
+							<string>InputManager.swift</string>
+							<key>type</key>
+							<string>bookmark</string>
+						</dict>
+						<dict>
+							<key>destination</key>
+							<dict>
+								<key>location-parameters</key>
+								<dict>
+									<key>EndingColumnNumber</key>
+									<string>0</string>
+									<key>EndingLineNumber</key>
+									<string>1</string>
+									<key>StartingColumnNumber</key>
+									<string>0</string>
+									<key>StartingLineNumber</key>
+									<string>0</string>
+									<key>Timestamp</key>
+									<string>785523687.316568</string>
+								</dict>
+								<key>rebasable-url</key>
+								<dict>
+									<key>base</key>
+									<string>workspace</string>
+									<key>payload</key>
+									<dict>
+										<key>relative-path</key>
+										<string>Astroid Blaster3D/Objects Manager/BallWallManager.swift</string>
+									</dict>
+								</dict>
+							</dict>
+							<key>text-context</key>
+							<dict>
+								<key>focused</key>
+								<string>//
+</string>
+								<key>leading</key>
+								<string></string>
+								<key>trailing</key>
+								<string>//  BallWallManager.swift
+//  Astroid Blaster3D
+//
+</string>
+							</dict>
+							<key>title</key>
+							<string>BallWallManager.swift</string>
+							<key>type</key>
+							<string>bookmark</string>
+						</dict>
+						<dict>
+							<key>destination</key>
+							<dict>
+								<key>location-parameters</key>
+								<dict>
+									<key>EndingColumnNumber</key>
+									<string>0</string>
+									<key>EndingLineNumber</key>
+									<string>1</string>
+									<key>StartingColumnNumber</key>
+									<string>0</string>
+									<key>StartingLineNumber</key>
+									<string>0</string>
+									<key>Timestamp</key>
+									<string>785437784.79568</string>
+								</dict>
+								<key>rebasable-url</key>
+								<dict>
+									<key>base</key>
+									<string>workspace</string>
+									<key>payload</key>
+									<dict>
+										<key>relative-path</key>
+										<string>Astroid Blaster3D/Objects Manager/BigFlashManager.swift</string>
+									</dict>
+								</dict>
+							</dict>
+							<key>text-context</key>
+							<dict>
+								<key>focused</key>
+								<string>//
+</string>
+								<key>leading</key>
+								<string></string>
+								<key>trailing</key>
+								<string>//  BigFlashManager.swift
+//  Astroid Blaster3D
+//
+</string>
+							</dict>
+							<key>title</key>
+							<string>BigFlashManager.swift</string>
+							<key>type</key>
+							<string>bookmark</string>
+						</dict>
+						<dict>
+							<key>destination</key>
+							<dict>
+								<key>location-parameters</key>
+								<dict>
+									<key>EndingColumnNumber</key>
+									<string>0</string>
+									<key>EndingLineNumber</key>
+									<string>1</string>
+									<key>StartingColumnNumber</key>
+									<string>0</string>
+									<key>StartingLineNumber</key>
+									<string>0</string>
+									<key>Timestamp</key>
+									<string>785532066.3526959</string>
+								</dict>
+								<key>rebasable-url</key>
+								<dict>
+									<key>base</key>
+									<string>workspace</string>
+									<key>payload</key>
+									<dict>
+										<key>relative-path</key>
+										<string>Astroid Blaster3D/Objects Manager/InvaderManager.swift</string>
+									</dict>
+								</dict>
+							</dict>
+							<key>text-context</key>
+							<dict>
+								<key>focused</key>
+								<string>//
+</string>
+								<key>leading</key>
+								<string></string>
+								<key>trailing</key>
+								<string>//  AnimateInvader.swift
+//  Astroid Blaster3D
+//
+</string>
+							</dict>
+							<key>title</key>
+							<string>InvaderManager.swift</string>
+							<key>type</key>
+							<string>bookmark</string>
+						</dict>
+						<dict>
+							<key>destination</key>
+							<dict>
+								<key>location-parameters</key>
+								<dict>
+									<key>EndingColumnNumber</key>
+									<string>0</string>
+									<key>EndingLineNumber</key>
+									<string>9</string>
+									<key>StartingColumnNumber</key>
+									<string>0</string>
+									<key>StartingLineNumber</key>
+									<string>8</string>
+									<key>Timestamp</key>
+									<string>767525297.648914</string>
+								</dict>
+								<key>rebasable-url</key>
+								<dict>
+									<key>base</key>
+									<string>workspace</string>
+									<key>payload</key>
+									<dict>
+										<key>relative-path</key>
+										<string>Astroid Blaster3D/Objects Manager/ProbeManager.swift</string>
+									</dict>
+								</dict>
+							</dict>
+							<key>text-context</key>
+							<dict>
+								<key>focused</key>
+								<string>
+</string>
+								<key>leading</key>
+								<string>
+import SceneKit
+</string>
+								<key>trailing</key>
+								<string>extension GameViewController {
+    
+    
+</string>
+							</dict>
+							<key>title</key>
+							<string>ProbeManager.swift</string>
+							<key>type</key>
+							<string>bookmark</string>
+						</dict>
+						<dict>
+							<key>destination</key>
+							<dict>
+								<key>location-parameters</key>
+								<dict>
+									<key>EndingColumnNumber</key>
+									<string>0</string>
+									<key>EndingLineNumber</key>
+									<string>9</string>
+									<key>StartingColumnNumber</key>
+									<string>0</string>
+									<key>StartingLineNumber</key>
+									<string>8</string>
+									<key>Timestamp</key>
+									<string>767525311.6220419</string>
+								</dict>
+								<key>rebasable-url</key>
+								<dict>
+									<key>base</key>
+									<string>workspace</string>
+									<key>payload</key>
+									<dict>
+										<key>relative-path</key>
+										<string>Astroid Blaster3D/Objects Manager/SpaceObjectsFactory.swift</string>
+									</dict>
+								</dict>
+							</dict>
+							<key>text-context</key>
+							<dict>
+								<key>focused</key>
+								<string>
+</string>
+								<key>leading</key>
+								<string>
+import SceneKit
+</string>
+								<key>trailing</key>
+								<string>extension GameViewController {
+ 
+    // Wegen Ruckler Asteroids vorab erzeugen
+</string>
+							</dict>
+							<key>title</key>
+							<string>SpaceObjectsFactory.swift</string>
+							<key>type</key>
+							<string>bookmark</string>
+						</dict>
+					</array>
+					<key>title</key>
+					<string>Objekte</string>
+					<key>type</key>
+					<string>group</string>
+				</dict>
+				<dict>
+					<key>destination</key>
+					<dict>
+						<key>location-parameters</key>
+						<dict>
+							<key>EndingColumnNumber</key>
+							<string>0</string>
+							<key>EndingLineNumber</key>
+							<string>38</string>
+							<key>StartingColumnNumber</key>
+							<string>0</string>
+							<key>StartingLineNumber</key>
+							<string>37</string>
+							<key>Timestamp</key>
+							<string>785432646.735078</string>
+						</dict>
+						<key>rebasable-url</key>
+						<dict>
+							<key>base</key>
+							<string>workspace</string>
+							<key>payload</key>
+							<dict>
+								<key>relative-path</key>
+								<string>Astroid Blaster3D/GameManager.swift</string>
+							</dict>
+						</dict>
+					</dict>
+					<key>text-context</key>
+					<dict>
+						<key>focused</key>
+						<string>extension GameViewController {
+</string>
+						<key>leading</key>
+						<string>import AudioToolbox
+
+</string>
+						<key>trailing</key>
+						<string>
+    
+    class FunctionWatchdog {
+</string>
+					</dict>
+					<key>title</key>
+					<string>GameManager.swift</string>
+					<key>type</key>
+					<string>bookmark</string>
+				</dict>
+				<dict>
+					<key>destination</key>
+					<dict>
+						<key>location-parameters</key>
+						<dict>
+							<key>EndingColumnNumber</key>
+							<string>0</string>
+							<key>EndingLineNumber</key>
+							<string>1</string>
+							<key>StartingColumnNumber</key>
+							<string>0</string>
+							<key>StartingLineNumber</key>
+							<string>0</string>
+							<key>Timestamp</key>
+							<string>785529934.154972</string>
+						</dict>
+						<key>rebasable-url</key>
+						<dict>
+							<key>base</key>
+							<string>workspace</string>
+							<key>payload</key>
+							<dict>
+								<key>relative-path</key>
+								<string>Astroid Blaster3D/GameSettings.swift</string>
+							</dict>
+						</dict>
+					</dict>
+					<key>text-context</key>
+					<dict>
+						<key>focused</key>
+						<string>//
+</string>
+						<key>leading</key>
+						<string></string>
+						<key>trailing</key>
+						<string>//  GameSettings.swift
+//  Astroid Blaster3D
+//
+</string>
+					</dict>
+					<key>title</key>
+					<string>GameSettings.swift</string>
+					<key>type</key>
+					<string>bookmark</string>
+				</dict>
+				<dict>
+					<key>destination</key>
+					<dict>
+						<key>location-parameters</key>
+						<dict>
+							<key>EndingColumnNumber</key>
+							<string>0</string>
+							<key>EndingLineNumber</key>
+							<string>9</string>
+							<key>StartingColumnNumber</key>
+							<string>0</string>
+							<key>StartingLineNumber</key>
+							<string>8</string>
+							<key>Timestamp</key>
+							<string>767525378.011741</string>
+						</dict>
+						<key>rebasable-url</key>
+						<dict>
+							<key>base</key>
+							<string>workspace</string>
+							<key>payload</key>
+							<dict>
+								<key>relative-path</key>
+								<string>Astroid Blaster3D/Renderer.swift</string>
+							</dict>
+						</dict>
+					</dict>
+					<key>text-context</key>
+					<dict>
+						<key>focused</key>
+						<string>
+</string>
+						<key>leading</key>
+						<string>
+import SceneKit
+</string>
+						<key>trailing</key>
+						<string>extension GameViewController: SCNSceneRendererDelegate {
+
+    
+</string>
+					</dict>
+					<key>title</key>
+					<string>Render.swift</string>
+					<key>type</key>
+					<string>bookmark</string>
+				</dict>
+				<dict>
+					<key>destination</key>
+					<dict>
+						<key>location-parameters</key>
+						<dict>
+							<key>EndingColumnNumber</key>
+							<string>0</string>
+							<key>EndingLineNumber</key>
+							<string>5</string>
+							<key>StartingColumnNumber</key>
+							<string>0</string>
+							<key>StartingLineNumber</key>
+							<string>4</string>
+							<key>Timestamp</key>
+							<string>785074167.178182</string>
+						</dict>
+						<key>rebasable-url</key>
+						<dict>
+							<key>base</key>
+							<string>workspace</string>
+							<key>payload</key>
+							<dict>
+								<key>relative-path</key>
+								<string>Astroid Blaster3D/LevelManager.swift</string>
+							</dict>
+						</dict>
+					</dict>
+					<key>text-context</key>
+					<dict>
+						<key>focused</key>
+						<string>protocol LevelManagerDelegate: AnyObject {
+</string>
+						<key>leading</key>
+						<string>import Foundation
+
+</string>
+						<key>trailing</key>
+						<string>    func updateAsteroidValues(_ asteroidConfig: AsteroidConfig)
+    func updateEnemyValues(_ enemyConfig: EnemyConfig)
+}
+</string>
+					</dict>
+					<key>title</key>
+					<string>LevelManager.swift</string>
+					<key>type</key>
+					<string>bookmark</string>
+				</dict>
+				<dict>
+					<key>destination</key>
+					<dict>
+						<key>location-parameters</key>
+						<dict>
+							<key>EndingColumnNumber</key>
+							<string>0</string>
+							<key>EndingLineNumber</key>
+							<string>1</string>
+							<key>StartingColumnNumber</key>
+							<string>0</string>
+							<key>StartingLineNumber</key>
+							<string>0</string>
+							<key>Timestamp</key>
+							<string>785434164.508057</string>
+						</dict>
+						<key>rebasable-url</key>
+						<dict>
+							<key>base</key>
+							<string>workspace</string>
+							<key>payload</key>
+							<dict>
+								<key>relative-path</key>
+								<string>Astroid Blaster3D/EnemyManager.swift</string>
+							</dict>
+						</dict>
+					</dict>
+					<key>text-context</key>
+					<dict>
+						<key>focused</key>
+						<string>//
+</string>
+						<key>leading</key>
+						<string></string>
+						<key>trailing</key>
+						<string>//  SpaceInvaderController.swift
+//  Astroid Blaster3D
+//
+</string>
+					</dict>
+					<key>title</key>
+					<string>EnemyManager.swift</string>
+					<key>type</key>
+					<string>bookmark</string>
+				</dict>
+				<dict>
+					<key>destination</key>
+					<dict>
+						<key>location-parameters</key>
+						<dict>
+							<key>EndingColumnNumber</key>
+							<string>0</string>
+							<key>EndingLineNumber</key>
+							<string>9</string>
+							<key>StartingColumnNumber</key>
+							<string>0</string>
+							<key>StartingLineNumber</key>
+							<string>8</string>
+							<key>Timestamp</key>
+							<string>767525094.555474</string>
+						</dict>
+						<key>rebasable-url</key>
+						<dict>
+							<key>base</key>
+							<string>workspace</string>
+							<key>payload</key>
+							<dict>
+								<key>relative-path</key>
+								<string>Astroid Blaster3D/Helpers.swift</string>
+							</dict>
+						</dict>
+					</dict>
+					<key>text-context</key>
+					<dict>
+						<key>focused</key>
+						<string>
+</string>
+						<key>leading</key>
+						<string>
+import SceneKit
+</string>
+						<key>trailing</key>
+						<string>//FIXME: TimeInterval on enum
+//extension SpaceProbeState {
+//    var timeSpent: TimeInterval {
+</string>
+					</dict>
+					<key>title</key>
+					<string>Helpers.swift</string>
+					<key>type</key>
+					<string>bookmark</string>
+				</dict>
+				<dict>
+					<key>destination</key>
+					<dict>
+						<key>location-parameters</key>
+						<dict>
+							<key>EndingColumnNumber</key>
+							<string>0</string>
+							<key>EndingLineNumber</key>
+							<string>13</string>
+							<key>StartingColumnNumber</key>
+							<string>0</string>
+							<key>StartingLineNumber</key>
+							<string>12</string>
+							<key>Timestamp</key>
+							<string>785091417.863183</string>
+						</dict>
+						<key>rebasable-url</key>
+						<dict>
+							<key>base</key>
+							<string>workspace</string>
+							<key>payload</key>
+							<dict>
+								<key>relative-path</key>
+								<string>Astroid Blaster3D/ButtonBuilder.swift</string>
+							</dict>
+						</dict>
+					</dict>
+					<key>text-context</key>
+					<dict>
+						<key>focused</key>
+						<string>    class ButtonBuilder {
+</string>
+						<key>leading</key>
+						<string>
+    // MARK: - ButtonBuilder mit inout
+</string>
+						<key>trailing</key>
+						<string>        
+        /// Blendet eine View mit sanfter Animation ein.
+        static func fadeIn(_ view: UIView, delay: TimeInterval) {
+</string>
+					</dict>
+					<key>title</key>
+					<string>ButtonBuilder.swift</string>
+					<key>type</key>
+					<string>bookmark</string>
+				</dict>
+				<dict>
+					<key>destination</key>
+					<dict>
+						<key>location-parameters</key>
+						<dict>
+							<key>EndingColumnNumber</key>
+							<string>0</string>
+							<key>EndingLineNumber</key>
+							<string>13</string>
+							<key>StartingColumnNumber</key>
+							<string>0</string>
+							<key>StartingLineNumber</key>
+							<string>12</string>
+							<key>Timestamp</key>
+							<string>767525173.862426</string>
+						</dict>
+						<key>rebasable-url</key>
+						<dict>
+							<key>base</key>
+							<string>workspace</string>
+							<key>payload</key>
+							<dict>
+								<key>relative-path</key>
+								<string>Astroid Blaster3D/SoundManager.swift</string>
+							</dict>
+						</dict>
+					</dict>
+					<key>text-context</key>
+					<dict>
+						<key>focused</key>
+						<string>
+</string>
+						<key>leading</key>
+						<string>import AVFoundation
+import AudioToolbox
+</string>
+						<key>trailing</key>
+						<string>class SoundManager {
+    
+    // Singleton Instanz
+</string>
+					</dict>
+					<key>title</key>
+					<string>SoundManager.swift</string>
+					<key>type</key>
+					<string>bookmark</string>
+				</dict>
+				<dict>
+					<key>destination</key>
+					<dict>
+						<key>location-parameters</key>
+						<dict>
+							<key>EndingColumnNumber</key>
+							<string>0</string>
+							<key>EndingLineNumber</key>
+							<string>9</string>
+							<key>StartingColumnNumber</key>
+							<string>0</string>
+							<key>StartingLineNumber</key>
+							<string>8</string>
+							<key>Timestamp</key>
+							<string>767524952.848814</string>
+						</dict>
+						<key>rebasable-url</key>
+						<dict>
+							<key>base</key>
+							<string>workspace</string>
+							<key>payload</key>
+							<dict>
+								<key>relative-path</key>
+								<string>Astroid Blaster3D/PhysicsController.swift</string>
+							</dict>
+						</dict>
+					</dict>
+					<key>text-context</key>
+					<dict>
+						<key>focused</key>
+						<string>
+</string>
+						<key>leading</key>
+						<string>
+import SceneKit
+</string>
+						<key>trailing</key>
+						<string>extension GameViewController: SCNPhysicsContactDelegate {
+
+   func physicsWorld(_ world: SCNPhysicsWorld, didBegin contact: SCNPhysicsContact) {
+</string>
+					</dict>
+					<key>title</key>
+					<string>PhysicsController.swift</string>
+					<key>type</key>
+					<string>bookmark</string>
+				</dict>
+			</array>
+			<key>title</key>
+			<string>Swift Dateien</string>
+			<key>type</key>
+			<string>group</string>
+		</dict>
+	</array>
+</dict>
+</plist>
