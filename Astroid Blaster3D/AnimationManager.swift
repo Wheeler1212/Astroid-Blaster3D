@@ -24,8 +24,8 @@ extension GameViewController {
             
             // Animation für SpaceProbe starten
             spaceProbeParentNode.runAction(moveSpaceProbeSequence!)
-            spaceProbeTopNode.runAction(animateSpaceInvaderTopNodeSequence!)
-            spaceProbeBottomNode.runAction(animateSpaceInvaderBottomNodeSequence!)
+            spaceProbeTopNode.runAction(animateSpaceProbeTopNodeSequence!)
+            spaceProbeBottomNode.runAction(animateSpaceProbeBottomNodeSequence!)
 
             // Animation für TwinShip starten
             twinShipStartNode.runAction(moveTwinShipSequence!) { [self] in
@@ -40,8 +40,10 @@ extension GameViewController {
                 backLightNode.isHidden = true
                 ambientLightNode.isHidden = true
                 
-                // Spiel starten
-                startGameDisplay()
+                // Spiel verzögert starten damit Animation ferig auslaufen kann
+                DispatchQueue.main.asyncAfter(deadline: .now() + 10.0) { [self] in
+                    startGameDisplay()
+                }
             }
         }
     }
@@ -88,7 +90,7 @@ extension GameViewController {
         let waitActionForEscape = SCNAction.wait(duration: 3.0)
 
 // Sequenzen für TopNode
-        animateSpaceInvaderTopNodeSequence = SCNAction.sequence([
+        animateSpaceProbeTopNodeSequence = SCNAction.sequence([
             waitActionForCloseEye,
             waitActionForCloseEye,
             waitActionForCloseEye,
@@ -103,7 +105,7 @@ extension GameViewController {
         ])
 
 // Sequenzen für BottomNode
-        animateSpaceInvaderBottomNodeSequence = SCNAction.sequence([
+        animateSpaceProbeBottomNodeSequence = SCNAction.sequence([
             waitActionForCloseEye,
             waitActionForCloseEye,
             waitActionForCloseEye,
@@ -226,7 +228,7 @@ extension GameViewController {
             spaceProbeBottomNode.addChildNode(starYellowNode)
             starYellowNode.position = SCNVector3(0,-20,0)
         }
-        let moveStartPointOrthografieAction = SCNAction.customAction(duration: 0) { [self] node, time in
+        let moveStartPointAction = SCNAction.customAction(duration: 0) { [self] node, time in
             spaceProbeParentNode.position = SCNVector3(-250,0,0)
         }
         
@@ -240,22 +242,28 @@ extension GameViewController {
         
 // Gesamtaktion der ParentNode
         moveSpaceProbeSequence = SCNAction.sequence([
-            bezierSequenceCollectGreenStar, // Zum GreenStar fliegen
-            catchGreenStarAction,           // GreenStar an Probe anhängen
-            bezierSequenceCollectRedStar,   // dito usw.
+            // Zum GreenStar fliegen
+            bezierSequenceCollectGreenStar,
+            // GreenStar an Probe anhängen
+            catchGreenStarAction,
+            // dito für die anderen beiden Stars
+            bezierSequenceCollectRedStar,
             catchRedStarAction,
             bezierSequenceCollectYellowStar,
             catchYellowStarAction,
             rotateEyesAndFaceTwinShip,
-            rotateBodyBack,          // 0.5             für Augen erschreckt zurückdrehen nachdem TwinShip entdeckt hat
-            waitActionForCloseEye,  // 8.0              Einfach nur warten für die syncronistion mit der Botton und Top Animation
+            // 0.5 Sek - Für Augen erschreckt zurückdrehen nachdem er TwinShip entdeckt hat
+            rotateBodyBack,
+            // 8.0 Sek - Einfach nur warten für die syncronistion mit der Botton und Top Animation
+            waitActionForCloseEye,
             waitActionForEscape,
-            bezierSequence,          // ?? Sekunden      mit langgezogener Kurve nach links verschwinden
+            // Mit langgezogener Kurve nach links verschwinden
+            bezierSequence,
             waitActionForCloseEye, // 8.0
-            waitActionForCloseEye, //
-            moveStartPointOrthografieAction,
+            moveStartPointAction,
             spaceProbeComeBackAction,
-            fadeOutSpaceProbeAction // SpaceProbe am Ende der Sequenz dann ausblenden
+            // SpaceProbe am Ende der Sequenz dann ausblenden
+            fadeOutSpaceProbeAction
         ])
 
         // Die Stars hängen unter dem Probe

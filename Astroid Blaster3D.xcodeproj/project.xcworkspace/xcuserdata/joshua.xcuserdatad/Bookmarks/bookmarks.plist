@@ -315,7 +315,7 @@ extension GameViewController {
 									<key>StartingLineNumber</key>
 									<string>369</string>
 									<key>Timestamp</key>
-									<string>785432646.735059</string>
+									<string>785578361.9024709</string>
 								</dict>
 								<key>rebasable-url</key>
 								<dict>
@@ -362,7 +362,7 @@ extension GameViewController {
 									<key>StartingLineNumber</key>
 									<string>169</string>
 									<key>Timestamp</key>
-									<string>785432646.735045</string>
+									<string>785578361.902491</string>
 								</dict>
 								<key>rebasable-url</key>
 								<dict>
@@ -409,7 +409,7 @@ extension GameViewController {
 									<key>StartingLineNumber</key>
 									<string>230</string>
 									<key>Timestamp</key>
-									<string>785432646.735083</string>
+									<string>785578361.9025151</string>
 								</dict>
 								<key>rebasable-url</key>
 								<dict>
@@ -473,7 +473,7 @@ extension GameViewController {
 									<key>StartingLineNumber</key>
 									<string>315</string>
 									<key>Timestamp</key>
-									<string>785432646.7350889</string>
+									<string>785578361.902509</string>
 								</dict>
 								<key>rebasable-url</key>
 								<dict>
@@ -668,7 +668,7 @@ extension GameViewController {
 									<key>StartingLineNumber</key>
 									<string>568</string>
 									<key>Timestamp</key>
-									<string>785432646.735013</string>
+									<string>785578361.90245</string>
 								</dict>
 								<key>rebasable-url</key>
 								<dict>
@@ -775,7 +775,7 @@ extension GameViewController {
 							<key>StartingLineNumber</key>
 							<string>169</string>
 							<key>Timestamp</key>
-							<string>785432646.7350529</string>
+							<string>785578361.9024971</string>
 						</dict>
 						<key>rebasable-url</key>
 						<dict>
@@ -816,13 +816,13 @@ extension GameViewController {
 							<key>EndingColumnNumber</key>
 							<string>0</string>
 							<key>EndingLineNumber</key>
-							<string>448</string>
+							<string>449</string>
 							<key>StartingColumnNumber</key>
 							<string>0</string>
 							<key>StartingLineNumber</key>
-							<string>447</string>
+							<string>448</string>
 							<key>Timestamp</key>
-							<string>785529607.273862</string>
+							<string>785606423.701959</string>
 						</dict>
 						<key>rebasable-url</key>
 						<dict>
@@ -869,7 +869,7 @@ extension GameViewController {
 							<key>StartingLineNumber</key>
 							<string>528</string>
 							<key>Timestamp</key>
-							<string>785432646.7350661</string>
+							<string>785578361.902485</string>
 						</dict>
 						<key>rebasable-url</key>
 						<dict>
@@ -916,7 +916,7 @@ extension GameViewController {
 							<key>StartingLineNumber</key>
 							<string>496</string>
 							<key>Timestamp</key>
-							<string>785432646.735072</string>
+							<string>785578361.902503</string>
 						</dict>
 						<key>rebasable-url</key>
 						<dict>
@@ -963,7 +963,7 @@ extension GameViewController {
 							<key>StartingLineNumber</key>
 							<string>80</string>
 							<key>Timestamp</key>
-							<string>785432646.735095</string>
+							<string>785578361.9024791</string>
 						</dict>
 						<key>rebasable-url</key>
 						<dict>
@@ -1216,13 +1216,13 @@ extension GameViewController {
 									<key>EndingColumnNumber</key>
 									<string>0</string>
 									<key>EndingLineNumber</key>
-									<string>10</string>
+									<string>1</string>
 									<key>StartingColumnNumber</key>
 									<string>0</string>
 									<key>StartingLineNumber</key>
-									<string>9</string>
+									<string>0</string>
 									<key>Timestamp</key>
-									<string>767525211.062952</string>
+									<string>785578414.9409879</string>
 								</dict>
 								<key>rebasable-url</key>
 								<dict>
@@ -1238,16 +1238,14 @@ extension GameViewController {
 							<key>text-context</key>
 							<dict>
 								<key>focused</key>
-								<string>
+								<string>//
 </string>
 								<key>leading</key>
-								<string>import SceneKit
-
-</string>
+								<string></string>
 								<key>trailing</key>
-								<string>extension GameViewController {
-    
-// MARK: Touch Steuerung
+								<string>//  InputManager.swift
+//  Astroid Blaster3D
+//
 </string>
 							</dict>
 							<key>title</key>
@@ -1398,13 +1396,13 @@ extension GameViewController {
 									<key>EndingColumnNumber</key>
 									<string>0</string>
 									<key>EndingLineNumber</key>
-									<string>9</string>
+									<string>1</string>
 									<key>StartingColumnNumber</key>
 									<string>0</string>
 									<key>StartingLineNumber</key>
-									<string>8</string>
+									<string>0</string>
 									<key>Timestamp</key>
-									<string>767525297.648914</string>
+									<string>785578498.079519</string>
 								</dict>
 								<key>rebasable-url</key>
 								<dict>
@@ -1420,16 +1418,14 @@ extension GameViewController {
 							<key>text-context</key>
 							<dict>
 								<key>focused</key>
-								<string>
+								<string>//
 </string>
 								<key>leading</key>
-								<string>
-import SceneKit
-</string>
+								<string></string>
 								<key>trailing</key>
-								<string>extension GameViewController {
-    
-    
+								<string>//  ProbeManager.swift
+//  Astroid Blaster3D
+//
 </string>
 							</dict>
 							<key>title</key>
@@ -1445,13 +1441,13 @@ import SceneKit
 									<key>EndingColumnNumber</key>
 									<string>0</string>
 									<key>EndingLineNumber</key>
-									<string>9</string>
+									<string>1</string>
 									<key>StartingColumnNumber</key>
 									<string>0</string>
 									<key>StartingLineNumber</key>
-									<string>8</string>
+									<string>0</string>
 									<key>Timestamp</key>
-									<string>767525311.6220419</string>
+									<string>785578505.28282</string>
 								</dict>
 								<key>rebasable-url</key>
 								<dict>
@@ -1467,16 +1463,14 @@ import SceneKit
 							<key>text-context</key>
 							<dict>
 								<key>focused</key>
-								<string>
+								<string>//
 </string>
 								<key>leading</key>
-								<string>
-import SceneKit
-</string>
+								<string></string>
 								<key>trailing</key>
-								<string>extension GameViewController {
- 
-    // Wegen Ruckler Asteroids vorab erzeugen
+								<string>//  Untitled.swift
+//  Astroid Blaster3D
+//
 </string>
 							</dict>
 							<key>title</key>
@@ -1498,13 +1492,13 @@ import SceneKit
 							<key>EndingColumnNumber</key>
 							<string>0</string>
 							<key>EndingLineNumber</key>
-							<string>38</string>
+							<string>1</string>
 							<key>StartingColumnNumber</key>
 							<string>0</string>
 							<key>StartingLineNumber</key>
-							<string>37</string>
+							<string>0</string>
 							<key>Timestamp</key>
-							<string>785432646.735078</string>
+							<string>785578376.275628</string>
 						</dict>
 						<key>rebasable-url</key>
 						<dict>
@@ -1520,16 +1514,14 @@ import SceneKit
 					<key>text-context</key>
 					<dict>
 						<key>focused</key>
-						<string>extension GameViewController {
+						<string>//
 </string>
 						<key>leading</key>
-						<string>import AudioToolbox
-
-</string>
+						<string></string>
 						<key>trailing</key>
-						<string>
-    
-    class FunctionWatchdog {
+						<string>//  extension GameViewController.swift
+//  Astroid Blaster3D
+//
 </string>
 					</dict>
 					<key>title</key>
@@ -1590,13 +1582,13 @@ import SceneKit
 							<key>EndingColumnNumber</key>
 							<string>0</string>
 							<key>EndingLineNumber</key>
-							<string>9</string>
+							<string>1</string>
 							<key>StartingColumnNumber</key>
 							<string>0</string>
 							<key>StartingLineNumber</key>
-							<string>8</string>
+							<string>0</string>
 							<key>Timestamp</key>
-							<string>767525378.011741</string>
+							<string>785578432.77306</string>
 						</dict>
 						<key>rebasable-url</key>
 						<dict>
@@ -1612,16 +1604,14 @@ import SceneKit
 					<key>text-context</key>
 					<dict>
 						<key>focused</key>
-						<string>
+						<string>//
 </string>
 						<key>leading</key>
-						<string>
-import SceneKit
-</string>
+						<string></string>
 						<key>trailing</key>
-						<string>extension GameViewController: SCNSceneRendererDelegate {
-
-    
+						<string>//  GameViewController+Renderer.swift
+//  Astroid Blaster3D
+//
 </string>
 					</dict>
 					<key>title</key>
@@ -1637,13 +1627,13 @@ import SceneKit
 							<key>EndingColumnNumber</key>
 							<string>0</string>
 							<key>EndingLineNumber</key>
-							<string>5</string>
+							<string>1</string>
 							<key>StartingColumnNumber</key>
 							<string>0</string>
 							<key>StartingLineNumber</key>
-							<string>4</string>
+							<string>0</string>
 							<key>Timestamp</key>
-							<string>785074167.178182</string>
+							<string>785578421.096812</string>
 						</dict>
 						<key>rebasable-url</key>
 						<dict>
@@ -1659,16 +1649,14 @@ import SceneKit
 					<key>text-context</key>
 					<dict>
 						<key>focused</key>
-						<string>protocol LevelManagerDelegate: AnyObject {
+						<string>
 </string>
 						<key>leading</key>
-						<string>import Foundation
-
-</string>
+						<string></string>
 						<key>trailing</key>
-						<string>    func updateAsteroidValues(_ asteroidConfig: AsteroidConfig)
-    func updateEnemyValues(_ enemyConfig: EnemyConfig)
-}
+						<string>
+import Foundation
+
 </string>
 					</dict>
 					<key>title</key>
@@ -1729,13 +1717,13 @@ import SceneKit
 							<key>EndingColumnNumber</key>
 							<string>0</string>
 							<key>EndingLineNumber</key>
-							<string>9</string>
+							<string>1</string>
 							<key>StartingColumnNumber</key>
 							<string>0</string>
 							<key>StartingLineNumber</key>
-							<string>8</string>
+							<string>0</string>
 							<key>Timestamp</key>
-							<string>767525094.555474</string>
+							<string>785578403.989125</string>
 						</dict>
 						<key>rebasable-url</key>
 						<dict>
@@ -1751,16 +1739,14 @@ import SceneKit
 					<key>text-context</key>
 					<dict>
 						<key>focused</key>
-						<string>
+						<string>//
 </string>
 						<key>leading</key>
-						<string>
-import SceneKit
-</string>
+						<string></string>
 						<key>trailing</key>
-						<string>//FIXME: TimeInterval on enum
-//extension SpaceProbeState {
-//    var timeSpent: TimeInterval {
+						<string>//  Helper.swift
+//  Astroid Blaster3D
+//
 </string>
 					</dict>
 					<key>title</key>
@@ -1823,13 +1809,13 @@ import SceneKit
 							<key>EndingColumnNumber</key>
 							<string>0</string>
 							<key>EndingLineNumber</key>
-							<string>13</string>
+							<string>1</string>
 							<key>StartingColumnNumber</key>
 							<string>0</string>
 							<key>StartingLineNumber</key>
-							<string>12</string>
+							<string>0</string>
 							<key>Timestamp</key>
-							<string>767525173.862426</string>
+							<string>785578436.79188</string>
 						</dict>
 						<key>rebasable-url</key>
 						<dict>
@@ -1845,16 +1831,14 @@ import SceneKit
 					<key>text-context</key>
 					<dict>
 						<key>focused</key>
-						<string>
+						<string>//
 </string>
 						<key>leading</key>
-						<string>import AVFoundation
-import AudioToolbox
-</string>
+						<string></string>
 						<key>trailing</key>
-						<string>class SoundManager {
-    
-    // Singleton Instanz
+						<string>//  SoundManager.swift
+//  Astroid Blaster3D
+//
 </string>
 					</dict>
 					<key>title</key>
@@ -1870,13 +1854,13 @@ import AudioToolbox
 							<key>EndingColumnNumber</key>
 							<string>0</string>
 							<key>EndingLineNumber</key>
-							<string>9</string>
+							<string>1</string>
 							<key>StartingColumnNumber</key>
 							<string>0</string>
 							<key>StartingLineNumber</key>
-							<string>8</string>
+							<string>0</string>
 							<key>Timestamp</key>
-							<string>767524952.848814</string>
+							<string>785578428.309248</string>
 						</dict>
 						<key>rebasable-url</key>
 						<dict>
@@ -1892,16 +1876,14 @@ import AudioToolbox
 					<key>text-context</key>
 					<dict>
 						<key>focused</key>
-						<string>
+						<string>//
 </string>
 						<key>leading</key>
-						<string>
-import SceneKit
-</string>
+						<string></string>
 						<key>trailing</key>
-						<string>extension GameViewController: SCNPhysicsContactDelegate {
-
-   func physicsWorld(_ world: SCNPhysicsWorld, didBegin contact: SCNPhysicsContact) {
+						<string>//  GameViewController+Physics.swift
+//  Astroid Blaster3D
+//
 </string>
 					</dict>
 					<key>title</key>
@@ -1914,6 +1896,96 @@ import SceneKit
 			<string>Swift Dateien</string>
 			<key>type</key>
 			<string>group</string>
+		</dict>
+		<dict>
+			<key>destination</key>
+			<dict>
+				<key>location-parameters</key>
+				<dict>
+					<key>EndingColumnNumber</key>
+					<string>0</string>
+					<key>EndingLineNumber</key>
+					<string>1</string>
+					<key>StartingColumnNumber</key>
+					<string>2</string>
+					<key>StartingLineNumber</key>
+					<string>0</string>
+					<key>Timestamp</key>
+					<string>785578449.0230711</string>
+				</dict>
+				<key>rebasable-url</key>
+				<dict>
+					<key>base</key>
+					<string>workspace</string>
+					<key>payload</key>
+					<dict>
+						<key>relative-path</key>
+						<string>Astroid Blaster3D/UIComponents.swift</string>
+					</dict>
+				</dict>
+			</dict>
+			<key>text-context</key>
+			<dict>
+				<key>focused</key>
+				<string>
+</string>
+				<key>leading</key>
+				<string>//</string>
+				<key>trailing</key>
+				<string>//  UIComponents.swift
+//  Astroid Blaster3D
+//
+</string>
+			</dict>
+			<key>title</key>
+			<string>UIComponents</string>
+			<key>type</key>
+			<string>bookmark</string>
+		</dict>
+		<dict>
+			<key>destination</key>
+			<dict>
+				<key>location-parameters</key>
+				<dict>
+					<key>EndingColumnNumber</key>
+					<string>0</string>
+					<key>EndingLineNumber</key>
+					<string>1</string>
+					<key>StartingColumnNumber</key>
+					<string>2</string>
+					<key>StartingLineNumber</key>
+					<string>0</string>
+					<key>Timestamp</key>
+					<string>785578472.4915709</string>
+				</dict>
+				<key>rebasable-url</key>
+				<dict>
+					<key>base</key>
+					<string>workspace</string>
+					<key>payload</key>
+					<dict>
+						<key>relative-path</key>
+						<string>Astroid Blaster3D/Objects Manager/Asteroid.swift</string>
+					</dict>
+				</dict>
+			</dict>
+			<key>text-context</key>
+			<dict>
+				<key>focused</key>
+				<string>
+</string>
+				<key>leading</key>
+				<string>//</string>
+				<key>trailing</key>
+				<string>//  Asteroid.swift
+//  Astroid Blaster3D
+//
+</string>
+			</dict>
+			<key>title</key>
+			<string>Asteroid</string>
+			<key>type</key>
+			<string>bookmark</string>
 		</dict>
 	</array>
 </dict>

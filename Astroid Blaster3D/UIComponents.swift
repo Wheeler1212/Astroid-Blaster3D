@@ -116,18 +116,29 @@ extension GameViewController {
    }
     
     private func createSwitchContainer(labelText: String, position: CGPoint, action: Selector) -> UIView {
+        
+        let containerWidth: CGFloat = 250
+        let switchControl = UISwitch()
+        switchControl.sizeToFit()
+        switchControl.frame.origin = CGPoint(
+            x: containerWidth - switchControl.bounds.width - 16,
+            y: (50 - switchControl.bounds.height) / 2
+        )
+
+        let label = UILabel(frame: CGRect(x: 16, y: 10, width: containerWidth - switchControl.bounds.width - 32 - 16, height: 30))
+        
         let container = UIView(frame: CGRect(x: position.x, y: position.y, width: 250, height: 50))
         container.backgroundColor = UIColor.clear
         container.layer.cornerRadius = 10
         container.layer.borderWidth = 2
         container.layer.borderColor = UIColor.white.cgColor
 
-        let label = UILabel(frame: CGRect(x: 80, y: 10, width: 150, height: 30))
+        //let label = UILabel(frame: CGRect(x: 100, y: 10, width: 150, height: 30))
         label.text = labelText
         label.font = UIFont.systemFont(ofSize: 20)
         label.textColor = UIColor.white
 
-        let switchControl = UISwitch(frame: CGRect(x: 20, y: 10, width: 0, height: 0))
+        //let switchControl = UISwitch(frame: CGRect(x: 20, y: 10, width: 0, height: 0))
         switchControl.isOn = false
         switchControl.addTarget(self, action: action, for: .valueChanged)
 

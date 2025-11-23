@@ -245,7 +245,9 @@ struct LevelConfig {
                 flashStartDelay:         25,
                 flashOnScreenTime:       20,
                 wallStartDelay:          100,
-                moveObjectRangeY:        -70...70
+                moveObjectRangeY:        -70...70,
+                // 25 Sekunden ist die Startzeit von BigFlash .moving
+                bigFlashOnScreenDurationRange: 30.0...50.0
             )
             : EnemyConfig(
                 invaderSpawnDelay:       1.5,
@@ -256,7 +258,8 @@ struct LevelConfig {
                 flashStartDelay:         25,
                 flashOnScreenTime:       20,
                 wallStartDelay:          270,
-                moveObjectRangeY:        -70...70
+                moveObjectRangeY:        -70...70,
+                bigFlashOnScreenDurationRange: 30.0...40.0
             )
 
         case .medium:
@@ -270,7 +273,8 @@ struct LevelConfig {
                 flashStartDelay:         25,
                 flashOnScreenTime:       20,
                 wallStartDelay:          270,
-                moveObjectRangeY:        -150...150
+                moveObjectRangeY:        -150...150,
+                bigFlashOnScreenDurationRange: 30.0...70.0
             )
             : EnemyConfig(
                 invaderSpawnDelay:       100,
@@ -281,7 +285,8 @@ struct LevelConfig {
                 flashStartDelay:         25,
                 flashOnScreenTime:       20,
                 wallStartDelay:          270,
-                moveObjectRangeY:        -70...70
+                moveObjectRangeY:        -70...70,
+                bigFlashOnScreenDurationRange: 30.0...50.0
             )
 
         case .hard:
@@ -295,7 +300,8 @@ struct LevelConfig {
                 flashStartDelay:         25,
                 flashOnScreenTime:       20,
                 wallStartDelay:          270,
-                moveObjectRangeY:        -200...200
+                moveObjectRangeY:        -200...200,
+                bigFlashOnScreenDurationRange: 30.0...100.0
             )
             : EnemyConfig(
                 invaderSpawnDelay:       75,
@@ -306,7 +312,8 @@ struct LevelConfig {
                 flashStartDelay:         25,
                 flashOnScreenTime:       20,
                 wallStartDelay:          270,
-                moveObjectRangeY:        -70...70
+                moveObjectRangeY:        -70...70,
+                bigFlashOnScreenDurationRange: 30.0...70.0
             )
         }
     }
@@ -332,6 +339,7 @@ struct EnemyConfig {
     let flashOnScreenTime: TimeInterval
     let wallStartDelay: TimeInterval
     let moveObjectRangeY: ClosedRange<Float>
+    let bigFlashOnScreenDurationRange: ClosedRange<TimeInterval>
 }
 
 struct FireConfig {

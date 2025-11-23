@@ -274,8 +274,8 @@ class GameViewController: UIViewController, LevelManagerDelegate {
     var timerOnScreenTimeSpaceProbe: Timer?
     var timerWaitForDelaySpaceProbe: Timer?
     var moveSpaceProbeSequence: SCNAction?
-    var animateSpaceInvaderTopNodeSequence: SCNAction?
-    var animateSpaceInvaderBottomNodeSequence: SCNAction?
+    var animateSpaceProbeTopNodeSequence: SCNAction?
+    var animateSpaceProbeBottomNodeSequence: SCNAction?
     //var spaceProbeTimerMin: Float = 0
     //var spaceProbeTimerMax: Float = 0
     var spaceProbeOnScreenTime: TimeInterval = 0
@@ -423,6 +423,7 @@ class GameViewController: UIViewController, LevelManagerDelegate {
     // Enemys Koordinatenbegrenzung
     let moveObjectRangeX: ClosedRange<Float> = -100...150
     var moveObjectRangeY: ClosedRange<Float> = -70...70
+    var bigFlashOnScreenDurationRange: ClosedRange<TimeInterval> = 30.0...40.0
     
     var screenHeight: CGFloat = 0
     var pointsDifferenzBackup: Int = 0

@@ -66,7 +66,9 @@ extension GameViewController {
         let scaleUpAction = SCNAction.scale(to: 0.2, duration: 25.0)
         scaleUpAction.timingMode = .easeIn
         
-        bigFlashParent.runAction(scaleUpAction) 
+        bigFlashParent.runAction(scaleUpAction) {
+            self.bigFlashState = .moving
+        }
         
         // Werte für DispatchQueue UIImage
         var currentFrame = 0

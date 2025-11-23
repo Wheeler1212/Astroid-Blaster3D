@@ -31,8 +31,8 @@ extension GameViewController {
             //TODO: Häufungen wieder einschalten
             let weightedEnemies: [EnemyType] = [
                 //.spaceProbe, //.spaceProbe, .spaceProbe,  // 3x häufiger
-                .spaceInvader, //.spaceInvader,           // 2x häufiger
-                //.bigFlash                               // 1x selten
+                //.spaceInvader, //.spaceInvader,           // 2x häufiger
+                .bigFlash                               // 1x selten
                 ]
             // Neuen Enemy nur freigeben wenn sonst keiner unterwegs ist
             guard currentEnemy == .none else {
@@ -44,10 +44,6 @@ extension GameViewController {
     }
     
     func spawnNextEnemy() {
-        // FIXME: In GameSettings eintragen
-        // Für unterschiedliche Werte in Level und Difficulty
-        // 25 Sekunden für BigFlash wird ja vergrößert eingeflogen
-        let bigFlashOnScreenDurationRange = 30.0...40.0
         
         switch currentEnemy {
         case .spaceInvader:
