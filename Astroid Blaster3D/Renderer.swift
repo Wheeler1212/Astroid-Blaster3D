@@ -14,7 +14,7 @@ extension GameViewController: SCNSceneRendererDelegate {
    func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
 
        
-       // BigFlash OnScreen-Zeit bis zum ausblenden
+       // Für BigFlash OnScreen-Zeit
        let dt = time - lastUpdateTime
        lastUpdateTime = time
        

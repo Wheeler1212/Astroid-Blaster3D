@@ -158,11 +158,13 @@ extension GameViewController {
         var kissPointGreenStar = SCNVector3(-10,-50,-200)
         var kissPointYellowStar = SCNVector3(0,-50,-100)
         
-// Punkte für das Einsammeln für GreenStar -------------------------------------------------------------
-        let pathPointsCollectGreenStar = generateBezierPoints(start: startPointSpaceProbe,
-                                                              control: controlPointSpaceProbeToGreenStar,
-                                                              end: kissPointGreenStar,
-                                                              segments: 50)
+// Punkte für das Einsammeln für GreenStar
+        let pathPointsCollectGreenStar = generateBezierPoints(
+                start: startPointSpaceProbe,
+                control: controlPointSpaceProbeToGreenStar,
+                end: kissPointGreenStar,
+                segments: 50)
+        
         var bezierActionsCollectGreenStar: [SCNAction] = []
         for point in pathPointsCollectGreenStar {
             let moveAction = SCNAction.move(to: point, duration: 0.1)
@@ -172,11 +174,13 @@ extension GameViewController {
         let bezierSequenceCollectGreenStar = SCNAction.sequence(bezierActionsCollectGreenStar)
         bezierSequenceCollectGreenStar.timingMode = .easeOut    // Um langsam an den Star zu gelangen
         
-// Punkte für das Einsammeln für RedStar --------------------------------------------------------------
-        let pathPointsCollectRedStar = generateBezierPoints(start: kissPointGreenStar,
-                                                              control: controlPointSpaceProbeToRedStar,
-                                                              end: kissPointRedStar,
-                                                              segments: 50)
+// Punkte für das Einsammeln für RedStar
+        let pathPointsCollectRedStar = generateBezierPoints(
+                start: kissPointGreenStar,
+                control: controlPointSpaceProbeToRedStar,
+                end: kissPointRedStar,
+                segments: 50)
+        
         var bezierActionsCollectRedStar: [SCNAction] = []
         for point in pathPointsCollectRedStar {
             let moveAction = SCNAction.move(to: point, duration: 0.1)
@@ -187,10 +191,12 @@ extension GameViewController {
         bezierSequenceCollectRedStar.timingMode = .easeInEaseOut    // Um langsam an den Star zu gelangen
         
 // Punkte für das Einsammeln für YellowStar --------------------------------------------------------------
-        let pathPointsCollectYellowStar = generateBezierPoints(start: kissPointRedStar,
-                                                              control: controlPointSpaceProbeToYellowStar,
-                                                              end: kissPointYellowStar,
-                                                              segments: 50)
+        let pathPointsCollectYellowStar = generateBezierPoints(
+                start: kissPointRedStar,
+                control: controlPointSpaceProbeToYellowStar,
+                end: kissPointYellowStar,
+                segments: 50)
+        
         var bezierActionsCollectYellowStar: [SCNAction] = []
         for point in pathPointsCollectYellowStar {
             let moveAction = SCNAction.move(to: point, duration: 0.1)
@@ -200,11 +206,13 @@ extension GameViewController {
         let bezierSequenceCollectYellowStar = SCNAction.sequence(bezierActionsCollectYellowStar)
         bezierSequenceCollectYellowStar.timingMode = .easeInEaseOut    // Um langsam an den Star zu gelangen
         
-// Punkte für das direkte Auftauchen vor dem Twinship----------------------------------------------------
-        let pathPointsCollectToTwinShip = generateBezierPoints(start: kissPointYellowStar,
-                                                               control: SCNVector3(0,-70,80),
-                                                               end: SCNVector3(0,0,50), // Direkt vor dem TwinShip
-                                                               segments: 50)
+// Punkte für das direkte Auftauchen vor dem Twinship
+        let pathPointsCollectToTwinShip = generateBezierPoints(
+                start: kissPointYellowStar,
+                control: SCNVector3(0,-70,80),
+                end: SCNVector3(0,0,50), // Direkt vor dem TwinShip
+                segments: 50)
+        
         var bezierActionsCollectToTwinShip: [SCNAction] = []
         for point in pathPointsCollectToTwinShip {
             let moveAction = SCNAction.move(to: point, duration: 0.1)
@@ -229,7 +237,7 @@ extension GameViewController {
             starYellowNode.position = SCNVector3(0,-20,0)
         }
         let moveStartPointAction = SCNAction.customAction(duration: 0) { [self] node, time in
-            spaceProbeParentNode.position = SCNVector3(-250,0,0)
+            spaceProbeParentNode.position = SCNVector3(-500,0,0)
         }
         
         let spaceProbeComeBackAction = SCNAction.move(to: SCNVector3(0,0,0), duration: 5.0)
@@ -260,6 +268,7 @@ extension GameViewController {
             // Mit langgezogener Kurve nach links verschwinden
             bezierSequence,
             waitActionForCloseEye, // 8.0
+            // Startposition von links nach 0,0,0
             moveStartPointAction,
             spaceProbeComeBackAction,
             // SpaceProbe am Ende der Sequenz dann ausblenden
@@ -328,13 +337,12 @@ extension GameViewController {
             let moveAction = SCNAction.move(to: point, duration: 0.1)
             bezierActions.append(moveAction)
         }
-        let bezierSequence = SCNAction.sequence(bezierActions)
         
         // Partikel-Anpassungen
         let changeBirthRateActionOn = SCNAction.run { _ in self.fireBoost.birthRate = 1000 }
         let changeBirthRateActionOff = SCNAction.run { _ in self.fireBoost.birthRate = 0 }
         
-        // Rotation in die Kurve legen und nach links drehen (gehört noch eingearbeitet)
+        // Rotation in die Kurve legen und nach links drehen
         let initialRotation2 = simd_quatf(angle: .pi / 2, axis: SIMD3(1, 1, 1))
         let initialOrientation = twinShipStartNode.simdOrientation
         let rotateAction = SCNAction.customAction(duration: 3.0) { [self] node, elapsedTime in
@@ -347,19 +355,21 @@ extension GameViewController {
         let waitForOnStage = SCNAction.wait(duration: 37.0)
         let waitForOneSeconds = SCNAction.wait(duration: 0.2)
         let startSlowlyToMoveAction = SCNAction.move(to: SCNVector3(0, -10, 40), duration: 5.0)
+        let bezierSequence = SCNAction.sequence(bezierActions)
         let bezierSequenceHelper = SCNAction.sequence([waitForOneSeconds, rotateAction])
         let bezierSequenceAndRotation = SCNAction.group([
-                                                         bezierSequence,
-                                                         bezierSequenceHelper])
-
-        moveTwinShipSequence = SCNAction.sequence([
-                                                    waitForOnStage,
-                                                    startSlowlyToMoveAction,
-                                                    changeBirthRateActionOn,
-                                                    bezierSequenceAndRotation,
-                                                    changeBirthRateActionOff
-                                                  ])
+                                     bezierSequence,
+                                     bezierSequenceHelper])
+        // Für mehr realität langsam beschleunigen
+        bezierSequenceAndRotation.timingMode = .easeIn
         
+        moveTwinShipSequence = SCNAction.sequence([
+                    waitForOnStage, // 37 Sekunden warten
+                    startSlowlyToMoveAction, // Langsam wegbewegen
+                    changeBirthRateActionOn, // Boost verstärken
+                    bezierSequenceAndRotation,
+                    changeBirthRateActionOff
+                  ])
     }
 
 

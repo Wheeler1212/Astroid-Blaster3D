@@ -31,8 +31,8 @@ extension GameViewController {
             //TODO: Häufungen wieder einschalten
             let weightedEnemies: [EnemyType] = [
                 //.spaceProbe, //.spaceProbe, .spaceProbe,  // 3x häufiger
-                //.spaceInvader, //.spaceInvader,           // 2x häufiger
-                .bigFlash                               // 1x selten
+                .spaceInvader, //.spaceInvader,           // 2x häufiger
+                //.bigFlash                               // 1x selten
                 ]
             // Neuen Enemy nur freigeben wenn sonst keiner unterwegs ist
             guard currentEnemy == .none else {

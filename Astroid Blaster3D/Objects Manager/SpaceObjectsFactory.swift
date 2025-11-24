@@ -47,6 +47,43 @@ extension GameViewController {
         //twinShipNode.categoryBitMask = 1    // Licht
     }
     
+    // SpaceInvader aus der guten alten Zeit
+    func createSpaceInvader() {
+        // Variable (zurück)setzen
+        resetSpaceInvader()
+        
+        gameScene.rootNode.addChildNode(spaceInvaderBase)
+        spaceInvaderBase.physicsBody?.isAffectedByGravity = false
+        spaceInvaderBase.name = "SpaceInvaderBase"
+        spaceInvaderBase.position = SCNVector3(x:0, y:0, z:0)
+        spaceInvaderBase.opacity = 0.0
+        
+        //Alle 47 Cubes erzeugen
+        for i in 0...46 {
+            let nodeName = String(format: "SpaceInvader%02d",i)
+            var childNode = SCNNode()
+            childNode = spaceInvader.clone()
+            childNode.name = nodeName
+            childNode.scale = SCNVector3(x: 0.1, y: 0.1, z: 0.1)
+            childNode.position = parkPositionOfSpaceInvader //(-400, 200, 0)
+            // Damit die Cubes besser zu treffen sind
+            let largerShape = SCNPhysicsShape(geometry: SCNSphere(radius: 5.0))
+            
+            // *** Kollisionserkennung wird initialisiert
+            childNode.physicsBody = SCNPhysicsBody(type: .kinematic, shape: largerShape)
+            childNode.physicsBody?.isAffectedByGravity = false
+            childNode.physicsBody?.velocityFactor = SCNVector3(x: 1, y: 1, z: 0)
+            childNode.physicsBody?.categoryBitMask = combineBitMasks([.spaceInvader])
+            childNode.physicsBody?.collisionBitMask = combineBitMasks([.none])
+            childNode.physicsBody?.contactTestBitMask = combineBitMasks([.fire])
+            
+            spaceInvaderArray.append(childNode)
+            spaceInvaderNodeDictionary[nodeName] = childNode
+            
+            spaceInvaderBase.addChildNode(childNode)
+        }
+    }
+    
     func createTwinShipBonus() {
         
         twinShipBonusNode.name = "TwinshipBonus"
@@ -240,7 +277,7 @@ extension GameViewController {
        
     //MARK: STARS
     func createStars() {
-        // Create 50 Stars for Background animation
+        // Create 100 Stars for Background animation
         for index in 0..<100 {
             
             let starBig = CGFloat.random(in: 0.1...1.5)  // Random Size
@@ -252,8 +289,9 @@ extension GameViewController {
             let value = Double(index) * (starBig/10)    // Speed ​​star proportional to size
             starSpeed.append(Float(value))              // assign value
             
-            // Zufällige Position der Sterne
-            let startX = Float.random(in: -200...200)
+            // Zufällige Position der Sterne rechts vom Bildfeld ...
+            // ... damit die Sterne in der Intro-Animation nicht sichtbar sind
+            let startX = Float.random(in: 400...800) //Alt: -200...200)
             let startY = Float.random(in: -DeviceConfig.layout.starMoveBorderY...DeviceConfig.layout.starMoveBorderY)
                         
             // Für die BonusRound Sterne ist z vor dem Spielfeld
@@ -263,7 +301,7 @@ extension GameViewController {
                 point.position = SCNVector3(x: startX, y: startY, z: 100)
             }
 
-            gameScene.rootNode.addChildNode(point) //*03
+            gameScene.rootNode.addChildNode(point)
             pointNode.append(point)
         }
     }

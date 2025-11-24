@@ -32,10 +32,8 @@ class GameViewController: UIViewController, LevelManagerDelegate {
     var asteroidScale: CGFloat = 1.0
     var asteroidBurstStartValue: Int = 0
     
-    // Von Grok3
     var bonusTestMode: Bool = false
     var displayLink: CADisplayLink?
-    //var isSoundOn = false
     var isMusicOn = false
     var soundSwitch: UISwitch!
     var musicSwitch: UISwitch!
@@ -143,7 +141,7 @@ class GameViewController: UIViewController, LevelManagerDelegate {
     var fireNodeRight: [SCNNode] = []
     var fireNodeLeft: [SCNNode] = []
     var lastTouchPosition: CGPoint? // Touchposition für Fire
-    let fireMoveBorderX: Float = 300 //240    // Grenze (iPhone 16 Pro Max) rechts dann verschwindet Fire
+    let fireMoveBorderX: Float = 300 // Grenze (iPhone 16 Pro Max) rechts dann verschwindet Fire
     //TODO: .disruption wird noch nicht eingesetzt. Eventuell ab Level 2 ???
     var explosionType: ExplosionType = .fragmentation //.disruption
     var fireType: FireType = .single

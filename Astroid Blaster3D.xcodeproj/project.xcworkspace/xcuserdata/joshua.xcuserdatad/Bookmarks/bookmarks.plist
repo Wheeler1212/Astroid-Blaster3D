@@ -262,13 +262,13 @@ extension GameViewController {
 									<key>EndingColumnNumber</key>
 									<string>0</string>
 									<key>EndingLineNumber</key>
-									<string>178</string>
+									<string>215</string>
 									<key>StartingColumnNumber</key>
 									<string>0</string>
 									<key>StartingLineNumber</key>
-									<string>177</string>
+									<string>214</string>
 									<key>Timestamp</key>
-									<string>785433767.541965</string>
+									<string>785616974.651202</string>
 								</dict>
 								<key>rebasable-url</key>
 								<dict>
@@ -561,13 +561,13 @@ extension GameViewController {
 									<key>EndingColumnNumber</key>
 									<string>0</string>
 									<key>EndingLineNumber</key>
-									<string>81</string>
+									<string>118</string>
 									<key>StartingColumnNumber</key>
 									<string>0</string>
 									<key>StartingLineNumber</key>
-									<string>80</string>
+									<string>117</string>
 									<key>Timestamp</key>
-									<string>785433767.541981</string>
+									<string>785616974.6511739</string>
 								</dict>
 								<key>rebasable-url</key>
 								<dict>
@@ -668,7 +668,7 @@ extension GameViewController {
 									<key>StartingLineNumber</key>
 									<string>568</string>
 									<key>Timestamp</key>
-									<string>785578361.90245</string>
+									<string>785685326.746435</string>
 								</dict>
 								<key>rebasable-url</key>
 								<dict>
@@ -684,16 +684,16 @@ extension GameViewController {
 							<key>text-context</key>
 							<dict>
 								<key>focused</key>
-								<string>    
+								<string>    func moveBackgroundStars() {
 </string>
 								<key>leading</key>
-								<string>    }
-    //--------------------------------------------------------------------------------------
+								<string>    
+    // Sterne bewegen
 </string>
 								<key>trailing</key>
-								<string>    // Sterne bewegen
-    func moveBackgroundStars() {
-        guard startBackgroundStars else { return }
+								<string>        guard startBackgroundStars else { return }
+        
+        var starSpeedFactor: Float
 </string>
 							</dict>
 							<key>title</key>
@@ -816,13 +816,13 @@ extension GameViewController {
 							<key>EndingColumnNumber</key>
 							<string>0</string>
 							<key>EndingLineNumber</key>
-							<string>449</string>
+							<string>447</string>
 							<key>StartingColumnNumber</key>
 							<string>0</string>
 							<key>StartingLineNumber</key>
-							<string>448</string>
+							<string>446</string>
 							<key>Timestamp</key>
-							<string>785606423.701959</string>
+							<string>785614498.736102</string>
 						</dict>
 						<key>rebasable-url</key>
 						<dict>

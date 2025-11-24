@@ -12,9 +12,12 @@ extension GameViewController {
     
     //Animate Invader (alle 1/60 Sekunden
     func startTimerAnimateSpaceInvader() {
+        
         if timerAnimateSpaceInvader != nil {
             timerAnimateSpaceInvader?.invalidate()
         }
+        
+        spaceInvaderBase.opacity = 1.0
         
         DispatchQueue.main.async { [self] in
             timerAnimateSpaceInvader = Timer.scheduledTimer(withTimeInterval: 1.0 / 60.0, repeats: true) { [self] timer in
@@ -23,7 +26,6 @@ extension GameViewController {
                 if animationSlowDownInvader > 3 {
                     animationSlowDownInvader = 0
                 }
-                
                 //Invader erscheint (Nur jeder dritte Timeraufruf)
                 if spaceInvaderState == .popUp && animationSlowDownInvader == 0 {
                     animateCubePopUp()
@@ -65,43 +67,6 @@ extension GameViewController {
                 
                 manageEnemyDespawn(state)
             }
-        }
-    }
-
-    // SpaceInvader aus der guten alten Zeit
-    func createSpaceInvader() {
-        // Variable (zurück)setzen
-        resetSpaceInvader()
-        
-        gameScene.rootNode.addChildNode(spaceInvaderBase)
-        spaceInvaderBase.physicsBody?.isAffectedByGravity = false
-        spaceInvaderBase.name = "SpaceInvaderBase"
-        spaceInvaderBase.position = SCNVector3(x:0, y:0, z:0)
-        spaceInvaderBase.opacity = 1.0
-        
-        //Alle 47 Cubes erzeugen
-        for i in 0...46 {
-            let nodeName = String(format: "SpaceInvader%02d",i)
-            var childNode = SCNNode()
-            childNode = spaceInvader.clone()
-            childNode.name = nodeName
-            childNode.scale = SCNVector3(x: 0.1, y: 0.1, z: 0.1)
-            childNode.position = parkPositionOfSpaceInvader //(-400, 200, 0)
-            // Damit die Cubes besser zu treffen sind
-            let largerShape = SCNPhysicsShape(geometry: SCNSphere(radius: 5.0))
-            
-            // *** Kollisionserkennung wird initialisiert
-            childNode.physicsBody = SCNPhysicsBody(type: .kinematic, shape: largerShape)
-            childNode.physicsBody?.isAffectedByGravity = false
-            childNode.physicsBody?.velocityFactor = SCNVector3(x: 1, y: 1, z: 0)
-            childNode.physicsBody?.categoryBitMask = combineBitMasks([.spaceInvader])
-            childNode.physicsBody?.collisionBitMask = combineBitMasks([.none])
-            childNode.physicsBody?.contactTestBitMask = combineBitMasks([.fire])
-            
-            spaceInvaderArray.append(childNode)
-            spaceInvaderNodeDictionary[nodeName] = childNode
-            
-            spaceInvaderBase.addChildNode(childNode)
         }
     }
 
@@ -594,7 +559,7 @@ extension GameViewController {
         isSpaceInvaderEndTimerEnabled = true
         indexFallDown = 47
         velosityMoveStepOfInvader = 0.1
-        spaceInvaderCubeCounter = 1 //#07
+        spaceInvaderCubeCounter = 1
         indexIsHitNodeNumber = 0
         indexCubePopUp = 0
         rotationSpeedInvader = 0

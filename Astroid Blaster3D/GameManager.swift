@@ -559,13 +559,11 @@ extension GameViewController {
         }
     }
 
-    //--------------------------------------------------------------------------------------
-    
+    //FIXME: Ist aktuell deaktiviert
     func getLivesText(lives: Int) -> String {
         let lifeWord = lives == 1 ? "life" : "lives"
         return "Lives: \(lives) \(lifeWord)"
     }
-    //--------------------------------------------------------------------------------------
     
     // Sterne bewegen
     func moveBackgroundStars() {
@@ -587,8 +585,8 @@ extension GameViewController {
         
         // Kombinierte Indizes: Immer die ersten 50 + Bonus-Teil bei Bedarf
         let indices = bonusRoundIsEnabled
-            ? (0..<pointNode.count)           // ✅ Alle Sterne bewegen
-            : (0..<50)                        // ✅ Nur die ersten 50 Sterne
+            ? (0..<pointNode.count)           //  Alle Sterne bewegen
+            : (0..<50)                        //  Nur die ersten 50 Sterne
 
         for index in indices {
             let point = pointNode[index]
