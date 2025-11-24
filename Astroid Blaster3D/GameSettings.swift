@@ -10,7 +10,7 @@ import UIKit
 import Foundation
 
 
-enum EnemyType {    //Enum-Type
+enum EnemyType {
     case none, spaceInvader, spaceProbe, bigFlash, ballWall // Status des EnemyTypen
 }
 
@@ -177,7 +177,7 @@ struct LevelConfig {
             return isIPad
             ? AsteroidConfig(
                 startDelay:            4.0,
-                countMax:              25,
+                countMax:              2, //25, Versuch
                 scale:                 1.5,
                 maxNumberOnScreen:     3,
                 startValueOfBurstOne:  2,

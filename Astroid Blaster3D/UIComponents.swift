@@ -310,7 +310,6 @@ extension GameViewController {
                   debugHUD.setValue(String(format: "%.0f", spawnDelay), for: "spawnDelay")
                   debugHUD.setValue(String(format: "%.0f", bigFlashOnScreenDuration), for: "bigFlashOnScreenDuration")
                   debugHUD.setValue("\(currentEnemy)", for: "currentEnemy")
-//                  debugHUD.setValue("\(bigFlashParent.scale)", for: "bigFlashParent.scale")
                   debugHUD.setValue("\(spaceInvaderState)", for: "spaceInvaderState")
                   debugHUD.setValue("\(spaceProbeState)", for: "spaceProbeState")
                   debugHUD.setValue("\(colorfullStarsState)", for: "colorfullStarsState")
@@ -346,7 +345,7 @@ extension GameViewController {
         
         // TODO: Berechnung der Bonuspunkte muss eventuell noch angepasst werden
         //pointsUpdateCount = 10000
-        pointsUpdateCount = asteroidMaxNumberOnScreen * 100 / secondsCounter    //+01
+        pointsUpdateCount = asteroidMaxNumberOnScreen * 100 / secondsCounter
         bonusLabel.text = "Level Clear - Bonuspoints: \(pointsUpdateCount)"
         
         if pointsUpdateCount > 10 {
@@ -356,29 +355,27 @@ extension GameViewController {
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) { [self] in
             // Animation Level Clear sichtbar machen und vergrößern
             scaleLevelClearLabels()
-            setLevelClearMotivationText(for: pointsUpdateCount) // Texte setzen basierend auf den Punkten
+            // Texte setzen basierend auf den Punkten
+            setLevelClearMotivationText(for: pointsUpdateCount)
         }
         
         // Damit es im neuen Level nicht zu hektisch wird
         stopAllAsteroidsRotation(asteroidNode)
-        
 
-        
         // Konstante für Bonuspunkte zum Score verrechnen
-        
         let interval = 0.05 // Intervall für den Timer
         let decayFactor = 0.05 // Steuerung des "Abklingens"
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) { [self] in
             bonusPointsTimer = Timer.scheduledTimer(withTimeInterval: interval, repeats: true) { [self] _ in
-                // 🚀 Exponentielle Abnahme der Punkte
+                // Exponentielle Abnahme der Punkte
                 let pointsDifferenz = max(1, Int(Double(pointsUpdateCount) * decayFactor))
                 
                 // Punkte abziehen
                 pointsUpdateCount -= pointsDifferenz
                 score += Float(pointsDifferenz)
                 
-                // ✅ Timer stoppen, wenn Punkte auf 0
+                // Timer stoppen, wenn Punkte auf 0
                 if pointsUpdateCount <= 0 {
                     pointsUpdateCount = 0
                     bonusPointsTimer?.invalidate()

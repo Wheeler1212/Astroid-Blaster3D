@@ -73,7 +73,7 @@ class GameViewController: UIViewController, LevelManagerDelegate {
     var activeTouches: [UITouch: CGPoint] = [:]  // Speichert die letzte Position jedes aktiven Touches
 
     
-    // moveShipAccelerationBonusRound() von Chatty
+    // moveShipAccelerationBonusRound()
     var twinShipBonusVelocity: SIMD3<Float> = .zero  // Aktuelle Geschwindigkeit
     let accelerationFactor: Float = 2.0         // Wie stark das Schiff beschleunigt
     let dampingFactorAcceleration: Float = 0.95 // Dämpfung (0.0 = keine, 1.0 = sofortiger Stopp)
@@ -91,7 +91,7 @@ class GameViewController: UIViewController, LevelManagerDelegate {
     var boundingCube: SCNNode!
     var timers: [String: Timer] = [:]
     var bonusRoundIsReached: Bool = false   // Punkte für mögliche Bonus Runde erreicht
-    var bonusRoundIsEnabled: Bool = false   // Bonus Runde gestartet
+    var bonusRoundIsEnabled: Bool = false   // Bonus Runde nicht freigeschaltet
     
     // Temporäre Variable
     var SCNVector: Float = 0.0
