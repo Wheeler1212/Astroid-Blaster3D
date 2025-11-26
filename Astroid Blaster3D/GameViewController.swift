@@ -422,6 +422,7 @@ class GameViewController: UIViewController, LevelManagerDelegate {
     let moveObjectRangeX: ClosedRange<Float> = -100...150
     var moveObjectRangeY: ClosedRange<Float> = -70...70
     var bigFlashOnScreenDurationRange: ClosedRange<TimeInterval> = 30.0...40.0
+    var spawnDelayRange: ClosedRange<TimeInterval> = 15.0...17.0
     
     var screenHeight: CGFloat = 0
     var pointsDifferenzBackup: Int = 0
@@ -560,6 +561,8 @@ class GameViewController: UIViewController, LevelManagerDelegate {
         bigFlashOnScreenTime = enemyConfig.flashOnScreenTime
         ballWallStartDelay = enemyConfig.wallStartDelay
         moveObjectRangeY = enemyConfig.moveObjectRangeY
+        bigFlashOnScreenDurationRange = enemyConfig.bigFlashOnScreenDurationRange
+        spawnDelayRange = enemyConfig.spawnDelayRange
         print("SpaceInvader-Werte aktualisiert im GameViewController")
     }
 

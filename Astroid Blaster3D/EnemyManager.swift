@@ -13,26 +13,26 @@ import UIKit
 extension GameViewController {
     
     func scheduleNextEnemy(_ enemy: EnemyType) {
-        let spawnDelayRange = 15.0...17.0
+        
+        guard !bonusRoundIsEnabled else { return }
 
-        //#10 watchdog.functionWasCalled()
+        // watchdog.functionWasCalled()
         //FIXME: * spaceInvaderSpawnDelay
         spawnDelay = Double.random(in: spawnDelayRange)
         
-        //"Timer" mit spawnDelay-Verzögerung starten
+        //Enemy mit Verzögerung starten
         DispatchQueue.main.asyncAfter(deadline: .now() + spawnDelay) { [self] in
             //Wenn BallWall aktive, dann abbrechen
             guard ballWallState == .idle else {
-                currentEnemy = .none    //# Neuen Enemy freigeben
-                scheduleNextEnemy(.ballWall)   //Nächster run
+                currentEnemy = .none            // Neuen Enemy freigeben
+                scheduleNextEnemy(.ballWall)    //Nächster run
                 return
             }
             //Für unterschiedliche Häufung der Enemies
-            //TODO: Häufungen wieder einschalten
             let weightedEnemies: [EnemyType] = [
-                //.spaceProbe, //.spaceProbe, .spaceProbe,  // 3x häufiger
+                .spaceProbe, //.spaceProbe, .spaceProbe,  // 3x häufiger
                 .spaceInvader, //.spaceInvader,           // 2x häufiger
-                //.bigFlash                               // 1x selten
+                .bigFlash                               // 1x selten
                 ]
             // Neuen Enemy nur freigeben wenn sonst keiner unterwegs ist
             guard currentEnemy == .none else {
@@ -48,13 +48,14 @@ extension GameViewController {
         switch currentEnemy {
         case .spaceInvader:
             guard spaceInvaderState == .idle else { return }
-            //SpaceInvader starten
             spaceInvaderState = .popUp
             startTimerAnimateSpaceInvader()
         case .spaceProbe:
-            guard colorfullStarsState == .idle else {
-                self.currentEnemy = .none
-                return }
+            guard spaceProbeState == .idle else { return }
+            
+//            guard colorfullStarsState == .idle else {
+//                self.currentEnemy = .none
+//                return }
             spaceProbeState = .fadeIn
             spawnSpaceProbe()
         case .bigFlash:

@@ -60,8 +60,6 @@ extension GameViewController {
             enemySegmentTimer?.invalidate()
         }
         
-        print("From Timer SpaceInvaderState: \(state)")
-        
         DispatchQueue.main.async { [self] in
             enemySegmentTimer = Timer.scheduledTimer(withTimeInterval: duration, repeats: false) { [self] timer in
                 
@@ -325,7 +323,6 @@ extension GameViewController {
     func updateChaosFormation() {
         // Invader beginnt nach dem zusammenfallen sich für die Kreis-Rotation zu formieren
         rotationAngleInChaosState += 0.01
-        //print("rotationAngleInChaosState: \(rotationAngleInChaosState)")
         
         // Rotationsmittelpunkt setzten
         // Die X und Y Werte werden hier Step by Step auf 30 (Radius) erhöht
@@ -514,7 +511,7 @@ extension GameViewController {
                 resetSpaceInvader()
                 timerAnimateSpaceInvader?.invalidate()
                 timerAnimateSpaceInvader = nil
-                currentEnemy = .none    //# Neuen Enemy freigeben
+                currentEnemy = .none
                 scheduleNextEnemy(.spaceInvader)
             }
         }
@@ -527,7 +524,7 @@ extension GameViewController {
         for (_,node) in spaceInvaderArray.enumerated() {
             node.runAction(scaleDownAction) { [self] in
                 node.position = parkPositionOfSpaceInvader
-                node.opacity = 1//#11
+                node.opacity = 1
             }
         }
         

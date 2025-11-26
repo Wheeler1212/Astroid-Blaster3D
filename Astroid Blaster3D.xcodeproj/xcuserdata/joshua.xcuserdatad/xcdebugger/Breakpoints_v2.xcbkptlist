@@ -14,9 +14,25 @@
             filePath = "Astroid Blaster3D/Objects Manager/InvaderManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "205"
-            endingLineNumber = "205"
+            startingLineNumber = "203"
+            endingLineNumber = "203"
             landmarkName = "moveInvaderWithinRectangle()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2B6FB7D3-5CA2-47D3-9AA6-22A26BB79FDA"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Astroid Blaster3D/Objects Manager/ProbeManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "231"
+            endingLineNumber = "231"
+            landmarkName = "fadeOutColorfullStars()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

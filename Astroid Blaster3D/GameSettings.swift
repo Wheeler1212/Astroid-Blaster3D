@@ -9,7 +9,7 @@
 import UIKit
 import Foundation
 
-
+//MARK: - Enemy Type
 enum EnemyType {
     case none, spaceInvader, spaceProbe, bigFlash, ballWall // Status des EnemyTypen
 }
@@ -36,28 +36,6 @@ enum BallWallState {
 
 enum LevelType {
     case easy, medium, hard
-}
-//TODO: Umsetzten
-enum ExplosionType {
-    case disruption, fragmentation
-}
-
-// 1. Enum definieren
-enum FireType {
-    case single, double
-    
-    mutating func toggle() {
-        switch self {
-        case .single:
-            self = .double
-        case .double:
-            self = .single
-        }
-    }
-}
-
-enum FireSide {
-    case left, right
 }
 
 enum CollisionCategory {
@@ -88,7 +66,8 @@ enum CollisionCategory {
     }
 }
 
-struct ViewTags {   //Neu
+//MARK: - Tags
+struct ViewTags {
     static let startImageView = 100
     static let startButton = 101
     static let settingsButton = 102
@@ -99,6 +78,7 @@ struct ViewTags {   //Neu
     static let difficultyLabel = 203
 }
 
+//MARK: - Layout
 struct DeviceConfig {
     static let isIPad = UIDevice.current.userInterfaceIdiom == .pad
     static let screenWidth = UIScreen.main.bounds.width
@@ -112,12 +92,12 @@ struct DeviceConfig {
     struct Layout {
         let displayViewFrame: CGRect
         let preferredFramesPerSecond: Int
-        let shipMoveBorderY: Float      // Bewegungsgrenzen oben/unten Twinship
+        let shipMoveBorderY: Float      // Bewegungsgrenzen Twinship
         let shipMoveBorderX: Float
-        let starMoveBorderY: Float      // Oben/unten Grenzen beim setzen der Hintergrundsterne (CleanScene)
-        let maxBallPositionY: Float     // Max Ausdehnung oben/unten beim erstellen von BallWall
-        let ballWallMoveBorderX: CGFloat   // Max Bewegung nach links beim durchqueren
-        let asteroidMoveBorderY: Float  // Max Bewegung oben/unten
+        let starMoveBorderY: Float      // Hintergrundsterne (CleanScene)
+        let maxBallPositionY: Float     // Beim setzten von BallWall
+        let ballWallMoveBorderX: CGFloat   // Beim bewegen von BallWall
+        let asteroidMoveBorderY: Float  // Beim bewegen
         let fireBorderLeft: CGFloat     // Begrenzung der Touchfläche links
         let welcomeTextYPosition: CGFloat
         let switchPositionOffsetY: CGFloat // Schalterposition nach unten verschieben
@@ -167,17 +147,44 @@ struct DeviceConfig {
     }()
 }
 
+//MARK: - Level
+struct AsteroidConfig {
+    var startDelay: TimeInterval
+    let countMax: Int
+    let scale: CGFloat
+    let maxNumberOnScreen: Int
+    let startValueOfBurstOne: Int
+    let startBorderY: Float
+    let difficultyLabel = UILabel()
+}
+
+struct EnemyConfig {
+    let invaderSpawnDelay: Double
+    let invaderOnScreenTime: TimeInterval
+    let invaderFramesRefreshTime: TimeInterval
+    let probeStartDelay: TimeInterval
+    let probeOnScreenTime: TimeInterval
+    let flashStartDelay: TimeInterval
+    let flashOnScreenTime: TimeInterval
+    let wallStartDelay: TimeInterval
+    let moveObjectRangeY: ClosedRange<Float>
+    let bigFlashOnScreenDurationRange: ClosedRange<TimeInterval>
+    let spawnDelayRange: ClosedRange<TimeInterval>
+}
+
 
 struct LevelConfig {
     static let isIPad = UIDevice.current.userInterfaceIdiom == .pad
 
-    static func asteroidConfig(for level: LevelType) -> AsteroidConfig {
-        switch level {
+    static func asteroidConfig(for difficulty: LevelType, level: Int) -> AsteroidConfig {
+        let levelFactor = Int(level)
+        
+        switch difficulty {
         case .easy:
             return isIPad
             ? AsteroidConfig(
                 startDelay:            4.0,
-                countMax:              2, //25, Versuch
+                countMax:              1,//2 * levelFactor, //25, Versuch
                 scale:                 1.5,
                 maxNumberOnScreen:     3,
                 startValueOfBurstOne:  2,
@@ -247,7 +254,8 @@ struct LevelConfig {
                 wallStartDelay:          100,
                 moveObjectRangeY:        -70...70,
                 // 25 Sekunden ist die Startzeit von BigFlash .moving
-                bigFlashOnScreenDurationRange: 30.0...50.0
+                bigFlashOnScreenDurationRange: 30.0...50.0,
+                spawnDelayRange: 15.0...17.0
             )
             : EnemyConfig(
                 invaderSpawnDelay:       1.5,
@@ -259,7 +267,8 @@ struct LevelConfig {
                 flashOnScreenTime:       20,
                 wallStartDelay:          270,
                 moveObjectRangeY:        -70...70,
-                bigFlashOnScreenDurationRange: 30.0...40.0
+                bigFlashOnScreenDurationRange: 30.0...40.0,
+                spawnDelayRange: 15.0...17.0
             )
 
         case .medium:
@@ -274,7 +283,8 @@ struct LevelConfig {
                 flashOnScreenTime:       20,
                 wallStartDelay:          270,
                 moveObjectRangeY:        -150...150,
-                bigFlashOnScreenDurationRange: 30.0...70.0
+                bigFlashOnScreenDurationRange: 30.0...70.0,
+                spawnDelayRange: 15.0...17.0
             )
             : EnemyConfig(
                 invaderSpawnDelay:       100,
@@ -286,7 +296,8 @@ struct LevelConfig {
                 flashOnScreenTime:       20,
                 wallStartDelay:          270,
                 moveObjectRangeY:        -70...70,
-                bigFlashOnScreenDurationRange: 30.0...50.0
+                bigFlashOnScreenDurationRange: 30.0...50.0,
+                spawnDelayRange: 15.0...17.0
             )
 
         case .hard:
@@ -301,7 +312,8 @@ struct LevelConfig {
                 flashOnScreenTime:       20,
                 wallStartDelay:          270,
                 moveObjectRangeY:        -200...200,
-                bigFlashOnScreenDurationRange: 30.0...100.0
+                bigFlashOnScreenDurationRange: 30.0...100.0,
+                spawnDelayRange: 15.0...17.0
             )
             : EnemyConfig(
                 invaderSpawnDelay:       75,
@@ -313,35 +325,14 @@ struct LevelConfig {
                 flashOnScreenTime:       20,
                 wallStartDelay:          270,
                 moveObjectRangeY:        -70...70,
-                bigFlashOnScreenDurationRange: 30.0...70.0
+                bigFlashOnScreenDurationRange: 30.0...70.0,
+                spawnDelayRange: 15.0...17.0
             )
         }
     }
 }
 
-struct AsteroidConfig {
-    var startDelay: TimeInterval
-    let countMax: Int
-    let scale: CGFloat
-    let maxNumberOnScreen: Int
-    let startValueOfBurstOne: Int
-    let startBorderY: Float
-    let difficultyLabel = UILabel()
-}
-
-struct EnemyConfig {
-    let invaderSpawnDelay: Double
-    let invaderOnScreenTime: TimeInterval
-    let invaderFramesRefreshTime: TimeInterval
-    let probeStartDelay: TimeInterval
-    let probeOnScreenTime: TimeInterval
-    let flashStartDelay: TimeInterval
-    let flashOnScreenTime: TimeInterval
-    let wallStartDelay: TimeInterval
-    let moveObjectRangeY: ClosedRange<Float>
-    let bigFlashOnScreenDurationRange: ClosedRange<TimeInterval>
-}
-
+//MARK: - Fire
 struct FireConfig {
     static let fireOffsetXToShip: Float = 30        // Abstand zur Schiffsposition (X)
     static let fireOffsetRightYToShip: Float = -8   // Offset für die rechte Gondel (Y)
@@ -349,3 +340,25 @@ struct FireConfig {
     static let moveDuration: TimeInterval = 0.7     // Dauer der Bewegung
 }
 
+//TODO: Umsetzten
+enum ExplosionType {
+    case disruption, fragmentation
+}
+
+// 1. Enum definieren
+enum FireType {
+    case single, double
+    
+    mutating func toggle() {
+        switch self {
+        case .single:
+            self = .double
+        case .double:
+            self = .single
+        }
+    }
+}
+
+enum FireSide {
+    case left, right
+}

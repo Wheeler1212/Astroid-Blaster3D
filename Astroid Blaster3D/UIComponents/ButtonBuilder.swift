@@ -145,7 +145,7 @@ extension GameViewController {
     }
     
     @objc func changeDifficulty(_ sender: UIButton) {
-        // 🔄 Schwierigkeitsgrad wechseln
+        // Schwierigkeitsgrad wechseln
         switch LevelManager.shared.difficulty {
         case .easy:
             LevelManager.shared.difficulty = .medium

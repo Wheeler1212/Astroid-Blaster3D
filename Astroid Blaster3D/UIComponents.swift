@@ -16,15 +16,15 @@ import AVFoundation
 extension GameViewController {
     
     
-// MARK: Timer UpdateHUD
+    // MARK: Timer UpdateHUD
     func startTimerUpdateHUD() {
         DispatchQueue.main.async { [self] in
             timerUpdateHUD = Timer.scheduledTimer(
                 withTimeInterval: 1.0,
                 repeats: true) { [self] _ in
                     secondsCounter += 1 // Spielzeit
-                updateHUD() // Und dann auch gleich am Schirm korrigieren
-            }
+                    updateHUD() // Und dann auch gleich am Schirm korrigieren
+                }
         }
     }
     
@@ -64,14 +64,14 @@ extension GameViewController {
         canvasView.layer.cornerRadius = 10
         self.view.addSubview(canvasView)
         self.canvasView = canvasView
-
+        
         let switchData = [
             ("ShadowAurora", 0, CGPoint(x: 50, y: 20)),
             ("NebulaDreams", 1, CGPoint(x: 50, y: 100)),
             ("VoidSerenity", 2, CGPoint(x: 50, y: 180)),
             ("OblivionSky", 3, CGPoint(x: 50, y: 260))
         ]
-
+        
         for (labelText, tag, position) in switchData {
             let switchContainer = createSwitchContainer(labelText: labelText, position: position, action: #selector(changeGameSceneBackground(_:)))
             
@@ -83,37 +83,37 @@ extension GameViewController {
         }
     }
     
-   @objc func changeGameSceneBackground(_ sender: UISwitch) {
-       guard let scene = gameScene else { return }
-
-       let backgroundImages = [
-           "ShadowAurora",
-           "NebulaDreams",
-           "VoidSerenity",
-           "OblivionSky"
-       ]
-       
-       // Prüfen, welcher Switch umgelegt wurde
-       if sender.isOn {
-           let selectedIndex = sender.tag // Jeder Switch hat einen eindeutigen Tag (0 bis 3)
-           if selectedIndex < backgroundImages.count {
-               let imageName = backgroundImages[selectedIndex]
-               // iPad oder iPhone
-               changeBackgroundImage(for: startImageView, baseName: imageName)
-               selectedBackgroundImage = startImageView.image
-           }
-
-           // Andere Switches ausschalten, damit immer nur ein Bild aktiv ist
-           for subview in canvasView?.subviews ?? [] {
-               if let switchControl = subview.subviews.compactMap({ $0 as? UISwitch }).first, switchControl != sender {
-                   switchControl.setOn(false, animated: true)
-               }
-           }
-       } else {
-           // TODO: Falls kein Bild aktiv ist, Standardhintergrund setzen
-           scene.background.contents = UIImage(named: "DefaultSky.png") // 🔄 Optional: Standardbild
-       }
-   }
+    @objc func changeGameSceneBackground(_ sender: UISwitch) {
+        guard let scene = gameScene else { return }
+        
+        let backgroundImages = [
+            "ShadowAurora",
+            "NebulaDreams",
+            "VoidSerenity",
+            "OblivionSky"
+        ]
+        
+        // Prüfen, welcher Switch umgelegt wurde
+        if sender.isOn {
+            let selectedIndex = sender.tag // Jeder Switch hat einen eindeutigen Tag (0 bis 3)
+            if selectedIndex < backgroundImages.count {
+                let imageName = backgroundImages[selectedIndex]
+                // iPad oder iPhone
+                changeBackgroundImage(for: startImageView, baseName: imageName)
+                selectedBackgroundImage = startImageView.image
+            }
+            
+            // Andere Switches ausschalten, damit immer nur ein Bild aktiv ist
+            for subview in canvasView?.subviews ?? [] {
+                if let switchControl = subview.subviews.compactMap({ $0 as? UISwitch }).first, switchControl != sender {
+                    switchControl.setOn(false, animated: true)
+                }
+            }
+        } else {
+            // TODO: Falls kein Bild aktiv ist, Standardhintergrund setzen
+            scene.background.contents = UIImage(named: "DefaultSky.png") // 🔄 Optional: Standardbild
+        }
+    }
     
     private func createSwitchContainer(labelText: String, position: CGPoint, action: Selector) -> UIView {
         
@@ -124,7 +124,7 @@ extension GameViewController {
             x: containerWidth - switchControl.bounds.width - 16,
             y: (50 - switchControl.bounds.height) / 2
         )
-
+        
         let label = UILabel(frame: CGRect(x: 16, y: 10, width: containerWidth - switchControl.bounds.width - 32 - 16, height: 30))
         
         let container = UIView(frame: CGRect(x: position.x, y: position.y, width: 250, height: 50))
@@ -132,16 +132,16 @@ extension GameViewController {
         container.layer.cornerRadius = 10
         container.layer.borderWidth = 2
         container.layer.borderColor = UIColor.white.cgColor
-
+        
         //let label = UILabel(frame: CGRect(x: 100, y: 10, width: 150, height: 30))
         label.text = labelText
         label.font = UIFont.systemFont(ofSize: 20)
         label.textColor = UIColor.white
-
+        
         //let switchControl = UISwitch(frame: CGRect(x: 20, y: 10, width: 0, height: 0))
         switchControl.isOn = false
         switchControl.addTarget(self, action: action, for: .valueChanged)
-
+        
         // 🧠 SWITCH SPEICHERN, abhängig vom Label
         switch labelText {
         case "Music":
@@ -155,17 +155,17 @@ extension GameViewController {
         default:
             break
         }
-
+        
         // Tap-Gesture hinzufügen (optional, wenn Du damit später was machst)
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(switchContainerTapped(_:)))
         container.addGestureRecognizer(tapGesture)
-
+        
         container.addSubview(label)
         container.addSubview(switchControl)
-
+        
         return container
     }
-
+    
     // Damit der komplette Container als Klickbereich gewertet wird
     @objc private func switchContainerTapped(_ sender: UITapGestureRecognizer) {
         guard let container = sender.view else { return }
@@ -219,13 +219,13 @@ extension GameViewController {
         view.addSubview(nextLevelButton)
     }
     
-
+    
     // Overlay (Steuerkreuz + Lautstärke) sanft einblenden und skalieren
     func showOverlay() {
         crossOverlay?.alpha = 0
         crossOverlay?.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)  // Start: leicht kleiner
         crossOverlay?.isHidden = false
-
+        
         UIView.animate(withDuration: 0.3,
                        delay: 0,
                        usingSpringWithDamping: 0.6,
@@ -247,25 +247,18 @@ extension GameViewController {
             self.crossOverlay?.isHidden = true
         })
     }
-
+    
     // Button "Next Level" wurde gedrückt
     @objc func nextLevelButtonTapped() {
         secondsCounter = 0     // Zeitzähler
         asteroidCountActive = 0
-        // Keine Kollisionen mehr für TwinShip
-        twinShipNode.physicsBody?.collisionBitMask = combineBitMasks([.colorfullStars, .ballWall, .asteroid])
+        // Wieder Kollisionen für TwinShip
+        twinShipNode.physicsBody?.collisionBitMask = combineBitMasks([
+                .colorfullStars,
+                .ballWall,
+                .asteroid])
         
-        // Eventuell noch vorhandene Asteroids ausblenden und auf Parkposition setzten
-        for node in asteroidNode {
-            fadeOutAsteroidAndMoveToParkPosition(node: node, parkPosition: parkPositionOfAsteroid)
-        }
-        //Enemies löschen und auf Parkposition setzten
-        despawnSpaceInvader()
-        despawnSpaceProbe()
-        despawnBigFlash()
-        moveShipShieldToParkposition()
-        //FIXME: Auf finishBallWall(nodeArray: [SCNNode]) umschreiben
-        fadeOutBallWall()
+        despawnAllObjects()
         nextLevelUpdate() // Zuweisung der restlichen let/var und Level let/var
         levelClear = false
         gameIsRunning = true
@@ -292,6 +285,20 @@ extension GameViewController {
             // Wenn Next Level Button gedrückt
             startGameDisplay() // Level starten
         })
+    }
+    
+    func despawnAllObjects() {
+        // Eventuell noch vorhandene Asteroids ausblenden und auf Parkposition setzten
+//        for node in asteroidNode {
+//            fadeOutAsteroidAndMoveToParkPosition(node: node, parkPosition: parkPositionOfAsteroid)
+//        } //Versuch
+        //Enemies löschen und auf Parkposition setzten
+        despawnSpaceInvader()
+        despawnSpaceProbe()
+        despawnBigFlash()
+        moveShipShieldToParkposition()
+        //FIXME: Auf finishBallWall(nodeArray: [SCNNode]) umschreiben
+        fadeOutBallWall()
     }
     
     // MARK: Clear Level und Update HUD
@@ -417,9 +424,10 @@ extension GameViewController {
     
     @objc func bonusRoundButtonTapped() {
         // Für Next Level bestimmte Variable zurücksetzten
-        secondsCounter = 0     // Zeitzähler
-        gameIsPaused = true // Schiff nicht mehr steuerbar
-        invalidateTimer()   // Alle Timer löschen NEU
+        secondsCounter = 0      // Zeitzähler
+        gameIsPaused = true     // Schiff nicht mehr steuerbar
+        invalidateTimer()       // Alle Timer löschen NEU
+        despawnAllObjects()     // Alle Objekte verschwinden lassen
 
         // Buttons ausblenden und danach verstecken und die Bonus-Runde starten
         UIView.animate(withDuration: 1.0, delay: 1.0, options: .curveEaseInOut, animations: { [self] in
@@ -1049,14 +1057,44 @@ extension GameViewController {
             return 0
         }
     }
-    
+   
+    //MARK: - Tasten starten Enemys
      // Keyboard Taste gedrückt
-     override func pressesBegan(_ presses: Set<UIPress>, with event: UIPressesEvent?) {
-         if presses.first?.key?.charactersIgnoringModifiers == "d" {
-             toggleDebugHUD() // Sanftes ein und ausblenden
-         }
-     }
+//     override func pressesBegan(_ presses: Set<UIPress>, with event: UIPressesEvent?) {
+//         if presses.first?.key?.charactersIgnoringModifiers == "d" {
+//             toggleDebugHUD() // Sanftes ein und ausblenden
+//         }
+//     }
      
+    override func pressesBegan(_ presses: Set<UIPress>, with event: UIPressesEvent?) {
+        guard let key = presses.first?.key else { return }
+
+        switch key.charactersIgnoringModifiers {
+
+        case "d":
+            toggleDebugHUD()
+
+        case "b":   // BallWall
+            currentEnemy = .ballWall
+            startBallWall()
+
+        case "i":   // SpaceInvader
+            currentEnemy = .spaceInvader
+            spawnNextEnemy()
+
+        case "p":   // SpaceProbe
+            currentEnemy = .spaceProbe
+            spawnNextEnemy()
+            
+        case "f":   // BigFlash
+            currentEnemy = .bigFlash
+            spawnNextEnemy()
+        default:
+            break
+        }
+    }
+
+    
      // Sanftes ein und ausblenden des debugHUDs
      func toggleDebugHUD() {
          let targetAlpha: CGFloat = debugHUD.alpha == 0 ? 1 : 0

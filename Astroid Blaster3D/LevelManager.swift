@@ -16,7 +16,7 @@ class LevelManager {
     var difficulty: LevelType = .easy
 
     var asteroidValues: AsteroidConfig {
-        LevelConfig.asteroidConfig(for: difficulty)
+        LevelConfig.asteroidConfig(for: difficulty, level: levelCount)
     }
 
     var enemyValues: EnemyConfig {

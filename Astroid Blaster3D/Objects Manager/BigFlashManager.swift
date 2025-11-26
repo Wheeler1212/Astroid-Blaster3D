@@ -117,7 +117,7 @@ extension GameViewController {
             timerStartBigFlash = nil
 
             bigFlashState = .idle
-            currentEnemy = .none    //#14 Neuen Enemy freigeben
+            currentEnemy = .none    //Neuen Enemy freigeben
             scheduleNextEnemy(.bigFlash)
             }
     }

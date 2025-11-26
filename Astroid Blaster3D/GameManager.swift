@@ -82,23 +82,24 @@ extension GameViewController {
     // Diverse Werte die beim erreichen des NextLevel erhöht werden werden
     func nextLevelUpdate() {
         
-        LevelManager.shared.nextLevel() //NEU
+        LevelManager.shared.nextLevel()
 
         levelCount += 1  // Level erhöhen
         switch levelCount {
-        case 1:
-            print("Game-Level 1")
+            case 1:
+                print("Game-Level 1")
 
-        case 2:
-            print("Game-Level 2")
+            case 2:
+                print("Game-Level 2")
 
-        case 3:
-            print("Game-Level 3")
-            
-        default:
-            print("Game-Level default")
-        }
+            case 3:
+                print("Game-Level 3")
+                
+            default:
+                print("Game-Level default")
+            }
     }
+    
   // TODO: Geht noch nicht - Rotation TwinShip für den StartScreen
     func showAndRotateTwinShip() {
         twinShipNode.isHidden = false

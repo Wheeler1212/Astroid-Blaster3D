@@ -354,13 +354,13 @@ extension GameViewController {
 									<key>EndingColumnNumber</key>
 									<string>0</string>
 									<key>EndingLineNumber</key>
-									<string>370</string>
+									<string>371</string>
 									<key>StartingColumnNumber</key>
 									<string>0</string>
 									<key>StartingLineNumber</key>
-									<string>369</string>
+									<string>370</string>
 									<key>Timestamp</key>
-									<string>785578361.9024709</string>
+									<string>785779954.459352</string>
 								</dict>
 								<key>rebasable-url</key>
 								<dict>
@@ -401,13 +401,13 @@ extension GameViewController {
 									<key>EndingColumnNumber</key>
 									<string>0</string>
 									<key>EndingLineNumber</key>
-									<string>170</string>
+									<string>171</string>
 									<key>StartingColumnNumber</key>
 									<string>0</string>
 									<key>StartingLineNumber</key>
-									<string>169</string>
+									<string>170</string>
 									<key>Timestamp</key>
-									<string>785578361.902491</string>
+									<string>785779954.459325</string>
 								</dict>
 								<key>rebasable-url</key>
 								<dict>
@@ -448,13 +448,13 @@ extension GameViewController {
 									<key>EndingColumnNumber</key>
 									<string>0</string>
 									<key>EndingLineNumber</key>
-									<string>231</string>
+									<string>232</string>
 									<key>StartingColumnNumber</key>
 									<string>0</string>
 									<key>StartingLineNumber</key>
-									<string>230</string>
+									<string>231</string>
 									<key>Timestamp</key>
-									<string>785578361.9025151</string>
+									<string>785779954.4593461</string>
 								</dict>
 								<key>rebasable-url</key>
 								<dict>
@@ -512,13 +512,13 @@ extension GameViewController {
 									<key>EndingColumnNumber</key>
 									<string>0</string>
 									<key>EndingLineNumber</key>
-									<string>316</string>
+									<string>317</string>
 									<key>StartingColumnNumber</key>
 									<string>0</string>
 									<key>StartingLineNumber</key>
-									<string>315</string>
+									<string>316</string>
 									<key>Timestamp</key>
-									<string>785578361.902509</string>
+									<string>785779954.459339</string>
 								</dict>
 								<key>rebasable-url</key>
 								<dict>
@@ -707,13 +707,13 @@ extension GameViewController {
 									<key>EndingColumnNumber</key>
 									<string>0</string>
 									<key>EndingLineNumber</key>
-									<string>569</string>
+									<string>570</string>
 									<key>StartingColumnNumber</key>
 									<string>0</string>
 									<key>StartingLineNumber</key>
-									<string>568</string>
+									<string>569</string>
 									<key>Timestamp</key>
-									<string>785685326.746435</string>
+									<string>785779954.459332</string>
 								</dict>
 								<key>rebasable-url</key>
 								<dict>
@@ -814,13 +814,13 @@ extension GameViewController {
 							<key>EndingColumnNumber</key>
 							<string>0</string>
 							<key>EndingLineNumber</key>
-							<string>170</string>
+							<string>171</string>
 							<key>StartingColumnNumber</key>
 							<string>0</string>
 							<key>StartingLineNumber</key>
-							<string>169</string>
+							<string>170</string>
 							<key>Timestamp</key>
-							<string>785578361.9024971</string>
+							<string>785779954.4593019</string>
 						</dict>
 						<key>rebasable-url</key>
 						<dict>
@@ -861,13 +861,13 @@ extension GameViewController {
 							<key>EndingColumnNumber</key>
 							<string>0</string>
 							<key>EndingLineNumber</key>
-							<string>447</string>
+							<string>448</string>
 							<key>StartingColumnNumber</key>
 							<string>0</string>
 							<key>StartingLineNumber</key>
-							<string>446</string>
+							<string>447</string>
 							<key>Timestamp</key>
-							<string>785614498.736102</string>
+							<string>785758528.91528</string>
 						</dict>
 						<key>rebasable-url</key>
 						<dict>
@@ -908,13 +908,13 @@ extension GameViewController {
 							<key>EndingColumnNumber</key>
 							<string>0</string>
 							<key>EndingLineNumber</key>
-							<string>529</string>
+							<string>530</string>
 							<key>StartingColumnNumber</key>
 							<string>0</string>
 							<key>StartingLineNumber</key>
-							<string>528</string>
+							<string>529</string>
 							<key>Timestamp</key>
-							<string>785578361.902485</string>
+							<string>785779954.459358</string>
 						</dict>
 						<key>rebasable-url</key>
 						<dict>
@@ -955,13 +955,13 @@ extension GameViewController {
 							<key>EndingColumnNumber</key>
 							<string>0</string>
 							<key>EndingLineNumber</key>
-							<string>497</string>
+							<string>498</string>
 							<key>StartingColumnNumber</key>
 							<string>0</string>
 							<key>StartingLineNumber</key>
-							<string>496</string>
+							<string>497</string>
 							<key>Timestamp</key>
-							<string>785578361.902503</string>
+							<string>785779954.4593641</string>
 						</dict>
 						<key>rebasable-url</key>
 						<dict>
@@ -1231,9 +1231,9 @@ extension GameViewController {
     
 </string>
 						<key>trailing</key>
-						<string>        let spawnDelayRange = 15.0...17.0
+						<string>        
+        guard !bonusRoundIsEnabled else { return }
 
-        //#10 watchdog.functionWasCalled()
 </string>
 					</dict>
 					<key>title</key>

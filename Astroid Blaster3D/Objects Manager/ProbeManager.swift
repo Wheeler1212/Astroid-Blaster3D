@@ -228,6 +228,7 @@ extension GameViewController {
             }
             //Kein doppelter Aufruf -> despawnSpaceProbe()
             if colorfullStarsState != .starsOn {
+                currentEnemy = .none
                 scheduleNextEnemy(.spaceProbe)
             }
             
@@ -319,7 +320,6 @@ extension GameViewController {
     func handleStarCollision(_ star: SCNNode) {
         guard let name = star.name else { return }
         
-        print("Star.name: \(name)")
         switch true {
             //Ein Leben wird abgezogen
         case name.hasPrefix("Red"):
