@@ -396,7 +396,7 @@ class GameViewController: UIViewController, LevelManagerDelegate {
     
     // MARK: Level
     var timerUpdateHUD: Timer?
-    var levelCount: Int = 0  // Versuch Bonus Round Start - wieder auf 0 setzen - Level auf 0 gesetzt wird in func nextLevel() hochgezählt
+    var levelCount: Int = 1  // Versuch Bonus Round Start - wieder auf 0 setzen - Level auf 0 gesetzt wird in func nextLevel() hochgezählt
     var levelClear: Bool = false
     var player1: String = "Günter"
 
@@ -552,6 +552,8 @@ class GameViewController: UIViewController, LevelManagerDelegate {
 
     // Implementierung der zweiten Delegate-Methode
     func updateEnemyValues(_ enemyConfig: EnemyConfig) {
+        
+        //FIXME: Variable noch umarbeiten
         //spaceInvaderSpawnDelay = enemyConfig.invaderSpawnDelay
         //spaceInvaderOnScreenTime = enemyConfig.invaderOnScreenTime
         spaceInvaderFramesRefreshTime = enemyConfig.invaderFramesRefreshTime
@@ -766,7 +768,7 @@ class GameViewController: UIViewController, LevelManagerDelegate {
 //                    self.scheduleNextEnemy()
 //                }
                 gameIsPaused = false
-                scheduleNextEnemy(.none)
+                scheduleNextEnemy()
                 startTimerAsteroid()
                 startTimerBallWall()
                 //#21

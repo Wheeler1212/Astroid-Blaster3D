@@ -59,52 +59,59 @@ extension GameViewController {
             let x: CGFloat = 100
             
             // 1. Start Game Button
-            let startButton = makeStyledButton(title: "Start Game",
-                                               fontSize: 24,
-                                               color: .yellow,
-                                               tag: ViewTags.startButton,
-                                               frame: CGRect(x: x, y: currentY, width: buttonWidth, height: buttonHeight),
-                                               target: target,
-                                               selector: #selector(GameViewController.startGameView))
+            let startButton = makeStyledButton(
+                        title: "Start Game",
+                        fontSize: 24,
+                        color: .yellow,
+                        tag: ViewTags.startButton,
+                        frame: CGRect(x: x, y: currentY, width: buttonWidth, height: buttonHeight),
+                        target: target,
+                        selector: #selector(GameViewController.startGameView))
             view.addSubview(startButton)
             fadeIn(startButton, delay: 0)
             switchContainers.append(startButton)
             currentY += buttonHeight + spacing
             
             // 2. Settings Button
-            let settingsButton = makeStyledButton(title: "Settings",
-                                                  fontSize: 24,
-                                                  color: .white,
-                                                  tag: ViewTags.settingsButton,
-                                                  frame: CGRect(x: x, y: currentY, width: buttonWidth, height: buttonHeight),
-                                                  target: target,
-                                                  selector: #selector(GameViewController.changeSettings))
+            let settingsButton = makeStyledButton(
+                        title: "Settings",
+                        fontSize: 24,
+                        color: .white,
+                        tag: ViewTags.settingsButton,
+                        frame: CGRect(x: x, y: currentY, width: buttonWidth, height: buttonHeight),
+                        target: target,
+                        selector: #selector(GameViewController.changeSettings))
+            
             view.addSubview(settingsButton)
             fadeIn(settingsButton, delay: 0.2)
             switchContainers.append(settingsButton)
             currentY += buttonHeight + spacing
             
             // 3. Canvas Button (Nutzt denselben Selector wie Settings)
-            let canvasButton = makeStyledButton(title: "Canvas",
-                                                fontSize: 24,
-                                                color: .white,
-                                                tag: ViewTags.canvasButton,
-                                                frame: CGRect(x: x, y: currentY, width: buttonWidth, height: buttonHeight),
-                                                target: target,
-                                                selector: #selector(GameViewController.changeSettings))
+            let canvasButton = makeStyledButton(
+                        title: "Canvas",
+                        fontSize: 24,
+                        color: .white,
+                        tag: ViewTags.canvasButton,
+                        frame: CGRect(x: x, y: currentY, width: buttonWidth, height: buttonHeight),
+                        target: target,
+                        selector: #selector(GameViewController.changeSettings))
+            
             view.addSubview(canvasButton)
             fadeIn(canvasButton, delay: 0.3)
             switchContainers.append(canvasButton)
             currentY += buttonHeight + spacing
             
             // 4. Difficulty Button
-            let difficultyButton = makeStyledButton(title: "Difficulty",
-                                                    fontSize: 24,
-                                                    color: .white,
-                                                    tag: ViewTags.difficultyButton,
-                                                    frame: CGRect(x: x, y: currentY, width: buttonWidth, height: buttonHeight),
-                                                    target: target,
-                                                    selector: #selector(GameViewController.changeDifficulty))
+            let difficultyButton = makeStyledButton(
+                        title: "Difficulty",
+                        fontSize: 24,
+                        color: .white,
+                        tag: ViewTags.difficultyButton,
+                        frame: CGRect(x: x, y: currentY, width: buttonWidth, height: buttonHeight),
+                        target: target,
+                        selector: #selector(GameViewController.changeDifficulty))
+            
             view.addSubview(difficultyButton)
             fadeIn(difficultyButton, delay: 0.4)
             switchContainers.append(difficultyButton)
@@ -170,9 +177,7 @@ extension GameViewController {
         }
         
         
-        print("🔧 Neuer Schwierigkeitsgrad: \(LevelManager.shared.difficulty)")
-        
-        // 📍 Finde das zugehörige Label über den Tag
+        // Finde das zugehörige Label über den Tag
         if let label = self.view.viewWithTag(ViewTags.difficultyLabel) as? UILabel {
             label.text = ButtonBuilder.difficultyText(for: LevelManager.shared.difficulty)
         }

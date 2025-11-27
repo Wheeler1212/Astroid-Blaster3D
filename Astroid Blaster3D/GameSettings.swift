@@ -149,7 +149,7 @@ struct DeviceConfig {
 
 //MARK: - Level
 struct AsteroidConfig {
-    var startDelay: TimeInterval
+    let startDelay: TimeInterval
     let countMax: Int
     let scale: CGFloat
     let maxNumberOnScreen: Int
@@ -178,13 +178,13 @@ struct LevelConfig {
 
     static func asteroidConfig(for difficulty: LevelType, level: Int) -> AsteroidConfig {
         let levelFactor = Int(level)
-        
+        print("LevelConfig level: \(level)")
         switch difficulty {
         case .easy:
             return isIPad
             ? AsteroidConfig(
                 startDelay:            4.0,
-                countMax:              1,//2 * levelFactor, //25, Versuch
+                countMax:              5 * levelFactor, //25, Versuch
                 scale:                 1.5,
                 maxNumberOnScreen:     3,
                 startValueOfBurstOne:  2,

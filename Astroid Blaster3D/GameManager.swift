@@ -84,7 +84,6 @@ extension GameViewController {
         
         LevelManager.shared.nextLevel()
 
-        levelCount += 1  // Level erhöhen
         switch levelCount {
             case 1:
                 print("Game-Level 1")

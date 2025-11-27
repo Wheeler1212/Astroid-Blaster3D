@@ -354,13 +354,13 @@ extension GameViewController {
 									<key>EndingColumnNumber</key>
 									<string>0</string>
 									<key>EndingLineNumber</key>
-									<string>371</string>
+									<string>370</string>
 									<key>StartingColumnNumber</key>
 									<string>0</string>
 									<key>StartingLineNumber</key>
-									<string>370</string>
+									<string>369</string>
 									<key>Timestamp</key>
-									<string>785779954.459352</string>
+									<string>785928473.849623</string>
 								</dict>
 								<key>rebasable-url</key>
 								<dict>
@@ -401,13 +401,13 @@ extension GameViewController {
 									<key>EndingColumnNumber</key>
 									<string>0</string>
 									<key>EndingLineNumber</key>
-									<string>171</string>
+									<string>170</string>
 									<key>StartingColumnNumber</key>
 									<string>0</string>
 									<key>StartingLineNumber</key>
-									<string>170</string>
+									<string>169</string>
 									<key>Timestamp</key>
-									<string>785779954.459325</string>
+									<string>785928473.849642</string>
 								</dict>
 								<key>rebasable-url</key>
 								<dict>
@@ -448,13 +448,13 @@ extension GameViewController {
 									<key>EndingColumnNumber</key>
 									<string>0</string>
 									<key>EndingLineNumber</key>
-									<string>232</string>
+									<string>231</string>
 									<key>StartingColumnNumber</key>
 									<string>0</string>
 									<key>StartingLineNumber</key>
-									<string>231</string>
+									<string>230</string>
 									<key>Timestamp</key>
-									<string>785779954.4593461</string>
+									<string>785928473.849607</string>
 								</dict>
 								<key>rebasable-url</key>
 								<dict>
@@ -512,13 +512,13 @@ extension GameViewController {
 									<key>EndingColumnNumber</key>
 									<string>0</string>
 									<key>EndingLineNumber</key>
-									<string>317</string>
+									<string>316</string>
 									<key>StartingColumnNumber</key>
 									<string>0</string>
 									<key>StartingLineNumber</key>
-									<string>316</string>
+									<string>315</string>
 									<key>Timestamp</key>
-									<string>785779954.459339</string>
+									<string>785928473.84966</string>
 								</dict>
 								<key>rebasable-url</key>
 								<dict>
@@ -707,13 +707,13 @@ extension GameViewController {
 									<key>EndingColumnNumber</key>
 									<string>0</string>
 									<key>EndingLineNumber</key>
-									<string>570</string>
+									<string>569</string>
 									<key>StartingColumnNumber</key>
 									<string>0</string>
 									<key>StartingLineNumber</key>
-									<string>569</string>
+									<string>568</string>
 									<key>Timestamp</key>
-									<string>785779954.459332</string>
+									<string>785928473.849636</string>
 								</dict>
 								<key>rebasable-url</key>
 								<dict>
@@ -814,13 +814,13 @@ extension GameViewController {
 							<key>EndingColumnNumber</key>
 							<string>0</string>
 							<key>EndingLineNumber</key>
-							<string>171</string>
+							<string>170</string>
 							<key>StartingColumnNumber</key>
 							<string>0</string>
 							<key>StartingLineNumber</key>
-							<string>170</string>
+							<string>169</string>
 							<key>Timestamp</key>
-							<string>785779954.4593019</string>
+							<string>785928473.849648</string>
 						</dict>
 						<key>rebasable-url</key>
 						<dict>
@@ -908,13 +908,13 @@ extension GameViewController {
 							<key>EndingColumnNumber</key>
 							<string>0</string>
 							<key>EndingLineNumber</key>
-							<string>530</string>
+							<string>529</string>
 							<key>StartingColumnNumber</key>
 							<string>0</string>
 							<key>StartingLineNumber</key>
-							<string>529</string>
+							<string>528</string>
 							<key>Timestamp</key>
-							<string>785779954.459358</string>
+							<string>785928473.84963</string>
 						</dict>
 						<key>rebasable-url</key>
 						<dict>
@@ -955,13 +955,13 @@ extension GameViewController {
 							<key>EndingColumnNumber</key>
 							<string>0</string>
 							<key>EndingLineNumber</key>
-							<string>498</string>
+							<string>497</string>
 							<key>StartingColumnNumber</key>
 							<string>0</string>
 							<key>StartingLineNumber</key>
-							<string>497</string>
+							<string>496</string>
 							<key>Timestamp</key>
-							<string>785779954.4593641</string>
+							<string>785928473.849654</string>
 						</dict>
 						<key>rebasable-url</key>
 						<dict>
@@ -1062,150 +1062,6 @@ extension GameViewController {
 							<key>StartingColumnNumber</key>
 							<string>0</string>
 							<key>StartingLineNumber</key>
-							<string>15</string>
-							<key>Timestamp</key>
-							<string>767085216.951894</string>
-						</dict>
-						<key>rebasable-url</key>
-						<dict>
-							<key>base</key>
-							<string>workspace</string>
-							<key>payload</key>
-							<dict>
-								<key>relative-path</key>
-								<string>Astroid Blaster3D/GameSetup.swift</string>
-							</dict>
-						</dict>
-					</dict>
-					<key>text-context</key>
-					<dict>
-						<key>focused</key>
-						<string></string>
-						<key>leading</key>
-						<string>
-extension GameViewController {
-</string>
-						<key>trailing</key>
-						<string>
-}
-</string>
-					</dict>
-					<key>title</key>
-					<string>Change Game Scene Background</string>
-					<key>type</key>
-					<string>bookmark</string>
-				</dict>
-				<dict>
-					<key>destination</key>
-					<dict>
-						<key>location-parameters</key>
-						<dict>
-							<key>EndingColumnNumber</key>
-							<string>0</string>
-							<key>EndingLineNumber</key>
-							<string>15</string>
-							<key>StartingColumnNumber</key>
-							<string>0</string>
-							<key>StartingLineNumber</key>
-							<string>15</string>
-							<key>Timestamp</key>
-							<string>767085216.9518991</string>
-						</dict>
-						<key>rebasable-url</key>
-						<dict>
-							<key>base</key>
-							<string>workspace</string>
-							<key>payload</key>
-							<dict>
-								<key>relative-path</key>
-								<string>Astroid Blaster3D/GameSetup.swift</string>
-							</dict>
-						</dict>
-					</dict>
-					<key>text-context</key>
-					<dict>
-						<key>focused</key>
-						<string></string>
-						<key>leading</key>
-						<string>
-extension GameViewController {
-</string>
-						<key>trailing</key>
-						<string>
-}
-</string>
-					</dict>
-					<key>title</key>
-					<string>Setup Settings View</string>
-					<key>type</key>
-					<string>bookmark</string>
-				</dict>
-				<dict>
-					<key>destination</key>
-					<dict>
-						<key>location-parameters</key>
-						<dict>
-							<key>EndingColumnNumber</key>
-							<string>0</string>
-							<key>EndingLineNumber</key>
-							<string>15</string>
-							<key>StartingColumnNumber</key>
-							<string>0</string>
-							<key>StartingLineNumber</key>
-							<string>15</string>
-							<key>Timestamp</key>
-							<string>767085216.951924</string>
-						</dict>
-						<key>rebasable-url</key>
-						<dict>
-							<key>base</key>
-							<string>workspace</string>
-							<key>payload</key>
-							<dict>
-								<key>relative-path</key>
-								<string>Astroid Blaster3D/GameSetup.swift</string>
-							</dict>
-						</dict>
-					</dict>
-					<key>text-context</key>
-					<dict>
-						<key>focused</key>
-						<string></string>
-						<key>leading</key>
-						<string>
-extension GameViewController {
-</string>
-						<key>trailing</key>
-						<string>
-}
-</string>
-					</dict>
-					<key>title</key>
-					<string>Button Builder</string>
-					<key>type</key>
-					<string>bookmark</string>
-				</dict>
-			</array>
-			<key>title</key>
-			<string>Setup Start-View</string>
-			<key>type</key>
-			<string>group</string>
-		</dict>
-		<dict>
-			<key>children</key>
-			<array>
-				<dict>
-					<key>destination</key>
-					<dict>
-						<key>location-parameters</key>
-						<dict>
-							<key>EndingColumnNumber</key>
-							<string>0</string>
-							<key>EndingLineNumber</key>
-							<string>15</string>
-							<key>StartingColumnNumber</key>
-							<string>0</string>
-							<key>StartingLineNumber</key>
 							<string>14</string>
 							<key>Timestamp</key>
 							<string>785437847.803578</string>
@@ -1224,7 +1080,7 @@ extension GameViewController {
 					<key>text-context</key>
 					<dict>
 						<key>focused</key>
-						<string>    func scheduleNextEnemy(_ enemy: EnemyType) {
+						<string>    func scheduleNextEnemy() {
 </string>
 						<key>leading</key>
 						<string>extension GameViewController {
@@ -1241,15 +1097,6 @@ extension GameViewController {
 					<key>type</key>
 					<string>bookmark</string>
 				</dict>
-			</array>
-			<key>title</key>
-			<string>Enemy</string>
-			<key>type</key>
-			<string>group</string>
-		</dict>
-		<dict>
-			<key>children</key>
-			<array>
 				<dict>
 					<key>children</key>
 					<array>

@@ -12,7 +12,7 @@ import UIKit
 
 extension GameViewController {
     
-    func scheduleNextEnemy(_ enemy: EnemyType) {
+    func scheduleNextEnemy() {
         
         guard !bonusRoundIsEnabled else { return }
 
@@ -25,7 +25,7 @@ extension GameViewController {
             //Wenn BallWall aktive, dann abbrechen
             guard ballWallState == .idle else {
                 currentEnemy = .none            // Neuen Enemy freigeben
-                scheduleNextEnemy(.ballWall)    //Nächster run
+                scheduleNextEnemy()    //Nächster run
                 return
             }
             //Für unterschiedliche Häufung der Enemies
@@ -36,7 +36,7 @@ extension GameViewController {
                 ]
             // Neuen Enemy nur freigeben wenn sonst keiner unterwegs ist
             guard currentEnemy == .none else {
-                scheduleNextEnemy(.none)
+                scheduleNextEnemy()
                 return }
             currentEnemy = weightedEnemies.randomElement() ?? .spaceProbe
             spawnNextEnemy()

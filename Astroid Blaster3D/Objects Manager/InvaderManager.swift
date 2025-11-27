@@ -512,7 +512,7 @@ extension GameViewController {
                 timerAnimateSpaceInvader?.invalidate()
                 timerAnimateSpaceInvader = nil
                 currentEnemy = .none
-                scheduleNextEnemy(.spaceInvader)
+                scheduleNextEnemy()
             }
         }
     }
@@ -533,7 +533,7 @@ extension GameViewController {
         
         resetSpaceInvader()
         currentEnemy = .none
-        scheduleNextEnemy(.spaceInvader)
+        scheduleNextEnemy()
     }
     
     // SpaceInvader zurücksetzten für Neustart

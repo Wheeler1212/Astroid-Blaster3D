@@ -229,7 +229,7 @@ extension GameViewController {
             //Kein doppelter Aufruf -> despawnSpaceProbe()
             if colorfullStarsState != .starsOn {
                 currentEnemy = .none
-                scheduleNextEnemy(.spaceProbe)
+                scheduleNextEnemy()
             }
             
             colorfullStarsState = .idle
@@ -374,7 +374,7 @@ extension GameViewController {
             
             spaceProbeState = .idle
             currentEnemy = .none    //# Neuen Enemy freigeben
-            scheduleNextEnemy(.spaceProbe)
+            scheduleNextEnemy()
         }
     }
 }

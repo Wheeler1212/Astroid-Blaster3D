@@ -118,7 +118,7 @@ extension GameViewController {
 
             bigFlashState = .idle
             currentEnemy = .none    //Neuen Enemy freigeben
-            scheduleNextEnemy(.bigFlash)
+            scheduleNextEnemy()
             }
     }
    

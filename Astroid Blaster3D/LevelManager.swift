@@ -24,6 +24,8 @@ class LevelManager {
     }
 
     func nextLevel() {
+        levelCount += 1  // Level erhöhen
+        
         print("Game-Level \(levelCount) - Mode: \(difficulty)")
         delegate?.updateAsteroidValues(asteroidValues)
         delegate?.updateEnemyValues(enemyValues)
