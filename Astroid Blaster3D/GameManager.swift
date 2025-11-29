@@ -83,8 +83,9 @@ extension GameViewController {
     func nextLevelUpdate() {
         
         LevelManager.shared.nextLevel()
+        logEvent("Level: \(LevelManager.shared.levelCount)")
 
-        switch levelCount {
+        switch LevelManager.shared.levelCount {
             case 1:
                 print("Game-Level 1")
 
@@ -167,11 +168,19 @@ extension GameViewController {
         }
     }   
     
-
-    //--------------------------------------------------------------------------------------
-
-
-
+    func despawnAllObjects() {
+        // Eventuell noch vorhandene Asteroids ausblenden und auf Parkposition setzten
+        for node in asteroidNode {
+            fadeOutAsteroidAndMoveToParkPosition(node: node, parkPosition: parkPositionOfAsteroid)
+        }
+        //Enemies löschen und auf Parkposition setzten
+        despawnSpaceInvader()
+        despawnSpaceProbe()
+        despawnBigFlash()
+        moveShipShieldToParkposition()
+        //FIXME: Auf finishBallWall(nodeArray: [SCNNode]) umschreiben
+        fadeOutBallWall()
+    }
 
     // FIXME: BigFlash HitByAsteroid
     // Für Kollision BigFlash und Asteroids
@@ -228,9 +237,9 @@ extension GameViewController {
     //--------------------------------------------------------------------------------------
     
 // MARK: Clean Scene
-    // Alle AsteroidsNodes die den Bildschirm verlassen auf Parkposition setzten
+    // Asteroids die den Schirm verlassen, wieder rechts einlafen lassen
     func cleanAsteroids() {
-        // Wenn "Asteroid" oder "Fire" den Bildschirm verlässt
+        // Wenn "Asteroid" den Bildschirm verlässt
         for node in gameScene.rootNode.childNodes {
             // Prüfung ob Node ein Asteroid ist und welche Nummer er hat
             if let nodeName = node.name, nodeName.hasPrefix("Asteroid"),
@@ -239,22 +248,23 @@ extension GameViewController {
                 
                 // Nur die großen Asteroiden wieder rechts einlaufen lassen
                 if numberAsteroid < offsetNumber {
+                    
                     // Asteroids verlassen links den Bildschirm
                     if node.presentation.position.x < -asteroidParkPositionX - 1 {
                     // Asteroid rechts neu einlaufen lassen, ...
                         repositionAsteroid(asteroid: specificAsteroid,
-                                           at: asteroidStartPositionX,
-                                           withinYRange: -asteroidStartBorderY...asteroidStartBorderY,
-                                           withinZRange: -asteroidStartBorderZ...asteroidStartBorderZ
+                                   at: asteroidStartPositionX,
+                                   withinYRange: -asteroidStartBorderY...asteroidStartBorderY,
+                                   withinZRange: -asteroidStartBorderZ...asteroidStartBorderZ
                         )
                     }
                     
-                    // Dito aber wenn sie oben oder unten den Schirm verlassen
+                    // Asteroids verlassen oben oder unten den Schirm
                     if abs(node.presentation.position.y) > DeviceConfig.layout.asteroidMoveBorderY {
                         repositionAsteroid(asteroid: specificAsteroid,
-                                           at: asteroidStartPositionX,
-                                           withinYRange: -asteroidStartBorderY...asteroidStartBorderY,
-                                           withinZRange: -asteroidStartBorderZ...asteroidStartBorderZ
+                                   at: asteroidStartPositionX,
+                                   withinYRange: -asteroidStartBorderY...asteroidStartBorderY,
+                                   withinZRange: -asteroidStartBorderZ...asteroidStartBorderZ
                         )
                     }
                 }
@@ -269,6 +279,7 @@ extension GameViewController {
                                     ) {
         var positionZ: Float = Float.random(in: zRange)
         
+        //FIXME: Asteroid in Z-Richtung bei Bonusrunde
         // Erst bei .hard werden die Asteroiden auch in Z verschoben
         if LevelManager.shared.difficulty == .hard {
             if !bonusRoundIsActive {
@@ -299,17 +310,18 @@ extension GameViewController {
             if physicsBody.velocity.x > 0 {
                 physicsBody.velocity.x = -physicsBody.velocity.x
             }
-            let impulseX = Float(levelCount * 10)
             // Maximale Geschwindigkeitsschwelle
-            let maxVelocityThreshold = max(Float(-levelCount) * 50 - 100, -300) // Maximal -300 m/s
-            
+            let level = Float(LevelManager.shared.levelCount)
+            let maxVelocityThreshold = max(-(level * 50 + 100), -300)
+
             // Falls die Geschwindigkeit über einem bestimmten Wert liegt, keine neuen Impulse geben
+            let impulseX = Float(LevelManager.shared.levelCount * 10)
             if physicsBody.velocity.x > maxVelocityThreshold {
                 physicsBody.applyForce(SCNVector3(x: Float.random(in: -impulseX ... -10),   // Richtung
                                                   y: 0,
                                                   z: 0),
-                                       at: SCNVector3(0.9, 0.5, 0.8),                       // Position
-                                       asImpulse: true)
+                                                  at: SCNVector3(0.9, 0.5, 0.8),  // Position
+                                                  asImpulse: true)
             }
         }
     }
@@ -442,47 +454,6 @@ extension GameViewController {
         timerBigFlash = nil
     } //----------------------------------------------------------
   
-
-    // TODO: TwinShip wird innerhalb des Bildschirms gehalten
-    func viewBounding() {
-        // Segelflug mit Gegenwind - Schwammig zum Steuern eventuell mit Bescheunigung
-        cameraNode.simdPosition += lastCameraMovement
-
-        // Bildschirmgrenzen definieren (angepasst an X als Tiefe, Z als Links/Rechts)
-        let screenBounds = SCNVector3(
-            x: 200,  // Nicht verwendet, aber für Klarheit beibehalten
-            y: 80,   // Maximale Y-Abweichung (Hoch/Runter)
-            z: 80    // Maximale Z-Abweichung (Links/Rechts)
-        )
-
-        // Relative Position des Schiffes zur Kamera
-        let shipPosition = twinShipBonusNode.simdPosition
-        let cameraPosition = cameraNode.simdPosition
-        let relativePosition = shipPosition - cameraPosition
-
-        // Kamerabewegung anpassen, wenn das Schiff die Grenzen erreicht
-        var cameraAdjustment = SIMD3<Float>(0, 0, 0)
-
-        // Y-Richtung (Hoch/Runter)
-        if relativePosition.y > screenBounds.y {
-            cameraAdjustment.y = relativePosition.y - screenBounds.y
-        } else if relativePosition.y < -screenBounds.y {
-            cameraAdjustment.y = relativePosition.y + screenBounds.y
-        }
-
-        // Z-Richtung (Links/Rechts)
-        if relativePosition.z > screenBounds.z {
-            cameraAdjustment.z = relativePosition.z - screenBounds.z
-        } else if relativePosition.z < -screenBounds.z {
-            cameraAdjustment.z = relativePosition.z + screenBounds.z
-        }
-
-        // Wende die Anpassung auf die Kamera an (mit Dämpfung kombinieren)
-        cameraNode.simdPosition += cameraAdjustment * 0.1  // Gedämpfte Kamerabewegung
-    }
-    
-    //--------------------------------------------------------------------------------------
-    
     func calculateLabelXPosition(for labelText: String, fontSize: CGFloat, offset: CGFloat = 0) -> CGFloat {
         let tempLabel = SKLabelNode(text: labelText)
         tempLabel.fontSize = fontSize
@@ -622,4 +593,20 @@ extension GameViewController {
          shieldNode.isHidden = false
          shieldNode.opacity = 1.0
      }
+    
+    // Log-Ausgabe mit Zeit
+    func logEvent(_ message: String) {
+        let time = DateFormatter.localizedString(from: Date(), dateStyle: .none, timeStyle: .medium)
+        print("[\(time)] \(message)")
+//        print (String(format: "%.0f", spawnDelay),  "spawnDelay")
+//        print (String(format: "%.0f", bigFlashOnScreenDuration),  "bigFlashOnScreenDuration")
+//        print ("\(currentEnemy)",  "currentEnemy")
+//        print ("\(spaceInvaderState)",  "spaceInvaderState")
+//        print ("\(spaceProbeState)",  "spaceProbeState")
+//        print ("\(bigFlashState)",  "bigFlashState")
+//        print ("\(ballWallState)",  "ballWallState")
+        counter += 1
+//        print ("counter: \(counter)")
+        print("")
+    }
 }

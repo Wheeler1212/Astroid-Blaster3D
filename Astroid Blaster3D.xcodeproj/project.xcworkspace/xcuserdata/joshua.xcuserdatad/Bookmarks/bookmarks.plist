@@ -268,7 +268,7 @@ extension GameViewController {
 									<key>StartingLineNumber</key>
 									<string>214</string>
 									<key>Timestamp</key>
-									<string>785616974.651202</string>
+									<string>786142166.404067</string>
 								</dict>
 								<key>rebasable-url</key>
 								<dict>
@@ -354,13 +354,13 @@ extension GameViewController {
 									<key>EndingColumnNumber</key>
 									<string>0</string>
 									<key>EndingLineNumber</key>
-									<string>370</string>
+									<string>382</string>
 									<key>StartingColumnNumber</key>
 									<string>0</string>
 									<key>StartingLineNumber</key>
-									<string>369</string>
+									<string>381</string>
 									<key>Timestamp</key>
-									<string>785928473.849623</string>
+									<string>786142197.627233</string>
 								</dict>
 								<key>rebasable-url</key>
 								<dict>
@@ -401,13 +401,13 @@ extension GameViewController {
 									<key>EndingColumnNumber</key>
 									<string>0</string>
 									<key>EndingLineNumber</key>
-									<string>170</string>
+									<string>240</string>
 									<key>StartingColumnNumber</key>
-									<string>0</string>
+									<string>20</string>
 									<key>StartingLineNumber</key>
-									<string>169</string>
+									<string>238</string>
 									<key>Timestamp</key>
-									<string>785928473.849642</string>
+									<string>786011721.54845</string>
 								</dict>
 								<key>rebasable-url</key>
 								<dict>
@@ -424,61 +424,15 @@ extension GameViewController {
 							<dict>
 								<key>focused</key>
 								<string>
+    // Asteroids die den Schirm verlassen, wieder rechts einlafen lassen
 </string>
 								<key>leading</key>
-								<string>    }   
-    
-</string>
-								<key>trailing</key>
 								<string>    //--------------------------------------------------------------------------------------
-
-
-</string>
-							</dict>
-							<key>title</key>
-							<string>Kollision Fire mit Asteroid</string>
-							<key>type</key>
-							<string>bookmark</string>
-						</dict>
-						<dict>
-							<key>destination</key>
-							<dict>
-								<key>location-parameters</key>
-								<dict>
-									<key>EndingColumnNumber</key>
-									<string>0</string>
-									<key>EndingLineNumber</key>
-									<string>231</string>
-									<key>StartingColumnNumber</key>
-									<string>0</string>
-									<key>StartingLineNumber</key>
-									<string>230</string>
-									<key>Timestamp</key>
-									<string>785928473.849607</string>
-								</dict>
-								<key>rebasable-url</key>
-								<dict>
-									<key>base</key>
-									<string>workspace</string>
-									<key>payload</key>
-									<dict>
-										<key>relative-path</key>
-										<string>Astroid Blaster3D/GameManager.swift</string>
-									</dict>
-								</dict>
-							</dict>
-							<key>text-context</key>
-							<dict>
-								<key>focused</key>
-								<string>    // Alle AsteroidsNodes die den Bildschirm verlassen auf Parkposition setzten
-</string>
-								<key>leading</key>
-								<string>    
-// MARK: Clean Scene
-</string>
+    
+// MARK: Clean Scene</string>
 								<key>trailing</key>
 								<string>    func cleanAsteroids() {
-        // Wenn "Asteroid" oder "Fire" den Bildschirm verlässt
+        // Wenn "Asteroid" den Bildschirm verlässt
         for node in gameScene.rootNode.childNodes {
 </string>
 							</dict>
@@ -512,13 +466,13 @@ extension GameViewController {
 									<key>EndingColumnNumber</key>
 									<string>0</string>
 									<key>EndingLineNumber</key>
-									<string>316</string>
+									<string>328</string>
 									<key>StartingColumnNumber</key>
 									<string>0</string>
 									<key>StartingLineNumber</key>
-									<string>315</string>
+									<string>327</string>
 									<key>Timestamp</key>
-									<string>785928473.84966</string>
+									<string>786142185.982426</string>
 								</dict>
 								<key>rebasable-url</key>
 								<dict>
@@ -565,7 +519,7 @@ extension GameViewController {
 									<key>StartingLineNumber</key>
 									<string>314</string>
 									<key>Timestamp</key>
-									<string>785312576.861483</string>
+									<string>786141053.56635</string>
 								</dict>
 								<key>rebasable-url</key>
 								<dict>
@@ -589,7 +543,7 @@ extension GameViewController {
 </string>
 								<key>trailing</key>
 								<string>    func animateFire() {
-        if bonusRoundIsEnabled {
+        if bonusRoundIsEnabled {    //###
             
 </string>
 							</dict>
@@ -707,13 +661,13 @@ extension GameViewController {
 									<key>EndingColumnNumber</key>
 									<string>0</string>
 									<key>EndingLineNumber</key>
-									<string>569</string>
+									<string>540</string>
 									<key>StartingColumnNumber</key>
 									<string>0</string>
 									<key>StartingLineNumber</key>
-									<string>568</string>
+									<string>539</string>
 									<key>Timestamp</key>
-									<string>785928473.849636</string>
+									<string>786142210.416507</string>
 								</dict>
 								<key>rebasable-url</key>
 								<dict>
@@ -814,60 +768,13 @@ extension GameViewController {
 							<key>EndingColumnNumber</key>
 							<string>0</string>
 							<key>EndingLineNumber</key>
-							<string>170</string>
+							<string>452</string>
 							<key>StartingColumnNumber</key>
 							<string>0</string>
 							<key>StartingLineNumber</key>
-							<string>169</string>
+							<string>451</string>
 							<key>Timestamp</key>
-							<string>785928473.849648</string>
-						</dict>
-						<key>rebasable-url</key>
-						<dict>
-							<key>base</key>
-							<string>workspace</string>
-							<key>payload</key>
-							<dict>
-								<key>relative-path</key>
-								<string>Astroid Blaster3D/GameManager.swift</string>
-							</dict>
-						</dict>
-					</dict>
-					<key>text-context</key>
-					<dict>
-						<key>focused</key>
-						<string>
-</string>
-						<key>leading</key>
-						<string>    }   
-    
-</string>
-						<key>trailing</key>
-						<string>    //--------------------------------------------------------------------------------------
-
-
-</string>
-					</dict>
-					<key>title</key>
-					<string>Move to Parkposition</string>
-					<key>type</key>
-					<string>bookmark</string>
-				</dict>
-				<dict>
-					<key>destination</key>
-					<dict>
-						<key>location-parameters</key>
-						<dict>
-							<key>EndingColumnNumber</key>
-							<string>0</string>
-							<key>EndingLineNumber</key>
-							<string>448</string>
-							<key>StartingColumnNumber</key>
-							<string>0</string>
-							<key>StartingLineNumber</key>
-							<string>447</string>
-							<key>Timestamp</key>
-							<string>785758528.91528</string>
+							<string>786140989.495032</string>
 						</dict>
 						<key>rebasable-url</key>
 						<dict>
@@ -908,13 +815,13 @@ extension GameViewController {
 							<key>EndingColumnNumber</key>
 							<string>0</string>
 							<key>EndingLineNumber</key>
-							<string>529</string>
+							<string>500</string>
 							<key>StartingColumnNumber</key>
 							<string>0</string>
 							<key>StartingLineNumber</key>
-							<string>528</string>
+							<string>499</string>
 							<key>Timestamp</key>
-							<string>785928473.84963</string>
+							<string>786142210.416539</string>
 						</dict>
 						<key>rebasable-url</key>
 						<dict>
@@ -955,13 +862,13 @@ extension GameViewController {
 							<key>EndingColumnNumber</key>
 							<string>0</string>
 							<key>EndingLineNumber</key>
-							<string>497</string>
+							<string>468</string>
 							<key>StartingColumnNumber</key>
 							<string>0</string>
 							<key>StartingLineNumber</key>
-							<string>496</string>
+							<string>467</string>
 							<key>Timestamp</key>
-							<string>785928473.849654</string>
+							<string>786142210.4166</string>
 						</dict>
 						<key>rebasable-url</key>
 						<dict>
@@ -1525,51 +1432,6 @@ extension GameViewController {
 							<key>StartingLineNumber</key>
 							<string>0</string>
 							<key>Timestamp</key>
-							<string>785578421.096812</string>
-						</dict>
-						<key>rebasable-url</key>
-						<dict>
-							<key>base</key>
-							<string>workspace</string>
-							<key>payload</key>
-							<dict>
-								<key>relative-path</key>
-								<string>Astroid Blaster3D/LevelManager.swift</string>
-							</dict>
-						</dict>
-					</dict>
-					<key>text-context</key>
-					<dict>
-						<key>focused</key>
-						<string>
-</string>
-						<key>leading</key>
-						<string></string>
-						<key>trailing</key>
-						<string>
-import Foundation
-
-</string>
-					</dict>
-					<key>title</key>
-					<string>LevelManager.swift</string>
-					<key>type</key>
-					<string>bookmark</string>
-				</dict>
-				<dict>
-					<key>destination</key>
-					<dict>
-						<key>location-parameters</key>
-						<dict>
-							<key>EndingColumnNumber</key>
-							<string>0</string>
-							<key>EndingLineNumber</key>
-							<string>1</string>
-							<key>StartingColumnNumber</key>
-							<string>0</string>
-							<key>StartingLineNumber</key>
-							<string>0</string>
-							<key>Timestamp</key>
 							<string>785434164.508057</string>
 						</dict>
 						<key>rebasable-url</key>
@@ -1833,6 +1695,97 @@ import Foundation
 			<string>Swift Dateien</string>
 			<key>type</key>
 			<string>group</string>
+		</dict>
+		<dict>
+			<key>destination</key>
+			<dict>
+				<key>location-parameters</key>
+				<dict>
+					<key>EndingColumnNumber</key>
+					<string>0</string>
+					<key>EndingLineNumber</key>
+					<string>0</string>
+					<key>StartingColumnNumber</key>
+					<string>0</string>
+					<key>StartingLineNumber</key>
+					<string>0</string>
+					<key>Timestamp</key>
+					<string>785945539.398513</string>
+				</dict>
+				<key>rebasable-url</key>
+				<dict>
+					<key>base</key>
+					<string>workspace</string>
+					<key>payload</key>
+					<dict>
+						<key>relative-path</key>
+						<string>Astroid Blaster3D/LevelManager.swift</string>
+					</dict>
+				</dict>
+			</dict>
+			<key>text-context</key>
+			<dict>
+				<key>focused</key>
+				<string></string>
+				<key>leading</key>
+				<string></string>
+				<key>trailing</key>
+				<string>
+
+import Foundation
+</string>
+			</dict>
+			<key>title</key>
+			<string>LevelManager.swift</string>
+			<key>type</key>
+			<string>bookmark</string>
+		</dict>
+		<dict>
+			<key>destination</key>
+			<dict>
+				<key>location-parameters</key>
+				<dict>
+					<key>EndingColumnNumber</key>
+					<string>0</string>
+					<key>EndingLineNumber</key>
+					<string>598</string>
+					<key>StartingColumnNumber</key>
+					<string>0</string>
+					<key>StartingLineNumber</key>
+					<string>597</string>
+					<key>Timestamp</key>
+					<string>786142220.191062</string>
+				</dict>
+				<key>rebasable-url</key>
+				<dict>
+					<key>base</key>
+					<string>workspace</string>
+					<key>payload</key>
+					<dict>
+						<key>relative-path</key>
+						<string>Astroid Blaster3D/GameManager.swift</string>
+					</dict>
+				</dict>
+			</dict>
+			<key>text-context</key>
+			<dict>
+				<key>focused</key>
+				<string>    func logEvent(_ message: String) {
+</string>
+				<key>leading</key>
+				<string>    
+    // Log-Ausgabe mit Zeit
+</string>
+				<key>trailing</key>
+				<string>        let time = DateFormatter.localizedString(from: Date(), dateStyle: .none, timeStyle: .medium)
+        print("[\(time)] \(message)")
+//        print (String(format: "%.0f", spawnDelay),  "spawnDelay")
+</string>
+			</dict>
+			<key>title</key>
+			<string>logEvent()</string>
+			<key>type</key>
+			<string>bookmark</string>
 		</dict>
 	</array>
 </dict>

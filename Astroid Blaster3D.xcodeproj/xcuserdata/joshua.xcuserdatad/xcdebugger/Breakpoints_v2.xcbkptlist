@@ -7,32 +7,17 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "02BCB76D-5F44-45C0-9215-80B3A73CABF2"
+            uuid = "161C03DE-4DB6-4B63-892D-89A678E2FF15"
             shouldBeEnabled = "No"
+            condition = "bonusRoundIsEnabled == true"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Astroid Blaster3D/Objects Manager/InvaderManager.swift"
+            filePath = "Astroid Blaster3D/EnemyManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "203"
-            endingLineNumber = "203"
-            landmarkName = "moveInvaderWithinRectangle()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "2B6FB7D3-5CA2-47D3-9AA6-22A26BB79FDA"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Astroid Blaster3D/Objects Manager/ProbeManager.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "231"
-            endingLineNumber = "231"
-            landmarkName = "fadeOutColorfullStars()"
+            startingLineNumber = "17"
+            endingLineNumber = "17"
+            landmarkName = "scheduleNextEnemy()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

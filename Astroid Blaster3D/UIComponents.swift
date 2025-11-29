@@ -254,14 +254,14 @@ extension GameViewController {
         asteroidCountActive = 0
         // Wieder Kollisionen für TwinShip
         twinShipNode.physicsBody?.collisionBitMask = combineBitMasks([
-                .colorfullStars,
-                .ballWall,
-                .asteroid])
-        
+                                                                .colorfullStars,
+                                                                .ballWall,
+                                                                .asteroid])
+        // Enemies und Asteroiden ausblenden
         despawnAllObjects()
         nextLevelUpdate() // Zuweisung der restlichen let/var und Level let/var
         levelClear = false
-        gameIsRunning = true
+        gameState = .running
         
         //NextLevelButton ausblenden
         UIView.animate(withDuration: 1.0, delay: 1.0, options: .curveEaseInOut, animations: { [self] in
@@ -274,7 +274,8 @@ extension GameViewController {
             // Button nach der Animation verstecken und deaktivieren
             nextLevelButton.isHidden = true
             nextLevelButton.isEnabled = false
-            nextLevelButton.transform = .identity // Originalgröße sofort wiederherstellen
+            // Originalgröße sofort wiederherstellen
+            nextLevelButton.transform = .identity
             
             // Wenn Button für Bonus Runde auch angezeigt wird
             if bonusRoundIsReached {
@@ -285,20 +286,6 @@ extension GameViewController {
             // Wenn Next Level Button gedrückt
             startGameDisplay() // Level starten
         })
-    }
-    
-    func despawnAllObjects() {
-        // Eventuell noch vorhandene Asteroids ausblenden und auf Parkposition setzten
-//        for node in asteroidNode {
-//            fadeOutAsteroidAndMoveToParkPosition(node: node, parkPosition: parkPositionOfAsteroid)
-//        } //Versuch
-        //Enemies löschen und auf Parkposition setzten
-        despawnSpaceInvader()
-        despawnSpaceProbe()
-        despawnBigFlash()
-        moveShipShieldToParkposition()
-        //FIXME: Auf finishBallWall(nodeArray: [SCNNode]) umschreiben
-        fadeOutBallWall()
     }
     
     // MARK: Clear Level und Update HUD
@@ -313,16 +300,15 @@ extension GameViewController {
                 }
             }
             
-              DispatchQueue.main.async { [self] in
-                  debugHUD.setValue(String(format: "%.0f", spawnDelay), for: "spawnDelay")
-                  debugHUD.setValue(String(format: "%.0f", bigFlashOnScreenDuration), for: "bigFlashOnScreenDuration")
-                  debugHUD.setValue("\(currentEnemy)", for: "currentEnemy")
-                  debugHUD.setValue("\(spaceInvaderState)", for: "spaceInvaderState")
-                  debugHUD.setValue("\(spaceProbeState)", for: "spaceProbeState")
-                  debugHUD.setValue("\(colorfullStarsState)", for: "colorfullStarsState")
-                  debugHUD.setValue("\(bigFlashState)", for: "bigFlashState")
-                  debugHUD.setValue("\(ballWallState)", for: "ballWallState")
-              }
+            DispatchQueue.main.async { [self] in
+                debugHUD.setValue(String(format: "%.0f", bigFlashOnScreenDuration), for: "bigFlashOnScreenDuration")
+                debugHUD.setValue("\(currentEnemy)", for: "currentEnemy")
+                debugHUD.setValue("\(spaceInvaderState)", for: "spaceInvaderState")
+                debugHUD.setValue("\(spaceProbeState)", for: "spaceProbeState")
+                debugHUD.setValue("\(colorfullStarsState)", for: "colorfullStarsState")
+                debugHUD.setValue("\(bigFlashState)", for: "bigFlashState")
+                debugHUD.setValue("\(ballWallState)", for: "ballWallState")
+            }
             
             // HUD aktualisieren
             numberCounterAsteroidsLabel.text = "Asteroids:"
@@ -335,27 +321,27 @@ extension GameViewController {
             timeCounterLabelValue.text = "\(secondsCounter)"
             
             labelGameLevel.text = "Level:"
-            labelGameLevelValue.text = "\(levelCount)"
+            labelGameLevelValue.text = "\(LevelManager.shared.levelCount)"
             
             labelRemainingLives.text = "Lives"
             labelRemainingLivesValue.text = "\(playerLives)"
         }
     }
-
+    
     
     
     func levelClearDisplay() {
         
         hideCollisionDisplayWithScale() // Collisions Display Animiert ausblenden
         twinShipNode.physicsBody?.collisionBitMask = CollisionCategory.none.bitMask
-        gameIsRunning = false // Nur noch Schiffsteuerung
+        gameState = .paused
         
         // TODO: Berechnung der Bonuspunkte muss eventuell noch angepasst werden
         //pointsUpdateCount = 10000
         pointsUpdateCount = asteroidMaxNumberOnScreen * 100 / secondsCounter
         bonusLabel.text = "Level Clear - Bonuspoints: \(pointsUpdateCount)"
         
-        if pointsUpdateCount > 10 {
+        if pointsUpdateCount > 1 {
             bonusRoundIsReached = true
         }
         
@@ -368,7 +354,7 @@ extension GameViewController {
         
         // Damit es im neuen Level nicht zu hektisch wird
         stopAllAsteroidsRotation(asteroidNode)
-
+        
         // Konstante für Bonuspunkte zum Score verrechnen
         let interval = 0.05 // Intervall für den Timer
         let decayFactor = 0.05 // Steuerung des "Abklingens"
@@ -393,31 +379,33 @@ extension GameViewController {
             }
         }
         
-        // Nach 10 Sekunden "Next Level Buttom" einblenden
+        // Nach 10 Sekunden "Next Level Button" einblenden
         DispatchQueue.main.asyncAfter(deadline: .now() + 10.0) { [self] in
-            if bonusRoundIsReached {
-                // Button einschalten und auf Transparent setzten
-                bonusRoundButton.isEnabled = true
-                bonusRoundButton.isHidden = false
-                bonusRoundButton.alpha = 0.0
+            
+            // Kleine Hilfsfunktion: Button vorbereiten & animiert einblenden
+            func showButton(_ button: UIButton, duration: TimeInterval = 1.0) {
+                button.isEnabled = true
+                button.isHidden = false
+                button.alpha = 0.0
                 
-                UIView.animate(withDuration: 1.0) { [self] in
-                    // Button animiert einblenden
-                    bonusRoundButton.alpha = 1.0
+                UIView.animate(withDuration: duration) {
+                    button.alpha = 1.0
                 }
             }
-            // Level Button einschalten und auf Transparent setzten
-            nextLevelButton.isEnabled = true
-            nextLevelButton.isHidden = false
-            nextLevelButton.alpha = 0.0
             
+            //if bonusState == .reached
+            if bonusRoundIsReached {
+                showButton(bonusRoundButton)
+            }
+            
+            showButton(nextLevelButton)
+            
+            // Level-Clear-Labels ausblenden
             UIView.animate(withDuration: 1.0) { [self] in
-                // Level Clear Button animiert einblenden
-                nextLevelButton.alpha = 1.0
-                //Level Clear Anzeige ausblenden
                 centerLabel1.alpha = 0.0
                 centerLabel2.alpha = 0.0
                 bonusLabel.alpha = 0.0
+                
             }
         }
     }
@@ -428,7 +416,7 @@ extension GameViewController {
         gameIsPaused = true     // Schiff nicht mehr steuerbar
         invalidateTimer()       // Alle Timer löschen NEU
         despawnAllObjects()     // Alle Objekte verschwinden lassen
-
+        
         // Buttons ausblenden und danach verstecken und die Bonus-Runde starten
         UIView.animate(withDuration: 1.0, delay: 1.0, options: .curveEaseInOut, animations: { [self] in
             nextLevelButton.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
@@ -445,10 +433,10 @@ extension GameViewController {
             
             bonusRoundIsEnabled = true
             // Animation und dann zum Bonus-Spiel
-            animateTwinShipWithFullAnimation()
+            animateTwinShipForBonusRound()
         })
     }
-     
+    
     private func setLevelClearMotivationText(for points: Int) {
         
         let bonusMessages = [
@@ -510,11 +498,11 @@ extension GameViewController {
         // Animation erstellen hochscalen
         let scaleAction = SKAction.scale(to: 1.0, duration: 1.0)
         
-    // "LevelClear"
+        // "LevelClear"
         configureLabel(centerLabel1, fontColor: .red, fontName: "Menlo", isHidden: false)
-    // "Good Job Player1
+        // "Good Job Player1
         configureLabel(centerLabel2, fontColor: .red, fontName: "Menlo", isHidden: false)
-    // " Level Clear - BonusPoints: xxxx"
+        // " Level Clear - BonusPoints: xxxx"
         configureLabel(bonusLabel, fontColor: .white, fontName: "Menlo", isHidden: false)
         
         // Animation starten
@@ -542,7 +530,7 @@ extension GameViewController {
             addDebugAxes(to: twinShipBonusNode)
         }
     }
-
+    
     @objc func musicToggled(_ sender: UISwitch) {
         print("Music: \(sender.isOn ? "is on" : "is off")")
         isMusicOn = sender.isOn  // Speichert den Zustand
@@ -554,7 +542,7 @@ extension GameViewController {
             SoundManager.shared.stopBackgroundMusic()
         }
     }
-
+    
     @objc func startAnimationToggled(_ sender: UISwitch) {
         print("Startanimation: \(sender.isOn ? "Ist eingeschaltet" : "Ist ausgeschaltet")")
         startAnimation = sender.isOn ? true : false
@@ -564,9 +552,9 @@ extension GameViewController {
     @objc func SoundToggled(_ sender: UISwitch) {
         print("Sound: \(sender.isOn ? "is on" : "is OFF")")
         SoundManager.shared.isSoundOn = sender.isOn
-            UserDefaults.standard.set(SoundManager.shared.isSoundOn, forKey: "isSoundOn")
+        UserDefaults.standard.set(SoundManager.shared.isSoundOn, forKey: "isSoundOn")
     }
-
+    
     //MARK: LABEL
     func setupLabel() {
         let BorderFromUp: CGFloat = 70
@@ -574,92 +562,92 @@ extension GameViewController {
         
         // Erstelle eine SKScene für das HUD
         hudScene = SKScene(size: CGSize(width: scnView.bounds.size.width, height: scnView.bounds.size.height))
-
+        
         // Obere Reihe
-//---------- SCORE
+        //---------- SCORE
         createLabel(inScene: hudScene,
                     label: &scoreLabel,
                     position: CGPoint(x: 100, y: hudScene.size.height - BorderFromUp),
                     labelText: "Score:",
                     fontColor: UIColor.blue,
                     alpha: CGFloat(0.8)
-                    )
-//-------------------------------
-
+        )
+        //-------------------------------
+        
         createLabel(inScene: hudScene,
                     label: &scoreLabelValue,
                     position: CGPoint(x: 200, y: hudScene.size.height - BorderFromUp),
                     fontName:  "Menlo",
                     labelText: "\(Int(floor(score)))"
                     //fontStyle: .traitBold, // Hier wird der Font fett gemacht
-                    )
-//---------- TimeCounter
+        )
+        //---------- TimeCounter
         createLabel(inScene: hudScene,
                     label: &timeCounterLabel,
                     position: CGPoint(x: hudScene.size.width/2 - 90 , y: hudScene.size.height - BorderFromUp),
                     labelText: "Time:",
                     fontColor: UIColor.blue,
                     alpha: CGFloat(0.8)
-                    )
-//-------------------------------
-
+        )
+        //-------------------------------
+        
         createLabel(inScene: hudScene,
                     label: &timeCounterLabelValue,
                     position: CGPoint(x: hudScene.size.width/2 , y: hudScene.size.height - BorderFromUp),
                     fontName:  "Menlo",
                     labelText: "\(secondsCounter)"
-                    )
-//---------- Asteroid
+        )
+        //---------- Asteroid
         // Untere Reihe
         createLabel(inScene: hudScene,
                     label: &numberCounterAsteroidsLabel,
-//            position: CGPoint(x: hudScene.size.width - 250 , y: hudScene.size.height - 50),
+                    //            position: CGPoint(x: hudScene.size.width - 250 , y: hudScene.size.height - 50),
                     position: CGPoint(x: hudScene.size.width/2 - 80 , y: BorderFromBottom),
                     labelText: "Asteroid:",
                     fontColor: UIColor.blue,
                     alpha: CGFloat(0.8)
-                    )
-//-------------------------------
-
+        )
+        //-------------------------------
+        
         createLabel(inScene: hudScene,
                     label: &numberCounterAsteroidsLabelValue,
-//           position: CGPoint(x: hudScene.size.width - 100 , y: hudScene.size.height - 50),
+                    //           position: CGPoint(x: hudScene.size.width - 100 , y: hudScene.size.height - 50),
                     position: CGPoint(x: hudScene.size.width/2 + 70 , y: BorderFromBottom),
                     fontName: "Menlo",
                     labelText: "\(asteroidCountMax)"
-                    )
-//-------------------------------
-
+        )
+        //-------------------------------
+        
         createLabel(inScene: hudScene,
                     label: &labelGameLevel,
                     position: CGPoint(x: 100, y: BorderFromBottom),
                     labelText: "Level:",
                     fontColor: UIColor.blue,
                     alpha: CGFloat(0.8)
-                    )
-//-------------------------------
-
+        )
+        //-------------------------------
+        
         createLabel(inScene: hudScene,
                     label: &labelGameLevelValue,
                     position: CGPoint(x: 200, y: BorderFromBottom),
                     fontName: "Menlo",
-                    labelText: "\(levelCount)")
-//-------------------------------
+                    labelText: "\(LevelManager.shared.levelCount)")
+        //-------------------------------
         createLabel(inScene: hudScene,
                     label: &labelRemainingLives,
                     position: CGPoint(x: hudScene.size.width - 250 , y: BorderFromBottom),
                     labelText: "Lives:",
                     fontColor: UIColor.blue,
                     alpha: CGFloat(0.8)
-                    )
-//-------------------------------
+        )
+        //-------------------------------
         createLabel(inScene: hudScene,
                     label: &labelRemainingLivesValue,
                     position: CGPoint(x: hudScene.size.width - 160 , y: BorderFromBottom),
                     fontName: "Menlo",
                     //labelText: getLivesText(lives: playerLives))
                     labelText: "\(playerLives)")
-//-------------------------------
+        //-------------------------------
         // Spezial Labels. Sind ausgeblendet für ihren Einsatz
         createLabel(inScene: hudScene,
                     label: &centerLabel1,
@@ -668,9 +656,9 @@ extension GameViewController {
                     alignment: SKLabelHorizontalAlignmentMode.center,
                     isHidden: true,
                     alpha: CGFloat(1.0)
-                    )
-//-------------------------------
-
+        )
+        //-------------------------------
+        
         createLabel(inScene: hudScene,
                     label: &centerLabel2,
                     position: CGPoint(x: scnView.bounds.size.width / 2,
@@ -679,8 +667,8 @@ extension GameViewController {
                     alignment: SKLabelHorizontalAlignmentMode.center,
                     isHidden: true,
                     alpha: CGFloat(1.0)
-                    )
-//-------------------------------
+        )
+        //-------------------------------
         createLabel(inScene: hudScene,
                     label: &bonusLabel,
                     position: CGPoint(x: DeviceConfig.screenWidth / 2,
@@ -689,30 +677,30 @@ extension GameViewController {
                     alignment: SKLabelHorizontalAlignmentMode.center,
                     isHidden: true,
                     alpha: CGFloat(1.0)
-                    )
+        )
         // Standartposition setzten
-//        bonusLabel.position = CGPoint(
-//            x: calculateLabelXPosition(for: bonusLabel.text ?? "",
-//                                       fontSize: bonusLabel.fontSize,
-//                                       offset: -50),
-//            y: DeviceConfig.screenHeight / 2 + 50
-//        )
-//-------------------------------
+        //        bonusLabel.position = CGPoint(
+        //            x: calculateLabelXPosition(for: bonusLabel.text ?? "",
+        //                                       fontSize: bonusLabel.fontSize,
+        //                                       offset: -50),
+        //            y: DeviceConfig.screenHeight / 2 + 50
+        //        )
+        //-------------------------------
         createLabel(inScene: hudScene,
                     label: &startLevelXLabel,
                     position: CGPoint(x: scnView.bounds.size.width / 2,
                                       y: hudScene.size.height / 2 - 25),
                     fontName: "PressStart2P-Regular",
-                    labelText: "Start Level: \(levelCount)",
+                    labelText: "Start Level: \(LevelManager.shared.levelCount)",
                     fontSize: CGFloat(25),
                     alignment: SKLabelHorizontalAlignmentMode.center,
                     isHidden: true
-                    )
+        )
         // Muster für Modifizierungen über die Closure
-//                                      { label in
-//                                        label.fontSize = 40
-//                                        label.zPosition = 10
-//                                      }
+        //                                      { label in
+        //                                        label.fontSize = 40
+        //                                        label.zPosition = 10
+        //                                      }
         
         createLabel(inScene: hudScene,
                     label: &readyLabel,
@@ -755,15 +743,15 @@ extension GameViewController {
                      isHidden: Bool = true,
                      alpha: CGFloat = 0.5,
                      modifiers: ((SKLabelNode) -> Void)? = nil // Optionaler Closure
-                    ){
+    ){
         
-                    label = SKLabelNode(text: labelText)
-                    
-                    guard let unwrappedLabel = label else {
-                            return // Sollte nie passieren, aber Vorsicht ist besser
-                    }
+        label = SKLabelNode(text: labelText)
         
-         // Erstelle und konfiguriere das Label
+        guard let unwrappedLabel = label else {
+            return // Sollte nie passieren, aber Vorsicht ist besser
+        }
+        
+        // Erstelle und konfiguriere das Label
         unwrappedLabel.position = position
         unwrappedLabel.fontName = fontName
         unwrappedLabel.fontSize = fontSize
@@ -771,19 +759,19 @@ extension GameViewController {
         unwrappedLabel.fontColor = fontColor
         unwrappedLabel.isHidden = isHidden
         unwrappedLabel.alpha = alpha
-         
-        // Font-Stil anwenden (z. B. bold oder italic)
-         if let fontStyle = fontStyle {
-             let descriptor = UIFontDescriptor(name: fontName,
-                                               size: fontSize).withSymbolicTraits(fontStyle)
-             unwrappedLabel.fontName = UIFont(descriptor: descriptor!,
-                                              size: fontSize).fontName
-         } else {
-             // Modifizierer anwenden, falls angegeben
-             modifiers?(unwrappedLabel)
-         }
         
-         // Füge das Label zur übergebenen Szene hinzu
+        // Font-Stil anwenden (z. B. bold oder italic)
+        if let fontStyle = fontStyle {
+            let descriptor = UIFontDescriptor(name: fontName,
+                                              size: fontSize).withSymbolicTraits(fontStyle)
+            unwrappedLabel.fontName = UIFont(descriptor: descriptor!,
+                                             size: fontSize).fontName
+        } else {
+            // Modifizierer anwenden, falls angegeben
+            modifiers?(unwrappedLabel)
+        }
+        
+        // Füge das Label zur übergebenen Szene hinzu
         hudScene.addChild(unwrappedLabel)
         hudScene.isUserInteractionEnabled = false
         //return label
@@ -826,7 +814,7 @@ extension GameViewController {
         
         displayScene = SCNScene()
         displayScene.physicsWorld.contactDelegate = self
-
+        
         // Über struct DeviceConfig deklariert
         displayView = SCNView(frame: DeviceConfig.layout.displayViewFrame)
         //displayView.debugOptions = [.showCameras, .showPhysicsShapes] // Physik-Darstellung aktivieren
@@ -838,21 +826,21 @@ extension GameViewController {
         // Abgerundete Ecken hinzufügen
         displayView.layer.cornerRadius = 20 // Hier die gewünschte Rundung (in Punkten)
         displayView.layer.masksToBounds = true // Aktiviert das Abschneiden des Inhalts an den Rändern
-          
+        
         // Rahmen
         displayView.layer.borderWidth = 0.5
         displayView.layer.borderColor = UIColor.green.cgColor
         
         self.view.addSubview(displayView)
         
-         //Kamera erstellen und konfigurieren
+        //Kamera erstellen und konfigurieren
         cameraDisplayNode = SCNNode()
         cameraDisplayNode.camera = SCNCamera()
         cameraDisplay = cameraDisplayNode.camera!
         cameraDisplayNode.camera?.zNear = 0.1  // Nahe Clipping-Ebene (muss > 0 sein)
         cameraDisplayNode.camera?.zFar = 800
         cameraDisplayNode.position = SCNVector3(x: -180, y: 0, z: 0)     //World
-
+        
         displayScene.rootNode.addChildNode(cameraDisplayNode)
         
         // CameraDisplay ausrichten
@@ -864,7 +852,7 @@ extension GameViewController {
         // Ein kleines rotes Fadenkreuz setzten
         addCollisionDisplayCross()
     }
-        
+    
     func addCollisionDisplayCross() {
         let crossNode = SCNNode()
         
@@ -872,12 +860,12 @@ extension GameViewController {
         let horizontalBox = SCNBox(width: 10, height: 0.5, length: 1, chamferRadius: 0)
         horizontalBox.firstMaterial?.diffuse.contents = UIColor.red
         let horizontalNode = SCNNode(geometry: horizontalBox)
-
+        
         // Vertikale Linie
         let verticalBox = SCNBox(width: 0.5, height: 10, length: 1, chamferRadius: 0)
         verticalBox.firstMaterial?.diffuse.contents = UIColor.red
         let verticalNode = SCNNode(geometry: verticalBox)
-
+        
         // Beides zur Mitte setzen
         crossNode.addChildNode(horizontalNode)
         crossNode.addChildNode(verticalNode)
@@ -889,7 +877,7 @@ extension GameViewController {
     
     func addDebugAxes(to node: SCNNode) {
         // Farbige Hilfspfeile für die Achsen des TwinShips
-
+        
         let xAxis = SCNNode(geometry: SCNCylinder(radius: 1.0, height: 75)) // Stab
         let arrowXAxis = SCNNode(geometry: SCNCone(topRadius: 0, bottomRadius: 3, height: 10))  // Pfeilspitze
         // Materialien setzten
@@ -902,7 +890,7 @@ extension GameViewController {
         // Beide Nodes zur Szene hinzufügen - Der Arrow ist ein Child des Stabes (xAxis)
         xAxis.addChildNode(arrowXAxis)
         node.addChildNode(xAxis)
-
+        
         let yAxis = SCNNode(geometry: SCNCylinder(radius: 1.0, height: 75))
         let arrowYAxis = SCNNode(geometry: SCNCone(topRadius: 0, bottomRadius: 3, height: 10))
         yAxis.geometry?.firstMaterial?.diffuse.contents = UIColor.green
@@ -910,7 +898,7 @@ extension GameViewController {
         arrowYAxis.position = SCNVector3(x: 0, y: 40, z: 0)
         yAxis.addChildNode(arrowYAxis)
         node.addChildNode(yAxis)
-
+        
         let zAxis = SCNNode(geometry: SCNCylinder(radius: 1.0, height: 75))
         let arrowZAxis = SCNNode(geometry: SCNCone(topRadius: 0, bottomRadius: 3, height: 10))
         zAxis.geometry?.firstMaterial?.diffuse.contents = UIColor.blue
@@ -924,40 +912,40 @@ extension GameViewController {
     }
     
     // MARK: Animiertes ein- und ausblenden des Collision Displays
-        func animateCollisionDisplayWithScale() {
-            DispatchQueue.main.async { [self] in
-                displayView.transform = CGAffineTransform(scaleX: 0, y: 0) // Start: Null Höhe
-                displayView.isHidden = false
-
-                UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseOut) { [self] in
-                    displayView.transform = CGAffineTransform.identity // Rückkehr zur normalen Größe
-                }
-            }
-        }
-
-        func hideCollisionDisplayWithScale() {
-            DispatchQueue.main.async {
-                UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseIn) { [self] in
-                    displayView.transform = CGAffineTransform(scaleX: 0.01, y: 0.01)
-                } completion: { [self] _ in
-                    displayView.isHidden = true  // Erst am Ende wirklich unsichtbar machen
-                }
-            }
-        }
-
-        // Wegen der unterschiedlichen Ausrichtung der Level und Bonus Round Camera
-        func setCameraDisplayDirection(for isBonusRoundActive: Bool) {
-            // Blickrichtung für die Timer-Sync
-            if isBonusRoundActive {
-                cameraDisplayNode.simdOrientation = simd_quatf(angle: .pi / 2 , axis: SIMD3(0, -1, 0))
-             } else {
-                cameraDisplayNode.simdOrientation = simd_quatf(angle: .pi / 2, axis: SIMD3(0, -1, 0))
-                cameraDisplayNode.simdOrientation *= simd_quatf(angle: .pi / 2, axis: SIMD3(0, 0, -1))
-            }
+    func animateCollisionDisplayWithScale() {
+        DispatchQueue.main.async { [self] in
+            displayView.transform = CGAffineTransform(scaleX: 0, y: 0) // Start: Null Höhe
+            displayView.isHidden = false
             
-            // Speichere Ausgangsausrichtung auch für die Timer-Sync
-            cameraBaseOrientation = cameraDisplayNode.simdOrientation
+            UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseOut) { [self] in
+                displayView.transform = CGAffineTransform.identity // Rückkehr zur normalen Größe
+            }
         }
+    }
+    
+    func hideCollisionDisplayWithScale() {
+        DispatchQueue.main.async {
+            UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseIn) { [self] in
+                displayView.transform = CGAffineTransform(scaleX: 0.01, y: 0.01)
+            } completion: { [self] _ in
+                displayView.isHidden = true  // Erst am Ende wirklich unsichtbar machen
+            }
+        }
+    }
+    
+    // Wegen der unterschiedlichen Ausrichtung der Level und Bonus Round Camera
+    func setCameraDisplayDirection(for isBonusRoundActive: Bool) {
+        // Blickrichtung für die Timer-Sync
+        if isBonusRoundActive {
+            cameraDisplayNode.simdOrientation = simd_quatf(angle: .pi / 2 , axis: SIMD3(0, -1, 0))
+        } else {
+            cameraDisplayNode.simdOrientation = simd_quatf(angle: .pi / 2, axis: SIMD3(0, -1, 0))
+            cameraDisplayNode.simdOrientation *= simd_quatf(angle: .pi / 2, axis: SIMD3(0, 0, -1))
+        }
+        
+        // Speichere Ausgangsausrichtung auch für die Timer-Sync
+        cameraBaseOrientation = cameraDisplayNode.simdOrientation
+    }
     func changeBackgroundImage(
         for imageView: UIImageView,
         baseName: String,
@@ -965,7 +953,7 @@ extension GameViewController {
     ) {
         let suffix = DeviceConfig.isIPad ? "Pad" : "Phone"
         let fullImageName = baseName + suffix
-
+        
         if let image = UIImage(named: fullImageName) {
             imageView.image = image
             scene?.background.contents = image
@@ -982,7 +970,7 @@ extension GameViewController {
             self.welcomeLabel.removeFromSuperview()
         }
     }
-
+    
     // View zentrieren mit definierter Größe
     func positionLabelTopCentered(_ label: UILabel, in container: UIView, size: CGSize, topOffset: CGFloat) {
         label.frame = CGRect(origin: .zero, size: size)
@@ -994,7 +982,7 @@ extension GameViewController {
     func logCaller(message: String = "", file: String = #file, line: Int = #line, function: String = #function) {
         print("[\(function)] \(message) - in \(file):\(line)")
     }
-
+    
     //MARK: class DebugHUD - Ab hier nur zum Debuggen
     class DebugHUD: UIView {
         
@@ -1046,7 +1034,7 @@ extension GameViewController {
             }
         }
     }
-
+    
     // Für DebugHUD zum Anzeigen der aktuellen FPS
     func calculateCurrentFPS(_ time: TimeInterval) -> Int {
         let delta = time - lastUpdateTime
@@ -1057,31 +1045,31 @@ extension GameViewController {
             return 0
         }
     }
-   
+    
     //MARK: - Tasten starten Enemys
-     // Keyboard Taste gedrückt
-//     override func pressesBegan(_ presses: Set<UIPress>, with event: UIPressesEvent?) {
-//         if presses.first?.key?.charactersIgnoringModifiers == "d" {
-//             toggleDebugHUD() // Sanftes ein und ausblenden
-//         }
-//     }
-     
+    // Keyboard Taste gedrückt
+    //     override func pressesBegan(_ presses: Set<UIPress>, with event: UIPressesEvent?) {
+    //         if presses.first?.key?.charactersIgnoringModifiers == "d" {
+    //             toggleDebugHUD() // Sanftes ein und ausblenden
+    //         }
+    //     }
+    
     override func pressesBegan(_ presses: Set<UIPress>, with event: UIPressesEvent?) {
         guard let key = presses.first?.key else { return }
-
+        
         switch key.charactersIgnoringModifiers {
-
+            
         case "d":
             toggleDebugHUD()
-
+            
         case "b":   // BallWall
             currentEnemy = .ballWall
             startBallWall()
-
+            
         case "i":   // SpaceInvader
             currentEnemy = .spaceInvader
             spawnNextEnemy()
-
+            
         case "p":   // SpaceProbe
             currentEnemy = .spaceProbe
             spawnNextEnemy()
@@ -1093,13 +1081,14 @@ extension GameViewController {
             break
         }
     }
-
     
-     // Sanftes ein und ausblenden des debugHUDs
-     func toggleDebugHUD() {
-         let targetAlpha: CGFloat = debugHUD.alpha == 0 ? 1 : 0
-
-         UIView.animate(withDuration: 0.3) {
-             self.debugHUD.alpha = targetAlpha
-         }
-     }}
+    
+    // Sanftes ein und ausblenden des debugHUDs
+    func toggleDebugHUD() {
+        let targetAlpha: CGFloat = debugHUD.alpha == 0 ? 1 : 0
+        
+        UIView.animate(withDuration: 0.3) {
+            self.debugHUD.alpha = targetAlpha
+        }
+    }
+}

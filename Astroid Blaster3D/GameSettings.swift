@@ -38,6 +38,21 @@ enum LevelType {
     case easy, medium, hard
 }
 
+enum GameState {
+    case ready
+    case running
+    case paused
+    case gameOver
+}
+
+enum BonusState {
+    case locked           // Noch nicht erreicht
+    case reached          // Punktzahl erreicht, Spieler kann wählen
+    case enabled          // Spieler hat gewählt, Bonus wartet auf Start
+    case active           // Schiff wird gerade im Bonus gespielt
+}
+
+
 enum CollisionCategory {
     case none
     case asteroid
@@ -92,17 +107,21 @@ struct DeviceConfig {
     struct Layout {
         let displayViewFrame: CGRect
         let preferredFramesPerSecond: Int
-        let shipMoveBorderY: Float      // Bewegungsgrenzen Twinship
+        // Bewegungsgrenzen Twinship
+        let shipMoveBorderY: Float
         let shipMoveBorderX: Float
-        let starMoveBorderY: Float      // Hintergrundsterne (CleanScene)
-        let maxBallPositionY: Float     // Beim setzten von BallWall
-        let ballWallMoveBorderX: CGFloat   // Beim bewegen von BallWall
-        let asteroidMoveBorderY: Float  // Beim bewegen
-        let fireBorderLeft: CGFloat     // Begrenzung der Touchfläche links
+        // Bewegungsgrenzen Hintergrundsterne für CleanScene)
+        let starMoveBorderY: Float
+        // Bewegungsgrenzen BallWall
+        let maxBallPositionY: Float         // Beim setzten
+        let ballWallMoveBorderX: CGFloat    // Beim bewegen
+        // Bewegungsgrenzen Asteroids
+        let asteroidMoveBorderY: Float
+        let fireBorderLeft: CGFloat         // Begrenzung für Touchfläche für Feuereingabe
         let welcomeTextYPosition: CGFloat
-        let switchPositionOffsetY: CGFloat // Schalterposition nach unten verschieben
-        let switchYPositionOffsetRow2: Int  // Nicht benutzt
-        let startSwitchPosOffsetY: Int  // Start-Switch Position in Y-Richtung
+        let switchPositionOffsetY: CGFloat  // Schalterposition nach unten verschieben
+        let switchYPositionOffsetRow2: Int  // TODO: Nicht benutzt
+        let startSwitchPosOffsetY: Int      // TODO: Nicht benutzt
         let orthographicScale: CGFloat
     }
     
@@ -149,8 +168,8 @@ struct DeviceConfig {
 
 //MARK: - Level
 struct AsteroidConfig {
-    let startDelay: TimeInterval
-    let countMax: Int
+    let startDelay: TimeInterval    // Frequenz Asteroid Start
+    let countMax: Int               // Anzahl Asteroiden pro Level
     let scale: CGFloat
     let maxNumberOnScreen: Int
     let startValueOfBurstOne: Int
@@ -159,7 +178,7 @@ struct AsteroidConfig {
 }
 
 struct EnemyConfig {
-    let invaderSpawnDelay: Double
+    let invaderMovingDuration: Double
     let invaderOnScreenTime: TimeInterval
     let invaderFramesRefreshTime: TimeInterval
     let probeStartDelay: TimeInterval
@@ -184,7 +203,7 @@ struct LevelConfig {
             return isIPad
             ? AsteroidConfig(
                 startDelay:            4.0,
-                countMax:              5 * levelFactor, //25, Versuch
+                countMax:              5 * levelFactor, // Anzahl Asteroids erhöhen
                 scale:                 1.5,
                 maxNumberOnScreen:     3,
                 startValueOfBurstOne:  2,
@@ -192,7 +211,7 @@ struct LevelConfig {
             )
             : AsteroidConfig(
                 startDelay:            3.0,
-                countMax:              25,
+                countMax:              5 * levelFactor,
                 scale:                 1.2,
                 maxNumberOnScreen:     3,
                 startValueOfBurstOne:  1,
@@ -244,21 +263,21 @@ struct LevelConfig {
         case .easy:
             return isIPad
             ? EnemyConfig(
-                invaderSpawnDelay:       1.5,
+                invaderMovingDuration:    15,
                 invaderOnScreenTime:     9,
                 invaderFramesRefreshTime: 0.0083,
                 probeStartDelay:         5,
                 probeOnScreenTime:       30,
                 flashStartDelay:         25,
                 flashOnScreenTime:       20,
-                wallStartDelay:          100,
+                wallStartDelay:          200,
                 moveObjectRangeY:        -70...70,
                 // 25 Sekunden ist die Startzeit von BigFlash .moving
                 bigFlashOnScreenDurationRange: 30.0...50.0,
                 spawnDelayRange: 15.0...17.0
             )
             : EnemyConfig(
-                invaderSpawnDelay:       1.5,
+                invaderMovingDuration:       15,
                 invaderOnScreenTime:     9,
                 invaderFramesRefreshTime: 0.1,
                 probeStartDelay:         5,
@@ -274,7 +293,7 @@ struct LevelConfig {
         case .medium:
             return isIPad
             ? EnemyConfig(
-                invaderSpawnDelay:       75,
+                invaderMovingDuration:       75,
                 invaderOnScreenTime:     40,
                 invaderFramesRefreshTime: 0.1,
                 probeStartDelay:         15,
@@ -287,7 +306,7 @@ struct LevelConfig {
                 spawnDelayRange: 15.0...17.0
             )
             : EnemyConfig(
-                invaderSpawnDelay:       100,
+                invaderMovingDuration:       100,
                 invaderOnScreenTime:     20,
                 invaderFramesRefreshTime: 0.1,
                 probeStartDelay:         15,
@@ -303,7 +322,7 @@ struct LevelConfig {
         case .hard:
             return isIPad
             ? EnemyConfig(
-                invaderSpawnDelay:       50,
+                invaderMovingDuration:       50,
                 invaderOnScreenTime:     30,
                 invaderFramesRefreshTime: 0.1,
                 probeStartDelay:         15,
@@ -316,7 +335,7 @@ struct LevelConfig {
                 spawnDelayRange: 15.0...17.0
             )
             : EnemyConfig(
-                invaderSpawnDelay:       75,
+                invaderMovingDuration:       75,
                 invaderOnScreenTime:     20,
                 invaderFramesRefreshTime: 0.1,
                 probeStartDelay:         15,

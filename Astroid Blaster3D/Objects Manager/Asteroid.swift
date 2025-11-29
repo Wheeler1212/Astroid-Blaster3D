@@ -20,7 +20,7 @@ extension GameViewController {
         }
         DispatchQueue.main.async { [self] in
             timerAsteroid = Timer.scheduledTimer(
-                timeInterval: asteroidStartDelay,   //*03
+                timeInterval: asteroidStartDelay,
                 target: self,
                 selector: #selector(setAsteroidToStart),
                 userInfo: nil,

@@ -23,9 +23,10 @@ extension GameViewController {
             timerAnimateSpaceInvader = Timer.scheduledTimer(withTimeInterval: 1.0 / 60.0, repeats: true) { [self] timer in
                 // Für die langsameren PopUp und FallDown Funktionen
                 animationSlowDownInvader += 1
-                if animationSlowDownInvader > 3 {
+                if animationSlowDownInvader > 4 {
                     animationSlowDownInvader = 0
                 }
+                
                 //Invader erscheint (Nur jeder dritte Timeraufruf)
                 if spaceInvaderState == .popUp && animationSlowDownInvader == 0 {
                     animateCubePopUp()
@@ -113,7 +114,7 @@ extension GameViewController {
             if rotationSpeedInvader < -0.5 {
                 rotationSpeedInvader = -0.5
                 if isSpaceInvaderEndTimerEnabled {
-                    manageEnemyStateCycle(.spaceInvader, .rotate, duration: 10)
+                    manageInvaderStateCycle(.rotate, duration: spaceInvaderMovingDuration)
                     isSpaceInvaderEndTimerEnabled = false
                 }
             }
@@ -373,7 +374,6 @@ extension GameViewController {
             if !isCircleFinishedInvader {
                 isCircleFinishedInvader = true
                 spaceInvaderState = .circle
-                //counter += 1
             }
         }
     }
@@ -468,7 +468,7 @@ extension GameViewController {
         if indexCubePopUp == 46 {
             spaceInvaderState = .moving
             // .moving darf nur eine bestimmte Zeit dauern
-            manageEnemyStateCycle(.spaceInvader, .moving, duration: 10)
+            manageInvaderStateCycle(.moving, duration: spaceInvaderMovingDuration)
             // Der Invader steht also Bewegung starten
             isStartToMoveInvader = true
             // Loopzähler für nächsten Druchlauf löschen

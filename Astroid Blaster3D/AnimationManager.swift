@@ -19,8 +19,8 @@ extension GameViewController {
             ambientLightNode.isHidden = false
 
             // Die beiden Start Animationen vorbereiten
-            startAnimationProbe()
-            startAnimationForShip()
+            startIntroAnimationProbe()
+            startIntroAnimationForShip()
             
             // Animation für SpaceProbe starten
             spaceProbeParentNode.runAction(moveSpaceProbeSequence!)
@@ -49,7 +49,7 @@ extension GameViewController {
     }
     
     // MARK: - Animate Probe
-    func startAnimationProbe() {
+    func startIntroAnimationProbe() {
         // Startposition der Probe und sichtbar machen
         let startPointSpaceProbe = SCNVector3(-1000,-50, 0) //100) // cameraNode.position x: 0, y: 0, z: 100
         spaceProbeParentNode.opacity = 1.0
@@ -292,37 +292,16 @@ extension GameViewController {
     }
 
     // MARK: - Animate TwinShip
-// Verfolger TwinShip starten und SpaceProbe hinterherfliegen
-        
-    func startAnimationForShip() {
+    
+    // Verfolger TwinShip starten und SpaceProbe hinterherfliegen
+    func startIntroAnimationForShip() {
 
         // Startposition setzen und drehen wegen anderer Position wie im Spiel
         twinShipStartNode.position = SCNVector3(0, -10, 150)
         twinShipStartNode.isHidden = false
 
-        // Bonus Runden Booster für TwinShip einrichten
-        // Speichere Welttransformation, bevor der Node entfernt wird
-//        let worldTransform = rightBoostNode.simdTransform
-//
-//        // Entferne den Node aus der alten Hierarchie
-//        rightBoostNode.removeFromParentNode()
-//
-//        // Füge ihn als Kind zu twinShipStartNode hinzu
-//        twinShipStartNode.addChildNode(rightBoostNode)
-//
-//        // Setze die zuvor gespeicherte Welttransformation zurück
-//        rightBoostNode.simdTransform = twinShipStartNode.simdTransform.inverse * worldTransform
-
         setupShipBoost(for: twinShipStartNode, with: TwinShipBoosterConfig.start)
-        // Dasselbe für den linken Booster
-//        leftBoostNode.position = SCNVector3(-60, 0, -10)
-//        let leftBoostQuaternion = simd_quatf(angle: .pi, axis: SIMD3<Float>(0, 1, 0))
-//        let additionalRotationLeft = simd_quatf(angle: -.pi / 2, axis: SIMD3<Float>(0, 1, 0))
-//        let combinedQuaternionLeft = additionalRotationLeft * leftBoostQuaternion
-//        leftBoostNode.simdOrientation = combinedQuaternionLeft
-//        twinShipStartNode.addChildNode(leftBoostNode)
-        
-        // Rückstoßstrahl aktivieren
+
         fireBoost.birthRate = 500 //100
         
         // TwinShip taucht langsam unter der Kamera hervor
@@ -397,21 +376,7 @@ extension GameViewController {
             SCNTransaction.commit()
         }
     }
-    
-//    func switchToPerspective(cameraNode: SCNNode, duration: TimeInterval) {
-//        guard let camera = cameraNode.camera else { return }
-//        
-//        SCNTransaction.begin()
-//        SCNTransaction.animationDuration = duration
-//        
-//        // Deaktiviere Orthografische Ansicht
-//        camera.usesOrthographicProjection = false
-//        
-//        // Animation: Perspektive sanft erhöhen
-//        camera.fieldOfView = 90.0 //Versuch
-//        
-//        SCNTransaction.commit()
-//    }
+
     func switchToPerspective(cameraNode: SCNNode, duration: TimeInterval) {
         guard let camera = cameraNode.camera else { return }
 
@@ -454,84 +419,11 @@ extension GameViewController {
     func degreesToRadians(_ degrees: CGFloat) -> CGFloat {
         return degrees * CGFloat.pi / 180
     }
-//    
-//    // Kurzversion der Animation
-//    func animateTwinShip() {
-//        
-//        // Level-TwinShip verstecken
-//        twinShipNode.position = parkPositionOfTwinShip
-//        //twinShipBonusNode.simdOrientation = simd_quatf(angle: 0, axis: SIMD3(0, 1, 0))
-//        
-//        // Bonus Runden Booster für TwinShip einrichten
-//        rightBoostNode.position = SCNVector3(-60, 0, 10)
-//        let rightBoostQuaternion = simd_quatf(angle: .pi, axis: SIMD3<Float>(0, 1, 0))
-//        let additionalRotationRight = simd_quatf(angle: -.pi / 2, axis: SIMD3<Float>(0, 0, 1))
-//        let combinedQuaternionRight = additionalRotationRight * rightBoostQuaternion
-//        rightBoostNode.simdOrientation = combinedQuaternionRight
-//        twinShipBonusNode.addChildNode(rightBoostNode)
-//        
-//        // Dasselbe für den linken Booster
-//        leftBoostNode.position = SCNVector3(-60, 0, -10)
-//        let leftBoostQuaternion = simd_quatf(angle: .pi, axis: SIMD3<Float>(0, 1, 0))
-//        let additionalRotationLeft = simd_quatf(angle: -.pi / 2, axis: SIMD3<Float>(0, 0, 1))
-//        let combinedQuaternionLeft = additionalRotationLeft * leftBoostQuaternion
-//        leftBoostNode.simdOrientation = combinedQuaternionLeft
-//        twinShipBonusNode.addChildNode(leftBoostNode)
-//        
-//        // Bonus Schiff in Position setzten
-//        twinShipBonusNode.position = SCNVector3(0, -50, 0)
-//        twinShipBonusNode.simdOrientation = simd_quatf(angle: 0, axis: SIMD3(0, 1, 0)) // Neutral ausrichten
-//        
-//        // Kamera und Licht direkt setzen
-//        cameraNode.position = SCNVector3(-100, 0, 0)
-//        cameraNode.look(at: SCNVector3(0, 0, 0))
-//        lightNode.position = SCNVector3(-100, 50, 0)
-//        
-//        // Direkt in Perspektivmodus wechseln
-//        camera.usesOrthographicProjection = false
-//        camera.fieldOfView = 90.0
-//        
-//        // Falls Partikeleffekte sofort aktiviert werden sollen
-//        fireBoost.birthRate = 1000
-//        fireBoost.particleColor = UIColor.red.withAlphaComponent(1.0)
-//        
-//        for index in 0..<100 {
-//            let radius: Float = 200  //Versuch // Durchmesser 200 → Radius 100
-//            let angle = Float.random(in: 0...(2 * .pi))  // Zufallswinkel in Bogenmaß
-//            let z = cos(angle) * radius
-//            let y = sin(angle) * radius
-//            let pointNodeX = pointNode[index].position.x
-//            pointNode[index].position = SCNVector3(pointNodeX, y, z)
-//        }
-//        
-//        // Status-Variablen für die Bonusrunde setzen - eventuell unten anfügen
-//        gameIsPaused = false
-//        bonusRoundIsActive = true
-//        // Enemies und Asteroids wieder starten
-//        startTimerAsteroid()    // Nicht für Animation
-//        asteroidStartPositionX = 2000 // Versuch für neue Startposition ganz Tief im All
-//        //löschen asteroidStartBorderY = 500 // 80 bei Level Game
-//        cameraNode.camera?.zNear = 10 //0.1  // Nahe Clipping-Ebene (muss > 0 sein)
-//        cameraNode.camera?.zFar = 6000 // War 600
-//                
-//        for asteroid in asteroidNode.prefix(20) {
-//            setAsteroidToStart()
-//            asteroid.runAction(SCNAction.fadeIn(duration: 10))
-//        }
-//                // CameraDisplay ausrichten
-//        setCameraDisplayDirection(for: bonusRoundIsActive)
-//        // Bonusrunde aktivieren
-//        showOverlay()
-//        
-//        
-//        //____________________________________
-//        // Nach Bonusrund wieder deaktivieren
-//        // Bonusrunde beenden
-//        // hideOverlay()  // Ausblenden
-//    }
+
+    //MARK: - Bonusround
     
     // Animation vom Level zur Bonusrunde
-    func animateTwinShipWithFullAnimation() {
+    func animateTwinShipForBonusRound() {
         slowDownStars = true // Sterne langsam abbremsen
 
         let moveDistance: Float = 500   // Endposition auf der x-Achse
@@ -676,21 +568,6 @@ extension GameViewController {
         twinShipNode.runAction(sidewaysFlapTwinShipAction) { [self] in
             
             setupShipBoost(for: twinShipBonusNode, with: TwinShipBoosterConfig.bonus)
-            
-//            // Bonus Runden Booster für TwinShipBonusNode einrichten
-//            rightBoostNode.position = SCNVector3(-60, 0, 10)
-//            let rightBoostQuaternion = simd_quatf(angle: .pi, axis: SIMD3<Float>(0, 1, 0))    // 180° um die Y-Achse
-//            let additionalRotationRight = simd_quatf(angle: -.pi / 2, axis: SIMD3<Float>(0, 0, 1))   // 90° um die lokale Z-Achse
-//            let combinedQuaternionRight = additionalRotationRight * rightBoostQuaternion    // Kombinierte Rotation
-//            rightBoostNode.simdOrientation = combinedQuaternionRight
-//            twinShipBonusNode.addChildNode(rightBoostNode)
-//            
-//            leftBoostNode.position = SCNVector3(-60, 0, -10)
-//            let leftBoostQuaternion = simd_quatf(angle: .pi, axis: SIMD3<Float>(0, 1, 0))    // 180° um die Y-Achse
-//            let additionalRotationLeft = simd_quatf(angle: -.pi / 2, axis: SIMD3<Float>(0, 0, 1))   // 90° um die lokale Z-Achse
-//            let combinedQuaternionLeft = additionalRotationLeft * leftBoostQuaternion    // Kombinierte Rotation
-//            leftBoostNode.simdOrientation = combinedQuaternionLeft
-//            twinShipBonusNode.addChildNode(leftBoostNode)
         }
         
         // Sechs Sekunden warten

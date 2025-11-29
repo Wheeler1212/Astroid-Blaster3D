@@ -1,6 +1,8 @@
 
 
 import Foundation
+import AVFoundation
+import UIKit
 
 protocol LevelManagerDelegate: AnyObject {
     func updateAsteroidValues(_ asteroidConfig: AsteroidConfig)
@@ -12,7 +14,7 @@ class LevelManager {
     
     weak var delegate: LevelManagerDelegate?
 
-    var levelCount: Int = 1
+    var levelCount: Int = 0
     var difficulty: LevelType = .easy
 
     var asteroidValues: AsteroidConfig {

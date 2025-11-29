@@ -43,7 +43,7 @@ extension GameViewController: SCNSceneRendererDelegate {
        if !gameIsPaused {
            // Wegen des Einlaufens des TwinShips
            dampenShipMotionLevelRound() // In Level und Bonusrunde aktive
-           if !bonusRoundIsActive {
+           if !bonusRoundIsActive { //***
                resetShipOrientationLevelRound() // In Levelrunde aktive
            }
        }
@@ -53,8 +53,7 @@ extension GameViewController: SCNSceneRendererDelegate {
            updateShipMotionBonusRound()
            
            //TwinShip im Displayrand einfangen
-           //FIXME: Wieder einschalten
-           //NEU viewBounding()
+           viewBounding()
            //Vorwärtsbeschleunigung für updateShipMotionBonusRound()
            twinShipBonusNode.simdPosition += twinShipBonusVelocity
 
@@ -62,6 +61,7 @@ extension GameViewController: SCNSceneRendererDelegate {
        
        // Für die aus dem Bild gelaufenen Objekte
        cleanAsteroids()
+       
        // Im Main-Thread wegen möglichem SIGABRT (Signal Abort) Fehler bei "newFireNodeLeft.append(fire)"
        DispatchQueue.main.async { [self] in
            cleanFire()
@@ -72,7 +72,8 @@ extension GameViewController: SCNSceneRendererDelegate {
            blinkShield()
        }
  
-       guard gameIsRunning else { return }
+       // Spiel wurde von User gestartet
+       guard gameState == .running else { return }
        
        // Ab hier nur wenn Spiel läuft
        if levelClear {
@@ -95,7 +96,8 @@ extension GameViewController: SCNSceneRendererDelegate {
     
 
     func renderer(_ renderer: SCNSceneRenderer, didSimulatePhysicsAtTime time: TimeInterval)    {
-        guard gameIsRunning else { return }
+        // Wurde von User gestartet
+        guard gameState == .running else { return }
     } 
     
     func startDisplayLink() {
@@ -196,5 +198,45 @@ extension GameViewController: SCNSceneRendererDelegate {
             twinShipNode.orientation = interpolatedQuaternion
         }
     }
+    
+    // TwinShip wird innerhalb des Bildschirms gehalten
+    func viewBounding() {
+        // Segelflug mit Gegenwind - Schwammig zum Steuern eventuell mit Bescheunigung
+        cameraNode.simdPosition += lastCameraMovement
+
+        // Bildschirmgrenzen definieren (angepasst an X als Tiefe, Z als Links/Rechts)
+        let screenBounds = SCNVector3(
+            x: 200,  // Nicht verwendet, aber für Klarheit beibehalten
+            y: 80,   // Maximale Y-Abweichung (Hoch/Runter)
+            z: 80    // Maximale Z-Abweichung (Links/Rechts)
+        )
+
+        // Relative Position des Schiffes zur Kamera
+        let shipPosition = twinShipBonusNode.simdPosition
+        let cameraPosition = cameraNode.simdPosition
+        let relativePosition = shipPosition - cameraPosition
+
+        // Kamerabewegung anpassen, wenn das Schiff die Grenzen erreicht
+        var cameraAdjustment = SIMD3<Float>(0, 0, 0)
+
+        // Y-Richtung (Hoch/Runter)
+        if relativePosition.y > screenBounds.y {
+            cameraAdjustment.y = relativePosition.y - screenBounds.y
+        } else if relativePosition.y < -screenBounds.y {
+            cameraAdjustment.y = relativePosition.y + screenBounds.y
+        }
+
+        // Z-Richtung (Links/Rechts)
+        if relativePosition.z > screenBounds.z {
+            cameraAdjustment.z = relativePosition.z - screenBounds.z
+        } else if relativePosition.z < -screenBounds.z {
+            cameraAdjustment.z = relativePosition.z + screenBounds.z
+        }
+
+        // Wende die Anpassung auf die Kamera an (mit Dämpfung kombinieren)
+        cameraNode.simdPosition += cameraAdjustment * 0.1  // Gedämpfte Kamerabewegung
+    }
+
+    
 }
 

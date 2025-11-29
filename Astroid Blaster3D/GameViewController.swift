@@ -26,7 +26,7 @@ class GameViewController: UIViewController, LevelManagerDelegate {
     
     // Globale Variablen (ersetzt die Klassen-Properties)
     var currentEnemy: EnemyType = .none
-    var spawnDelay: Double = 0
+//    var spawnDelay: Double = 0 nach scheduleNextEnemy() auf local
     
     var asteroidStartDelay: TimeInterval = 0.0
     var asteroidScale: CGFloat = 1.0
@@ -90,8 +90,6 @@ class GameViewController: UIViewController, LevelManagerDelegate {
     var displayScene: SCNScene!
     var boundingCube: SCNNode!
     var timers: [String: Timer] = [:]
-    var bonusRoundIsReached: Bool = false   // Punkte für mögliche Bonus Runde erreicht
-    var bonusRoundIsEnabled: Bool = false   // Bonus Runde nicht freigeschaltet
     
     // Temporäre Variable
     var SCNVector: Float = 0.0
@@ -143,7 +141,7 @@ class GameViewController: UIViewController, LevelManagerDelegate {
     var lastTouchPosition: CGPoint? // Touchposition für Fire
     let fireMoveBorderX: Float = 300 // Grenze (iPhone 16 Pro Max) rechts dann verschwindet Fire
     //TODO: .disruption wird noch nicht eingesetzt. Eventuell ab Level 2 ???
-    var explosionType: ExplosionType = .fragmentation //.disruption
+    var explosionType: ExplosionType = .disruption //.fragmentation
     var fireType: FireType = .single
    
     
@@ -180,6 +178,7 @@ class GameViewController: UIViewController, LevelManagerDelegate {
     var durationRangeInvader: ClosedRange<TimeInterval> = 3.0...6.0
     //var spaceInvaderOnScreenTime: TimeInterval = 0
     var spaceInvaderFramesRefreshTime: TimeInterval = 0
+    var spaceInvaderMovingDuration: TimeInterval = 0
     var circlePositionX: Float = 0
     var circlePositionY: Float = 0
     var circlePositionZ: Float = 0
@@ -345,8 +344,8 @@ class GameViewController: UIViewController, LevelManagerDelegate {
     var asteroidStartBorderZ: Float = 50 //*01 500 // Für das Rechteck in Y und Z
     var isContactAsteroidCooldownActive: Bool = false
     var AsteroidStartValueOfBurstOne: Int = 0 //*02 Zwischenspeicher für Offset der Burstasteroiden
-    var asteroidCountMax: Int = 0
-    var asteroidCountActive: Int = 0
+    var asteroidCountMax: Int = 0       // Noch verbleibende Asteroiden für das Level
+    var asteroidCountActive: Int = 0    // Soviele Asteroids auf dem Schirm
     
     // MARK: TwinShip
     var twinShipNode: SCNNode!
@@ -396,7 +395,7 @@ class GameViewController: UIViewController, LevelManagerDelegate {
     
     // MARK: Level
     var timerUpdateHUD: Timer?
-    var levelCount: Int = 1  // Versuch Bonus Round Start - wieder auf 0 setzen - Level auf 0 gesetzt wird in func nextLevel() hochgezählt
+    //var levelCount: Int = 1  // Versuch Bonus Round Start - wieder auf 0 setzen - Level auf 0 gesetzt wird in func nextLevel() hochgezählt
     var levelClear: Bool = false
     var player1: String = "Günter"
 
@@ -432,9 +431,14 @@ class GameViewController: UIViewController, LevelManagerDelegate {
     var backLightNode = SCNNode()
     var ambientLightNode = SCNNode()
     var playerLives: Int = 3
-    var gameIsRunning: Bool = false
+    var gameState: GameState = .ready
     var gameIsPaused: Bool = true   // Nur Sternebewegung
-    var bonusRoundIsActive: Bool = false // Nach Enabled wird BonusRound gestarted
+    //###
+    var bonusRoundIsReached: Bool = false   // Punkte für mögliche Bonus Runde erreicht
+    var bonusRoundIsEnabled: Bool = false   // Bonus Runde wurde durch Button freigeschaltet
+    var bonusRoundIsActive: Bool = false // Spieler kann Twinship in BonusRound steuern
+    var bonusState: BonusState = .locked
+    
     var isReadyToRender: Bool = false
     var startLevel = true
     var startAnimation: Bool = false
@@ -547,14 +551,14 @@ class GameViewController: UIViewController, LevelManagerDelegate {
         asteroidBurstStartValue = asteroidConfig.startValueOfBurstOne
         asteroidStartBorderY = asteroidConfig.startBorderY
 
-        print("Asteroid-Werte aktualisiert im GameViewController")
+        print("Asteroid-Werte aktualisiert im updateAsteroidValues")
     }
 
     // Implementierung der zweiten Delegate-Methode
     func updateEnemyValues(_ enemyConfig: EnemyConfig) {
         
         //FIXME: Variable noch umarbeiten
-        //spaceInvaderSpawnDelay = enemyConfig.invaderSpawnDelay
+        spaceInvaderMovingDuration = enemyConfig.invaderMovingDuration
         //spaceInvaderOnScreenTime = enemyConfig.invaderOnScreenTime
         spaceInvaderFramesRefreshTime = enemyConfig.invaderFramesRefreshTime
         spaceProbeStartDelay = enemyConfig.probeStartDelay
@@ -565,7 +569,7 @@ class GameViewController: UIViewController, LevelManagerDelegate {
         moveObjectRangeY = enemyConfig.moveObjectRangeY
         bigFlashOnScreenDurationRange = enemyConfig.bigFlashOnScreenDurationRange
         spawnDelayRange = enemyConfig.spawnDelayRange
-        print("SpaceInvader-Werte aktualisiert im GameViewController")
+        print("SpaceInvader-Werte aktualisiert im updateEnemyValues")
     }
 
     func setupScene() {
@@ -718,7 +722,7 @@ class GameViewController: UIViewController, LevelManagerDelegate {
         let sequence = SKAction.sequence([fadeIn, wait, fadeOut])
                
         // Schriftzug "Start Level"
-        startLevelXLabel.text = "Start Level: \(levelCount)" // Text aktualisieren
+        startLevelXLabel.text = "Start Level: \(LevelManager.shared.levelCount)" // Text aktualisieren
         startLevelXLabel.alpha = 0
         startLevelXLabel.isHidden = false
         startLevelXLabel.run(sequence)
@@ -727,8 +731,8 @@ class GameViewController: UIViewController, LevelManagerDelegate {
         readyLabel.alpha = 0
         readyLabel.isHidden = false
         readyLabel.run(sequence)
-
-        gameIsRunning = true
+        // Spiel wurde gestartet
+        gameState = .running
         
         secondsCounter = 0  // Reset Variable
         startTimerUpdateHUD()
@@ -749,7 +753,7 @@ class GameViewController: UIViewController, LevelManagerDelegate {
         }
         
         // Zum Start Ship einlaufen lassen und Timer starten
-        if levelCount == 1 {
+        if LevelManager.shared.levelCount == 1 {
             twinShipNode.worldPosition.x = -400
             
             // Booster (Particle-System ausrichten und starten

@@ -16,23 +16,24 @@ extension GameViewController {
         
         guard !bonusRoundIsEnabled else { return }
 
+        var spawnDelay: Double = 0
         // watchdog.functionWasCalled()
         //FIXME: * spaceInvaderSpawnDelay
         spawnDelay = Double.random(in: spawnDelayRange)
         
         //Enemy mit Verzögerung starten
         DispatchQueue.main.asyncAfter(deadline: .now() + spawnDelay) { [self] in
-            //Wenn BallWall aktive, dann abbrechen
+            //Wenn BallWall und Bonusrunde aktive, dann abbrechen
             guard ballWallState == .idle else {
                 currentEnemy = .none            // Neuen Enemy freigeben
-                scheduleNextEnemy()    //Nächster run
+                scheduleNextEnemy()             // Nächster run
                 return
             }
             //Für unterschiedliche Häufung der Enemies
             let weightedEnemies: [EnemyType] = [
-                .spaceProbe, //.spaceProbe, .spaceProbe,  // 3x häufiger
+                //.spaceProbe, //.spaceProbe, .spaceProbe,  // 3x häufiger
                 .spaceInvader, //.spaceInvader,           // 2x häufiger
-                .bigFlash                               // 1x selten
+                //.bigFlash                               // 1x selten
                 ]
             // Neuen Enemy nur freigeben wenn sonst keiner unterwegs ist
             guard currentEnemy == .none else {
@@ -81,7 +82,8 @@ extension GameViewController {
             despawnSpaceProbe()
         case .spaceInvader:
             guard spaceProbeState != .idle else { return }
-//                    spaceInvaderOnScreenTime = spawnDelay
+            //FIXME: Ist das noch nötig
+                // spaceInvaderOnScreenTime = spawnDelay
         case .bigFlash:
             //Kein guard da immer von duration ausgeblendet
             currentEnemy = .none
@@ -92,14 +94,14 @@ extension GameViewController {
     }
     
    // Timer-Steuerung für Enemys
-   func manageEnemyStateCycle(_ enemyType: EnemyType, _ enemyState: SpaceInvaderState,duration: TimeInterval) {
-       logEvent("manageEnemyStateCycle")
+   func manageInvaderStateCycle(_ enemyState: SpaceInvaderState,duration: TimeInterval) {
+       
        switch enemyState {
        case .moving:
-           // .moving nach Zeit (duration) abbrechen
+           // Wie lange bewegt sich der Invader
            startEnemySegmentTimer(.moving, duration: duration)
        case .rotate:
-           // State zeitlich begrenzen
+           // Nach stehendem .rotate wieder nach .moving
            startEnemySegmentTimer(.rotate, duration: duration)
        default:
            break
@@ -108,8 +110,7 @@ extension GameViewController {
    
    // Von Timer aufgerufenes Steuerung für das Ausblenden
    func manageEnemyDespawn(_ enemyState: SpaceInvaderState) {
-       logEvent("manageEnemyDespawn")
-       //switch enemyState { - Der State vom gestartetem Timer
+
        switch spaceInvaderState { // Der aktuelle State
        case .idle:
            break
@@ -127,8 +128,8 @@ extension GameViewController {
            velosityMoveStepOfInvader = 0.1
            isHitInvaderFirst = false
            spaceInvaderState = .moving
-           // Dann wieder für 20 Sekunden den State .moving managen
-           manageEnemyStateCycle(.spaceInvader, .moving, duration: 20)
+           // Dann wieder für 20 Sekunden den State .moving aufrufen
+           manageInvaderStateCycle(.moving, duration: spaceInvaderMovingDuration)
        case .chaos:
            break
        case .circle:
@@ -137,21 +138,5 @@ extension GameViewController {
            break
        }
    }
-    
-    // Log-Ausgabe mit Zeit
-    func logEvent(_ message: String) {
-        let time = DateFormatter.localizedString(from: Date(), dateStyle: .none, timeStyle: .medium)
-        print("[\(time)] \(message)")
-//        print (String(format: "%.0f", spawnDelay),  "spawnDelay")
-//        print (String(format: "%.0f", bigFlashOnScreenDuration),  "bigFlashOnScreenDuration")
-//        print ("\(currentEnemy)",  "currentEnemy")
-        print ("\(spaceInvaderState)",  "spaceInvaderState")
-//        print ("\(spaceProbeState)",  "spaceProbeState")
-//        print ("\(bigFlashState)",  "bigFlashState")
-//        print ("\(ballWallState)",  "ballWallState")
-        counter += 1
-        print ("counter: \(counter)")
-        print("")
-    }
 }
 
