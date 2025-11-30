@@ -111,7 +111,7 @@ extension GameViewController {
         moveToParkPosition(node: burstNodeOfAsteroid, parkPosition: parkPositionOfAsteroid)
         }
     }
-    
+    // TODO: Wird nicht genutzt
     func fadeOutAsteroidAndMoveToParkPosition(node: SCNNode, parkPosition: SCNVector3) {
         node.runAction(SCNAction.fadeOut(duration: 2.0)) { [self] in
             moveAsteroidToParkPosition(node: node, parkPosition: parkPosition)

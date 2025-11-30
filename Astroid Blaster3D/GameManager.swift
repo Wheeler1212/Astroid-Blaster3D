@@ -168,11 +168,8 @@ extension GameViewController {
         }
     }   
     
-    func despawnAllObjects() {
-        // Eventuell noch vorhandene Asteroids ausblenden und auf Parkposition setzten
-        for node in asteroidNode {
-            fadeOutAsteroidAndMoveToParkPosition(node: node, parkPosition: parkPositionOfAsteroid)
-        }
+    func despawnAllEnemies() {
+
         //Enemies löschen und auf Parkposition setzten
         despawnSpaceInvader()
         despawnSpaceProbe()
@@ -289,10 +286,9 @@ extension GameViewController {
                     positionZ = Float.random(in: zRange)
                 }
                 alternateZ.toggle()
-            }
-            // Falls bonusRoundIsActive → positionZ bleibt bei dem initialen Zufallswert
-        } else {
-            positionZ = 0.0
+            }   // Wenn bonusRoundActive
+            } else {
+                positionZ = 0.0
         }
 
 
@@ -378,11 +374,12 @@ extension GameViewController {
             }
             fireNodeLeft = newFireNodeLeft
         }
-    } //-----------------------------------------------------
+    }
         
     // FIXME: Größe für die unterschiedlichen Level ???
     /// Über "func startTimerAsteroid()" wiederkehrend gestartet
     @objc func setAsteroidToStart()  {
+        // Nur begrenzte Anzahl zulassen
         guard asteroidCountActive <= asteroidMaxNumberOnScreen else { return }
         asteroidCountActive += 1 // Soviele Asteroiden im Spiel
         

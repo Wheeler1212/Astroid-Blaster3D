@@ -3,23 +3,4 @@
    uuid = "A8ACABFF-3DAF-46B7-9948-B603B826AF6E"
    type = "1"
    version = "2.0">
-   <Breakpoints>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "161C03DE-4DB6-4B63-892D-89A678E2FF15"
-            shouldBeEnabled = "No"
-            condition = "bonusRoundIsEnabled == true"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Astroid Blaster3D/EnemyManager.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "17"
-            endingLineNumber = "17"
-            landmarkName = "scheduleNextEnemy()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-   </Breakpoints>
 </Bucket>

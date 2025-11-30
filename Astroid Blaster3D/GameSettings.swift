@@ -39,10 +39,10 @@ enum LevelType {
 }
 
 enum GameState {
-    case ready
-    case running
-    case paused
-    case gameOver
+    case ready          // Standard oder eben Beginn
+    case running        // Mit StartGameDisplay beginn das Spiel
+    case paused         // Level Clear oder Benutzer-Pause
+    case gameOver       // Selbst-erklärend
 }
 
 enum BonusState {

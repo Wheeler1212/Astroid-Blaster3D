@@ -149,8 +149,24 @@ class GameViewController: UIViewController, LevelManagerDelegate {
     var leftBoostNode = SCNNode()
     var rightBoostNode = SCNNode()
     
-    // MARK: SpaceInvader
+    // TODO: Fehlersuche mit Variablenausgabed
     var spaceInvaderState: SpaceInvaderState = .idle
+//    
+//    
+//    var spaceInvaderState: SpaceInvaderState = .idle {
+//        didSet {
+//            print("🚀 spaceInvaderState wurde geändert auf \(spaceInvaderState)")
+//
+//            // Callstack anzeigen – wer hat das ausgelöst?
+//            Thread.callStackSymbols.forEach { print($0) }
+//
+//            // Speziell reagieren, wenn POPUP aktiviert wurde
+//            if spaceInvaderState == .popUp {
+//                print("🎉 SPACE INVADER STARTET POPUP!")
+//            }
+//        }
+//    }
+    
     var animationSlowDownInvader: Int = 0
     //var spaceInvaderIsOnScreen: Bool = false // Wenn true dann SpaceInvader isOnScreen
     var isStartSpaceInvader: Bool = false // SpaceInvader beginnt ganz am Anfang
@@ -341,7 +357,7 @@ class GameViewController: UIViewController, LevelManagerDelegate {
     var timerAsteroid: Timer?
     var asteroidStartPositionX: Float = 300 // Startposition rechts aussen
     var asteroidStartBorderY: Float = 80 // In Bonus Runde sind es 500
-    var asteroidStartBorderZ: Float = 50 //*01 500 // Für das Rechteck in Y und Z
+    var asteroidStartBorderZ: Float = 0 // Für das Rechteck in Y und Z
     var isContactAsteroidCooldownActive: Bool = false
     var AsteroidStartValueOfBurstOne: Int = 0 //*02 Zwischenspeicher für Offset der Burstasteroiden
     var asteroidCountMax: Int = 0       // Noch verbleibende Asteroiden für das Level
@@ -432,8 +448,8 @@ class GameViewController: UIViewController, LevelManagerDelegate {
     var ambientLightNode = SCNNode()
     var playerLives: Int = 3
     var gameState: GameState = .ready
-    var gameIsPaused: Bool = true   // Nur Sternebewegung
-    //###
+    var isGamePaused: Bool = true   // Nur Sternebewegung
+    
     var bonusRoundIsReached: Bool = false   // Punkte für mögliche Bonus Runde erreicht
     var bonusRoundIsEnabled: Bool = false   // Bonus Runde wurde durch Button freigeschaltet
     var bonusRoundIsActive: Bool = false // Spieler kann Twinship in BonusRound steuern
@@ -771,7 +787,7 @@ class GameViewController: UIViewController, LevelManagerDelegate {
 //                ) {
 //                    self.scheduleNextEnemy()
 //                }
-                gameIsPaused = false
+                isGamePaused = false
                 scheduleNextEnemy()
                 startTimerAsteroid()
                 startTimerBallWall()

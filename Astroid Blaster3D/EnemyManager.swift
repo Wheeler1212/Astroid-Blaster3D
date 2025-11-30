@@ -13,8 +13,6 @@ import UIKit
 extension GameViewController {
     
     func scheduleNextEnemy() {
-        
-        guard !bonusRoundIsEnabled else { return }
 
         var spawnDelay: Double = 0
         // watchdog.functionWasCalled()
@@ -23,7 +21,7 @@ extension GameViewController {
         
         //Enemy mit Verzögerung starten
         DispatchQueue.main.asyncAfter(deadline: .now() + spawnDelay) { [self] in
-            //Wenn BallWall und Bonusrunde aktive, dann abbrechen
+            // BallWall darf nicht aktiv sein
             guard ballWallState == .idle else {
                 currentEnemy = .none            // Neuen Enemy freigeben
                 scheduleNextEnemy()             // Nächster run
@@ -35,16 +33,19 @@ extension GameViewController {
                 .spaceInvader, //.spaceInvader,           // 2x häufiger
                 //.bigFlash                               // 1x selten
                 ]
-            // Neuen Enemy nur freigeben wenn sonst keiner unterwegs ist
+            // Es darf nur EIN Enemy gleichzeitig unterwegs sein
             guard currentEnemy == .none else {
                 scheduleNextEnemy()
                 return }
+            // Typ wählen und dann spawnen
             currentEnemy = weightedEnemies.randomElement() ?? .spaceProbe
             spawnNextEnemy()
         }
     }
     
     func spawnNextEnemy() {
+        
+        guard !bonusRoundIsEnabled else { return }
         
         switch currentEnemy {
         case .spaceInvader:

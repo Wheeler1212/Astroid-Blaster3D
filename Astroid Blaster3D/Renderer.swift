@@ -40,7 +40,7 @@ extension GameViewController: SCNSceneRendererDelegate {
                lastDeltaX = 0.0
            }
        }
-       if !gameIsPaused {
+       if !isGamePaused {
            // Wegen des Einlaufens des TwinShips
            dampenShipMotionLevelRound() // In Level und Bonusrunde aktive
            if !bonusRoundIsActive { //***
@@ -72,7 +72,7 @@ extension GameViewController: SCNSceneRendererDelegate {
            blinkShield()
        }
  
-       // Spiel wurde von User gestartet
+       // Ab hier nur wenn Spiel läuft
        guard gameState == .running else { return }
        
        // Ab hier nur wenn Spiel läuft

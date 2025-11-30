@@ -258,7 +258,7 @@ extension GameViewController {
                                                                 .ballWall,
                                                                 .asteroid])
         // Enemies und Asteroiden ausblenden
-        despawnAllObjects()
+        despawnAllEnemies()
         nextLevelUpdate() // Zuweisung der restlichen let/var und Level let/var
         levelClear = false
         gameState = .running
@@ -413,9 +413,14 @@ extension GameViewController {
     @objc func bonusRoundButtonTapped() {
         // Für Next Level bestimmte Variable zurücksetzten
         secondsCounter = 0      // Zeitzähler
-        gameIsPaused = true     // Schiff nicht mehr steuerbar
-        invalidateTimer()       // Alle Timer löschen NEU
-        despawnAllObjects()     // Alle Objekte verschwinden lassen
+        isGamePaused = true     // Schiff nicht mehr steuerbar
+        invalidateTimer()       // Alle Timer löschen
+        despawnAllEnemies()     // Alle Objekte verschwinden lassen
+        
+        // Eventuell noch vorhandene Asteroids ausblenden
+        for asteroid in asteroidNode.prefix(20) {
+            asteroid.runAction(SCNAction.fadeOut(duration: 2))
+        }
         
         // Buttons ausblenden und danach verstecken und die Bonus-Runde starten
         UIView.animate(withDuration: 1.0, delay: 1.0, options: .curveEaseInOut, animations: { [self] in
@@ -432,7 +437,7 @@ extension GameViewController {
             bonusRoundButton.transform = .identity
             
             bonusRoundIsEnabled = true
-            // Animation und dann zum Bonus-Spiel
+            // BonusRunde mit Animation starten
             animateTwinShipForBonusRound()
         })
     }

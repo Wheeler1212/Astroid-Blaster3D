@@ -354,13 +354,13 @@ extension GameViewController {
 									<key>EndingColumnNumber</key>
 									<string>0</string>
 									<key>EndingLineNumber</key>
-									<string>382</string>
+									<string>378</string>
 									<key>StartingColumnNumber</key>
 									<string>0</string>
 									<key>StartingLineNumber</key>
-									<string>381</string>
+									<string>377</string>
 									<key>Timestamp</key>
-									<string>786142197.627233</string>
+									<string>786206476.047398</string>
 								</dict>
 								<key>rebasable-url</key>
 								<dict>
@@ -380,7 +380,7 @@ extension GameViewController {
 </string>
 								<key>leading</key>
 								<string>        }
-    } //-----------------------------------------------------
+    }
 </string>
 								<key>trailing</key>
 								<string>    // FIXME: Größe für die unterschiedlichen Level ???
@@ -401,13 +401,13 @@ extension GameViewController {
 									<key>EndingColumnNumber</key>
 									<string>0</string>
 									<key>EndingLineNumber</key>
-									<string>240</string>
+									<string>236</string>
 									<key>StartingColumnNumber</key>
-									<string>20</string>
+									<string>0</string>
 									<key>StartingLineNumber</key>
-									<string>238</string>
+									<string>235</string>
 									<key>Timestamp</key>
-									<string>786011721.54845</string>
+									<string>786206476.047365</string>
 								</dict>
 								<key>rebasable-url</key>
 								<dict>
@@ -423,17 +423,16 @@ extension GameViewController {
 							<key>text-context</key>
 							<dict>
 								<key>focused</key>
-								<string>
-    // Asteroids die den Schirm verlassen, wieder rechts einlafen lassen
+								<string>// MARK: Clean Scene
 </string>
 								<key>leading</key>
 								<string>    //--------------------------------------------------------------------------------------
     
-// MARK: Clean Scene</string>
+</string>
 								<key>trailing</key>
-								<string>    func cleanAsteroids() {
+								<string>    // Asteroids die den Schirm verlassen, wieder rechts einlafen lassen
+    func cleanAsteroids() {
         // Wenn "Asteroid" den Bildschirm verlässt
-        for node in gameScene.rootNode.childNodes {
 </string>
 							</dict>
 							<key>title</key>
@@ -466,13 +465,13 @@ extension GameViewController {
 									<key>EndingColumnNumber</key>
 									<string>0</string>
 									<key>EndingLineNumber</key>
-									<string>328</string>
+									<string>324</string>
 									<key>StartingColumnNumber</key>
 									<string>0</string>
 									<key>StartingLineNumber</key>
-									<string>327</string>
+									<string>323</string>
 									<key>Timestamp</key>
-									<string>786142185.982426</string>
+									<string>786206476.047393</string>
 								</dict>
 								<key>rebasable-url</key>
 								<dict>
@@ -661,13 +660,13 @@ extension GameViewController {
 									<key>EndingColumnNumber</key>
 									<string>0</string>
 									<key>EndingLineNumber</key>
-									<string>540</string>
+									<string>537</string>
 									<key>StartingColumnNumber</key>
 									<string>0</string>
 									<key>StartingLineNumber</key>
-									<string>539</string>
+									<string>536</string>
 									<key>Timestamp</key>
-									<string>786142210.416507</string>
+									<string>786207945.932897</string>
 								</dict>
 								<key>rebasable-url</key>
 								<dict>
@@ -768,13 +767,13 @@ extension GameViewController {
 							<key>EndingColumnNumber</key>
 							<string>0</string>
 							<key>EndingLineNumber</key>
-							<string>452</string>
+							<string>468</string>
 							<key>StartingColumnNumber</key>
 							<string>0</string>
 							<key>StartingLineNumber</key>
-							<string>451</string>
+							<string>467</string>
 							<key>Timestamp</key>
-							<string>786140989.495032</string>
+							<string>786208298.46611</string>
 						</dict>
 						<key>rebasable-url</key>
 						<dict>
@@ -815,13 +814,13 @@ extension GameViewController {
 							<key>EndingColumnNumber</key>
 							<string>0</string>
 							<key>EndingLineNumber</key>
-							<string>500</string>
+							<string>497</string>
 							<key>StartingColumnNumber</key>
 							<string>0</string>
 							<key>StartingLineNumber</key>
-							<string>499</string>
+							<string>496</string>
 							<key>Timestamp</key>
-							<string>786142210.416539</string>
+							<string>786207945.932891</string>
 						</dict>
 						<key>rebasable-url</key>
 						<dict>
@@ -862,13 +861,13 @@ extension GameViewController {
 							<key>EndingColumnNumber</key>
 							<string>0</string>
 							<key>EndingLineNumber</key>
-							<string>468</string>
+							<string>465</string>
 							<key>StartingColumnNumber</key>
 							<string>0</string>
 							<key>StartingLineNumber</key>
-							<string>467</string>
+							<string>464</string>
 							<key>Timestamp</key>
-							<string>786142210.4166</string>
+							<string>786207945.932884</string>
 						</dict>
 						<key>rebasable-url</key>
 						<dict>
@@ -994,9 +993,9 @@ extension GameViewController {
     
 </string>
 						<key>trailing</key>
-						<string>        
-        guard !bonusRoundIsEnabled else { return }
-
+						<string>
+        var spawnDelay: Double = 0
+        // watchdog.functionWasCalled()
 </string>
 					</dict>
 					<key>title</key>
@@ -1748,13 +1747,13 @@ import Foundation
 					<key>EndingColumnNumber</key>
 					<string>0</string>
 					<key>EndingLineNumber</key>
-					<string>598</string>
+					<string>595</string>
 					<key>StartingColumnNumber</key>
 					<string>0</string>
 					<key>StartingLineNumber</key>
-					<string>597</string>
+					<string>594</string>
 					<key>Timestamp</key>
-					<string>786142220.191062</string>
+					<string>786207945.932868</string>
 				</dict>
 				<key>rebasable-url</key>
 				<dict>
@@ -1784,6 +1783,53 @@ import Foundation
 			</dict>
 			<key>title</key>
 			<string>logEvent()</string>
+			<key>type</key>
+			<string>bookmark</string>
+		</dict>
+		<dict>
+			<key>destination</key>
+			<dict>
+				<key>location-parameters</key>
+				<dict>
+					<key>EndingColumnNumber</key>
+					<string>0</string>
+					<key>EndingLineNumber</key>
+					<string>452</string>
+					<key>StartingColumnNumber</key>
+					<string>0</string>
+					<key>StartingLineNumber</key>
+					<string>451</string>
+					<key>Timestamp</key>
+					<string>786208298.466098</string>
+				</dict>
+				<key>rebasable-url</key>
+				<dict>
+					<key>base</key>
+					<string>workspace</string>
+					<key>payload</key>
+					<dict>
+						<key>relative-path</key>
+						<string>Astroid Blaster3D/GameViewController.swift</string>
+					</dict>
+				</dict>
+			</dict>
+			<key>text-context</key>
+			<dict>
+				<key>focused</key>
+				<string>    
+</string>
+				<key>leading</key>
+				<string>    var gameState: GameState = .ready
+    var isGamePaused: Bool = true   // Nur Sternebewegung
+</string>
+				<key>trailing</key>
+				<string>    var bonusRoundIsReached: Bool = false   // Punkte für mögliche Bonus Runde erreicht
+    var bonusRoundIsEnabled: Bool = false   // Bonus Runde wurde durch Button freigeschaltet
+    var bonusRoundIsActive: Bool = false // Spieler kann Twinship in BonusRound steuern
+</string>
+			</dict>
+			<key>title</key>
+			<string>BonusRound Variable</string>
 			<key>type</key>
 			<string>bookmark</string>
 		</dict>
