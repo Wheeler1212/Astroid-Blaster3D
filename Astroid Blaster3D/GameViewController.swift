@@ -3,6 +3,9 @@
     //
     //  Created by Günter Voit on 14.08.24.
     //
+//TODO:
+// isGamePaused zu gameState (enum) einfügen
+
 
 import SceneKit
 import SpriteKit
@@ -437,7 +440,7 @@ class GameViewController: UIViewController, LevelManagerDelegate {
     let moveObjectRangeX: ClosedRange<Float> = -100...150
     var moveObjectRangeY: ClosedRange<Float> = -70...70
     var bigFlashOnScreenDurationRange: ClosedRange<TimeInterval> = 30.0...40.0
-    var spawnDelayRange: ClosedRange<TimeInterval> = 15.0...17.0
+    var enemySpawnDelayRange: ClosedRange<TimeInterval> = 15.0...17.0
     
     var screenHeight: CGFloat = 0
     var pointsDifferenzBackup: Int = 0
@@ -584,7 +587,7 @@ class GameViewController: UIViewController, LevelManagerDelegate {
         ballWallStartDelay = enemyConfig.wallStartDelay
         moveObjectRangeY = enemyConfig.moveObjectRangeY
         bigFlashOnScreenDurationRange = enemyConfig.bigFlashOnScreenDurationRange
-        spawnDelayRange = enemyConfig.spawnDelayRange
+        enemySpawnDelayRange = enemyConfig.spawnDelayRange
         print("SpaceInvader-Werte aktualisiert im updateEnemyValues")
     }
 
@@ -780,7 +783,7 @@ class GameViewController: UIViewController, LevelManagerDelegate {
             moveInTwinShip.timingMode = .easeOut
             twinShipNode.runAction(moveInTwinShip) { [self] in
                 
-                // Watchdog für EnemyManager erstellen
+                // TODO: Watchdog für EnemyManager erstellen/komplett löschen
 //                watchdog = FunctionWatchdog(
 //                    checkInterval: 5.0, // Alle 5 Sekunden prüfen
 //                    timeout: 60.0       // Wenn länger als 60 Sekunden nichts kommt, ausführen:
@@ -793,7 +796,7 @@ class GameViewController: UIViewController, LevelManagerDelegate {
                 startTimerBallWall()
                 //#21
                 DispatchQueue.main.async { [self] in
-                    //showOverlay() //TODO: Wieder einschalten
+                    showOverlay() //TODO: Wieder einschalten
                     animateCollisionDisplayWithScale()
                 }
             }

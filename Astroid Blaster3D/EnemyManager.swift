@@ -17,7 +17,7 @@ extension GameViewController {
         var spawnDelay: Double = 0
         // watchdog.functionWasCalled()
         //FIXME: * spaceInvaderSpawnDelay
-        spawnDelay = Double.random(in: spawnDelayRange)
+        spawnDelay = Double.random(in: enemySpawnDelayRange)
         
         //Enemy mit Verzögerung starten
         DispatchQueue.main.asyncAfter(deadline: .now() + spawnDelay) { [self] in
@@ -40,6 +40,7 @@ extension GameViewController {
             // Typ wählen und dann spawnen
             currentEnemy = weightedEnemies.randomElement() ?? .spaceProbe
             spawnNextEnemy()
+            print("DispatchQueue: \(spawnDelay)")
         }
     }
     

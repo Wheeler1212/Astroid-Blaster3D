@@ -32,5 +32,12 @@ class LevelManager {
         delegate?.updateAsteroidValues(asteroidValues)
         delegate?.updateEnemyValues(enemyValues)
     }
+    
+    /// Wird beim Difficulty-Wechsel genutzt
+    func applySettingsForDifficulty() {
+        print("Difficulty changed → apply settings, no level-up")
+        delegate?.updateAsteroidValues(asteroidValues)
+        delegate?.updateEnemyValues(enemyValues)
+    }
 }
 

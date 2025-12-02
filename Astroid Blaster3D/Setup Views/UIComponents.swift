@@ -239,13 +239,16 @@ extension GameViewController {
     
     // Overlay (Steuerkreuz + Lautstärke) ausblenden und zurückskalieren
     func hideOverlay() {
-        UIView.animate(withDuration: 0.3,
-                       animations: {
-            self.crossOverlay?.alpha = 0
-            self.crossOverlay?.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)  // Leicht zusammenschrumpfen
-        }, completion: { _ in
-            self.crossOverlay?.isHidden = true
-        })
+        
+        DispatchQueue.main.async { [self] in
+            UIView.animate(withDuration: 0.3,
+                           animations: {
+                self.crossOverlay?.alpha = 0
+                self.crossOverlay?.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)  // Leicht zusammenschrumpfen
+            }, completion: { _ in
+                self.crossOverlay?.isHidden = true
+            })
+        }
     }
     
     // Button "Next Level" wurde gedrückt
@@ -333,6 +336,8 @@ extension GameViewController {
     func levelClearDisplay() {
         
         hideCollisionDisplayWithScale() // Collisions Display Animiert ausblenden
+        hideOverlay() // Steuerkreuz ausblenden
+        
         twinShipNode.physicsBody?.collisionBitMask = CollisionCategory.none.bitMask
         gameState = .paused
         
@@ -858,6 +863,7 @@ extension GameViewController {
         addCollisionDisplayCross()
     }
     
+    // Rotes Kreuz innerhalb CollisionDisplay
     func addCollisionDisplayCross() {
         let crossNode = SCNNode()
         
@@ -880,8 +886,8 @@ extension GameViewController {
         crossNode.position = SCNVector3(0, 0, -50)
     }
     
+    // Farbige Hilfspfeile für die Achsen des TwinShips
     func addDebugAxes(to node: SCNNode) {
-        // Farbige Hilfspfeile für die Achsen des TwinShips
         
         let xAxis = SCNNode(geometry: SCNCylinder(radius: 1.0, height: 75)) // Stab
         let arrowXAxis = SCNNode(geometry: SCNCone(topRadius: 0, bottomRadius: 3, height: 10))  // Pfeilspitze
@@ -951,6 +957,7 @@ extension GameViewController {
         // Speichere Ausgangsausrichtung auch für die Timer-Sync
         cameraBaseOrientation = cameraDisplayNode.simdOrientation
     }
+    
     func changeBackgroundImage(
         for imageView: UIImageView,
         baseName: String,
@@ -981,11 +988,6 @@ extension GameViewController {
         label.frame = CGRect(origin: .zero, size: size)
         label.center.x = container.center.x
         label.frame.origin.y = topOffset
-    }
-    
-    // LogAusgabe für die Aufrufende Funktion
-    func logCaller(message: String = "", file: String = #file, line: Int = #line, function: String = #function) {
-        print("[\(function)] \(message) - in \(file):\(line)")
     }
     
     //MARK: class DebugHUD - Ab hier nur zum Debuggen
@@ -1096,4 +1098,26 @@ extension GameViewController {
             self.debugHUD.alpha = targetAlpha
         }
     }
+    
+    // Log-Ausgabe mit Zeit
+    func logEvent(_ message: String) {
+        let time = DateFormatter.localizedString(from: Date(), dateStyle: .none, timeStyle: .medium)
+        print("[\(time)] \(message)")
+        //print (String(format: "%.0f", spawnDelay),  "spawnDelay")
+//        print (String(format: "%.0f", bigFlashOnScreenDuration),  "bigFlashOnScreenDuration")
+//        print ("\(currentEnemy)",  "currentEnemy")
+//        print ("\(spaceInvaderState)",  "spaceInvaderState")
+//        print ("\(spaceProbeState)",  "spaceProbeState")
+//        print ("\(bigFlashState)",  "bigFlashState")
+//        print ("\(ballWallState)",  "ballWallState")
+        counter += 1
+        print ("counter: \(counter)")
+        print("")
+    }
+    
+    
+    // LogAusgabe für die Aufrufende Funktion
+//    func logCaller(message: String = "", file: String = #file, line: Int = #line, function: String = #function) {
+//        print("[\(function)] \(message) - in \(file):\(line)")
+//    }
 }

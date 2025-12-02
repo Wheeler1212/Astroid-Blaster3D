@@ -244,7 +244,12 @@ extension GameViewController {
     func startActionBallWall(nodeArray: [SCNNode])   {
         
         // SCNAction moveLeft für ballWallNode
-        let moveLeft = SCNAction.moveBy(x: -DeviceConfig.layout.ballWallMoveBorderX, y: 0, z: 0, duration: TimeInterval(20 - LevelManager.shared.levelCount))
+        let level: Int = LevelManager.shared.levelCount
+        let moveBorderX: CGFloat = DeviceConfig.layout.ballWallMoveBorderX
+        let moveLeft = SCNAction.moveBy(x: -moveBorderX,
+                                        y: 0,
+                                        z: 0,
+                                        duration: TimeInterval(20 - level))
         
         for (index, node) in nodeArray.enumerated() {
             moveLeft.timingFunction = { time in     // Für Ease-In-Effekt

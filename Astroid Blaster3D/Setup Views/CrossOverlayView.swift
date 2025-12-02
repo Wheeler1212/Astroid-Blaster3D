@@ -13,7 +13,6 @@ import UIKit
     // Overlay mit Steuerkreuz + vertikaler Leiste + Lautstärke‑Slider (links oben)
     class CrossOverlayView: UIView {
 
-        // MARK: ‑ Layers
         private let crossLayer    = CAShapeLayer()   // Kreuz unten rechts
         private let verticalLayer = CAShapeLayer()   // Vertikaler Balken unten links
 
@@ -22,13 +21,12 @@ import UIKit
             let s = UISlider()
             s.minimumValue = 0
             s.maximumValue = 1
-            s.value        = 0.7                         // Start‑Lautstärke
+            s.value        = 0.7         // Start‑Lautstärke
             s.transform    = CGAffineTransform(rotationAngle: -.pi/2) // vertikal
             s.tintColor    = .white.withAlphaComponent(0.9)
             return s
         }()
 
-        // MARK: ‑ Init
         override init(frame: CGRect) {
             super.init(frame: frame)
             backgroundColor = .clear

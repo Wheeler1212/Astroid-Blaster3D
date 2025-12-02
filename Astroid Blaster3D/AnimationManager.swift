@@ -425,6 +425,9 @@ extension GameViewController {
     // Animation vom Level zur Bonusrunde
     func animateTwinShipForBonusRound() {
         slowDownStars = true // Sterne langsam abbremsen
+        
+        let base = asteroidStartDelay
+        let level = Double(LevelManager.shared.levelCount)
 
         let moveDistance: Float = 500   // Endposition auf der x-Achse
         let duration: TimeInterval = 6.0 // Gesamtdauer des auslaufens mit wedeln
@@ -532,16 +535,21 @@ extension GameViewController {
             asteroidStartPositionX = 2000 // Startposition ganz Tief im All
             // Bonusrunde aktivieren (muss im Main-Thread laufen!)
             DispatchQueue.main.async { [self] in
-                showOverlay()
+                showOverlay()   // Steuerkreuz usw. einblenden
                 animateCollisionDisplayWithScale()
             }
             
             for asteroid in asteroidNode.prefix(20) {
-                setAsteroidToStart()
+                //setAsteroidToStart()
                 asteroid.opacity = 0.0
                 // Und wieder einblenden
                 asteroid.runAction(SCNAction.fadeIn(duration: 2))
             }
+            // Neue Asteroiden wieder öfters starten
+            //asteroidStartDelay = asteroidStartDelay / Double(LevelManager.shared.levelCount) * 10
+            asteroidMaxNumberOnScreen = 100 // Hier kommt die volle Ballung
+            asteroidStartDelay = max(0.2, base / pow(level, 1.3))
+            startTimerAsteroid()
         }
         
         // 3 Sekunden warten

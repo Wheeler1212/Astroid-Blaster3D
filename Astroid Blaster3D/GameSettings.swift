@@ -196,19 +196,28 @@ struct LevelConfig {
     static let isIPad = UIDevice.current.userInterfaceIdiom == .pad
 
     static func asteroidConfig(for difficulty: LevelType, level: Int) -> AsteroidConfig {
-        let levelFactor = Int(level)
+        
+        let levelFactor = max(level, 1)
+        let lf = Double(levelFactor)
+        
         print("LevelConfig level: \(level)")
         switch difficulty {
         case .easy:
+            // Gemütlicher Einstieg
+            let baseDelay = 4.0
+            let minDelay  = 0.5
+            
             return isIPad
             ? AsteroidConfig(
-                startDelay:            4.0,
+                startDelay:            max(minDelay, baseDelay / lf),
                 countMax:              5 * levelFactor, // Anzahl Asteroids erhöhen
                 scale:                 1.5,
                 maxNumberOnScreen:     3,
                 startValueOfBurstOne:  2,
                 startBorderY:          80
             )
+            
+            //FIXME: noch anpassen
             : AsteroidConfig(
                 startDelay:            3.0,
                 countMax:              5 * levelFactor,
@@ -219,10 +228,14 @@ struct LevelConfig {
             )
 
         case .medium:
+            // Spürbar schneller & mehr los
+            let baseDelay = 3.0
+            let minDelay  = 0.35
+            
             return isIPad
             ? AsteroidConfig(
-                startDelay:            3.0,
-                countMax:              25,
+                startDelay:            max(minDelay, baseDelay / lf),
+                countMax:              5 * levelFactor,
                 scale:                 2.0,
                 maxNumberOnScreen:     12,
                 startValueOfBurstOne:  3,
@@ -238,10 +251,14 @@ struct LevelConfig {
             )
 
         case .hard:
+            // Richtig Action – BonusRound-Vorstufe
+            let baseDelay = 2.0
+            let minDelay  = 0.2
+            
             return isIPad
             ? AsteroidConfig(
-                startDelay:            2.0,
-                countMax:              35,
+                startDelay:            max(minDelay, baseDelay / lf),
+                countMax:              9 * levelFactor,
                 scale:                 3.0,
                 maxNumberOnScreen:     20,
                 startValueOfBurstOne:  5,

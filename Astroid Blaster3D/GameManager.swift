@@ -143,11 +143,12 @@ extension GameViewController {
             fireHitEnemy = true
             
         case enemyName == "BallWallDoor":
+            let moveBorderX = DeviceConfig.layout.ballWallMoveBorderX
             // Explosion und Position zurücksetzen
             createExplosion(for: enemyNode, newSize: 10)
             // BallWallDoor nach Explosion in die Parkposition
             enemyNode.removeAllActions()
-            enemyNode.position = SCNVector3(-DeviceConfig.layout.ballWallMoveBorderX, 0, 0)
+            enemyNode.position = SCNVector3(-moveBorderX, 0, 0)
             fireHitEnemy = true
             score += 20_000
             updateHUD()
@@ -236,6 +237,8 @@ extension GameViewController {
 // MARK: Clean Scene
     // Asteroids die den Schirm verlassen, wieder rechts einlafen lassen
     func cleanAsteroids() {
+        
+        let startBorderZ: Float = bonusRoundIsActive ? 1000 : 0
         // Wenn "Asteroid" den Bildschirm verlässt
         for node in gameScene.rootNode.childNodes {
             // Prüfung ob Node ein Asteroid ist und welche Nummer er hat
@@ -252,7 +255,7 @@ extension GameViewController {
                         repositionAsteroid(asteroid: specificAsteroid,
                                    at: asteroidStartPositionX,
                                    withinYRange: -asteroidStartBorderY...asteroidStartBorderY,
-                                   withinZRange: -asteroidStartBorderZ...asteroidStartBorderZ
+                                   withinZRange: -startBorderZ...startBorderZ
                         )
                     }
                     
@@ -261,7 +264,7 @@ extension GameViewController {
                         repositionAsteroid(asteroid: specificAsteroid,
                                    at: asteroidStartPositionX,
                                    withinYRange: -asteroidStartBorderY...asteroidStartBorderY,
-                                   withinZRange: -asteroidStartBorderZ...asteroidStartBorderZ
+                                   withinZRange: -startBorderZ...startBorderZ
                         )
                     }
                 }
@@ -274,23 +277,18 @@ extension GameViewController {
                                     withinYRange yRange: ClosedRange<Float>,
                                     withinZRange zRange: ClosedRange<Float>
                                     ) {
-        var positionZ: Float = Float.random(in: zRange)
+        let positionZ: Float = Float.random(in: zRange)
         
         //FIXME: Asteroid in Z-Richtung bei Bonusrunde
         // Erst bei .hard werden die Asteroiden auch in Z verschoben
-        if LevelManager.shared.difficulty == .hard {
-            if !bonusRoundIsActive {
-                if alternateZ {
-                    positionZ = 0.0
-                } else {
-                    positionZ = Float.random(in: zRange)
-                }
-                alternateZ.toggle()
-            }   // Wenn bonusRoundActive
-            } else {
-                positionZ = 0.0
-        }
-
+//        if LevelManager.shared.difficulty == .hard {
+//                if alternateZ {
+//                    positionZ = 0.0
+//                } else {
+//                    positionZ = Float.random(in: zRange)
+//                }
+//                alternateZ.toggle()
+//            }
 
         // Neue Startposition (X-Wert) und Zufallsposition (Y-Wert)
         asteroid.position = SCNVector3(positionX, Float.random(in: yRange), positionZ)
@@ -379,10 +377,13 @@ extension GameViewController {
     // FIXME: Größe für die unterschiedlichen Level ???
     /// Über "func startTimerAsteroid()" wiederkehrend gestartet
     @objc func setAsteroidToStart()  {
+        
+        logEvent("asteroidCountActive: \(asteroidCountActive)")
         // Nur begrenzte Anzahl zulassen
         guard asteroidCountActive <= asteroidMaxNumberOnScreen else { return }
         asteroidCountActive += 1 // Soviele Asteroiden im Spiel
         
+        let startBorderZ: Float = bonusRoundIsActive ? 100 : 0
         // Nur die Großen
         for (numberOfAsteroid, node) in asteroidNode.prefix(20).enumerated() {
             // Ist noch ein Asteroid in Parkposition?
@@ -392,7 +393,7 @@ extension GameViewController {
                 let positionX = bonusRoundIsActive ? Float.random(in: 50...1000) : 400
                 
                 let positionY = Float.random(in: -asteroidStartBorderY...asteroidStartBorderY)
-                let positionZ = bonusRoundIsActive ? Float.random(in: -asteroidStartBorderZ...asteroidStartBorderZ) : 0
+                let positionZ = bonusRoundIsActive ? Float.random(in: -startBorderZ...startBorderZ) : 0
                 
                 // Startposition
                 let asteroidPosition = SCNVector3(x: positionX,
@@ -590,20 +591,4 @@ extension GameViewController {
          shieldNode.isHidden = false
          shieldNode.opacity = 1.0
      }
-    
-    // Log-Ausgabe mit Zeit
-    func logEvent(_ message: String) {
-        let time = DateFormatter.localizedString(from: Date(), dateStyle: .none, timeStyle: .medium)
-        print("[\(time)] \(message)")
-//        print (String(format: "%.0f", spawnDelay),  "spawnDelay")
-//        print (String(format: "%.0f", bigFlashOnScreenDuration),  "bigFlashOnScreenDuration")
-//        print ("\(currentEnemy)",  "currentEnemy")
-//        print ("\(spaceInvaderState)",  "spaceInvaderState")
-//        print ("\(spaceProbeState)",  "spaceProbeState")
-//        print ("\(bigFlashState)",  "bigFlashState")
-//        print ("\(ballWallState)",  "ballWallState")
-        counter += 1
-//        print ("counter: \(counter)")
-        print("")
-    }
 }

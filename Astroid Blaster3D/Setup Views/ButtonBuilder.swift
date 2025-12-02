@@ -183,7 +183,8 @@ extension GameViewController {
         }
         
         //Damit auch der LevelManager informiert ist
-        LevelManager.shared.nextLevel()
+        //LevelManager.shared.nextLevel()
+        LevelManager.shared.applySettingsForDifficulty()
     }
     
     @objc func changeSettings(_ sender: UIButton) {
