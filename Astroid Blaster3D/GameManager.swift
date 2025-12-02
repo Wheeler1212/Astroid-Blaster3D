@@ -238,7 +238,7 @@ extension GameViewController {
     // Asteroids die den Schirm verlassen, wieder rechts einlafen lassen
     func cleanAsteroids() {
         
-        let startBorderZ: Float = bonusRoundIsActive ? 1000 : 0
+        let startBorderZ: Float = bonusState == .active ? 1000 : 0
         // Wenn "Asteroid" den Bildschirm verlässt
         for node in gameScene.rootNode.childNodes {
             // Prüfung ob Node ein Asteroid ist und welche Nummer er hat
@@ -322,7 +322,7 @@ extension GameViewController {
     
     /// Löscht Feuerbälle aus fireNodeRight/fireNodeLeft, die die Bildgrenze (2D) oder Distanz (3D) überschreiten
     func cleanFire() {
-        if !bonusRoundIsActive {
+        if bonusState != .active {
             // Levelrunde (2D): Löschen bei Überschreiten der X-Grenze minus 50
             let cleanBorderX = fireMoveBorderX
             var newFireNodeRight = [SCNNode]()
@@ -383,17 +383,17 @@ extension GameViewController {
         guard asteroidCountActive <= asteroidMaxNumberOnScreen else { return }
         asteroidCountActive += 1 // Soviele Asteroiden im Spiel
         
-        let startBorderZ: Float = bonusRoundIsActive ? 100 : 0
+        let startBorderZ: Float = bonusState == .active ? 100 : 0
         // Nur die Großen
         for (numberOfAsteroid, node) in asteroidNode.prefix(20).enumerated() {
             // Ist noch ein Asteroid in Parkposition?
             if node.position.x == -asteroidParkPositionX {
                 let nameForAsteroid = String(format: "Asteroid%04d", numberOfAsteroid)
                 // BonusRound Tiefe - LevelRound rechts ausserhalb Screen
-                let positionX = bonusRoundIsActive ? Float.random(in: 50...1000) : 400
+                let positionX = bonusState == .active ? Float.random(in: 50...1000) : 400
                 
                 let positionY = Float.random(in: -asteroidStartBorderY...asteroidStartBorderY)
-                let positionZ = bonusRoundIsActive ? Float.random(in: -startBorderZ...startBorderZ) : 0
+                let positionZ = bonusState == .active ? Float.random(in: -startBorderZ...startBorderZ) : 0
                 
                 // Startposition
                 let asteroidPosition = SCNVector3(x: positionX,
@@ -553,7 +553,7 @@ extension GameViewController {
         }
         
         // Kombinierte Indizes: Immer die ersten 50 + Bonus-Teil bei Bedarf
-        let indices = bonusRoundIsEnabled
+        let indices = (bonusState == .active)
             ? (0..<pointNode.count)           //  Alle Sterne bewegen
             : (0..<50)                        //  Nur die ersten 50 Sterne
 

@@ -43,12 +43,12 @@ extension GameViewController: SCNSceneRendererDelegate {
        if !isGamePaused {
            // Wegen des Einlaufens des TwinShips
            dampenShipMotionLevelRound() // In Level und Bonusrunde aktive
-           if !bonusRoundIsActive { //***
+           if bonusState != .active {
                resetShipOrientationLevelRound() // In Levelrunde aktive
            }
        }
        
-       if bonusRoundIsActive {
+       if bonusState == .active {
            //TwinShip bei Pitch und Roll auf/ab und links/rechts bewegen
            updateShipMotionBonusRound()
            
@@ -116,7 +116,7 @@ extension GameViewController: SCNSceneRendererDelegate {
     
     @objc func updateCollisionDisplay() {
         // Je nach Level oder BonusRunde ShipNode wählen
-        let shipNode = bonusRoundIsActive ? twinShipBonusNode! : twinShipNode!
+        let shipNode = bonusState == .active ? twinShipBonusNode! : twinShipNode!
         // Asteroids iterieren
         for (name, node) in displayNodeByName {
             if let asteroidNode = asteroidNodeDictionary[name] {

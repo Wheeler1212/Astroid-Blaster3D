@@ -18,7 +18,7 @@ extension GameViewController {
         if let touch = touches.first {
             lastTouchPosition = touch.location(in: self.view)
             
-            if bonusRoundIsEnabled {    //###
+            if bonusState == .enabled {    
                 // Feuereingabe nur am linken Rand
                 if lastTouchPosition!.x < DeviceConfig.layout.fireBorderLeft {
                     // Animation der Feuersteuerung
@@ -66,7 +66,7 @@ extension GameViewController {
                 let deltaTouchPositionX = Float(previousPosition.x - touchPositionX) * -0.5
                 let deltaTouchPositionY = Float(previousPosition.y - touchPositionY) * 0.5
                 
-                if bonusRoundIsEnabled {    //###
+                if bonusState == .active {    //###
                     if touchPositionX < 400 {
                         // 🚀 Links: Beschleunigung
                         let acceleration = Float((previousPosition.y - currentPosition.y) / screenHeight) * 4.0
@@ -95,7 +95,7 @@ extension GameViewController {
             }
             
             // **Bonusrunde: Bewegung anwenden**
-            if bonusRoundIsEnabled {    //###
+            if bonusState == .active {    //###
                 if totalAcceleration != 0 {
                     moveShipAccelerationBonusRound(acceleration: totalAcceleration)
                 }
@@ -314,7 +314,7 @@ extension GameViewController {
     }
     
     func animateFire() {
-        if bonusRoundIsEnabled {    //###
+        if bonusState == .enabled {
             
             // Erzeuge zwei Feuerkugeln – rechts und links am Schiff
             createFire(side: .right, yOffset: FireConfig.fireOffsetRightYToShip)

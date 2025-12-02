@@ -159,7 +159,7 @@ extension GameViewController {
     ///   - side: Seite des Schusses (rechts oder links)
     ///   - yOffset: Vertikaler Versatz relativ zum Schiff
     func createFire(side: FireSide, yOffset: Float) {
-        if bonusRoundIsEnabled {
+        if bonusState == .enabled {
             // Bonusrunde (3D)
             let firePositionX = twinShipBonusNode.position.x + FireConfig.fireOffsetXToShip  // Vor dem Schiff
             let firePositionY = twinShipBonusNode.position.y    // Gleiche Z-Ebene wie Schiff

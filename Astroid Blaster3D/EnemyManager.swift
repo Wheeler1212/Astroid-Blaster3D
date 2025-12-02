@@ -46,7 +46,7 @@ extension GameViewController {
     
     func spawnNextEnemy() {
         
-        guard !bonusRoundIsEnabled else { return }
+        guard bonusState != .enabled else { return }
         
         switch currentEnemy {
         case .spaceInvader:

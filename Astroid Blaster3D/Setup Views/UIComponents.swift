@@ -270,7 +270,7 @@ extension GameViewController {
         UIView.animate(withDuration: 1.0, delay: 1.0, options: .curveEaseInOut, animations: { [self] in
             nextLevelButton.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
             // Wenn angezeigt: BonusButton auch scalieren
-            if bonusRoundIsReached {
+            if bonusState == .reached {
                 bonusRoundButton.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
             }
         }, completion:{ [self] _ in
@@ -281,7 +281,7 @@ extension GameViewController {
             nextLevelButton.transform = .identity
             
             // Wenn Button für Bonus Runde auch angezeigt wird
-            if bonusRoundIsReached {
+            if bonusState == .reached {
                 bonusRoundButton.isHidden = true
                 bonusRoundButton.isEnabled = false
                 bonusRoundButton.transform = .identity
@@ -347,7 +347,7 @@ extension GameViewController {
         bonusLabel.text = "Level Clear - Bonuspoints: \(pointsUpdateCount)"
         
         if pointsUpdateCount > 1 {
-            bonusRoundIsReached = true
+            bonusState = .reached
         }
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) { [self] in
@@ -399,7 +399,7 @@ extension GameViewController {
             }
             
             //if bonusState == .reached
-            if bonusRoundIsReached {
+            if bonusState == .reached {
                 showButton(bonusRoundButton)
             }
             
@@ -441,7 +441,7 @@ extension GameViewController {
             bonusRoundButton.isEnabled = false
             bonusRoundButton.transform = .identity
             
-            bonusRoundIsEnabled = true
+            bonusState = .enabled
             // BonusRunde mit Animation starten
             animateTwinShipForBonusRound()
         })
@@ -854,7 +854,7 @@ extension GameViewController {
         displayScene.rootNode.addChildNode(cameraDisplayNode)
         
         // CameraDisplay ausrichten
-        setCameraDisplayDirection(for: bonusRoundIsActive)
+        setCameraDisplayDirection()
         
         // Die Wireframe Ansicht für CollisionDisplay setzen
         displayView.debugOptions.insert(.showCameras)
@@ -945,9 +945,9 @@ extension GameViewController {
     }
     
     // Wegen der unterschiedlichen Ausrichtung der Level und Bonus Round Camera
-    func setCameraDisplayDirection(for isBonusRoundActive: Bool) {
+    func setCameraDisplayDirection() {
         // Blickrichtung für die Timer-Sync
-        if isBonusRoundActive {
+        if bonusState == .active {
             cameraDisplayNode.simdOrientation = simd_quatf(angle: .pi / 2 , axis: SIMD3(0, -1, 0))
         } else {
             cameraDisplayNode.simdOrientation = simd_quatf(angle: .pi / 2, axis: SIMD3(0, -1, 0))

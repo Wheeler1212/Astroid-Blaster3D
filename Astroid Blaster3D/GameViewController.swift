@@ -453,9 +453,9 @@ class GameViewController: UIViewController, LevelManagerDelegate {
     var gameState: GameState = .ready
     var isGamePaused: Bool = true   // Nur Sternebewegung
     
-    var bonusRoundIsReached: Bool = false   // Punkte für mögliche Bonus Runde erreicht
-    var bonusRoundIsEnabled: Bool = false   // Bonus Runde wurde durch Button freigeschaltet
-    var bonusRoundIsActive: Bool = false // Spieler kann Twinship in BonusRound steuern
+//    var bonusRoundIsReached: Bool = false   // Punkte für mögliche Bonus Runde erreicht
+//    var bonusRoundIsEnabled: Bool = false   // Bonus Runde wurde durch Button freigeschaltet
+//    var bonusRoundIsActive: Bool = false // Spieler kann Twinship in BonusRound steuern
     var bonusState: BonusState = .locked
     
     var isReadyToRender: Bool = false

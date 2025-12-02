@@ -526,7 +526,7 @@ extension GameViewController {
         // Zum Schluss die Variablen für Bonus Round setzten
         let setNewStatusVariables = SCNAction.run { [self] node in
             isGamePaused = false
-            bonusRoundIsActive = true
+            bonusState = .active
             // Enemies und Asteroids wieder starten
             cameraNode.camera?.zNear = 10 // Nahe Clipping-Ebene (muss > 0 sein)
             cameraNode.camera?.zFar = 6000
