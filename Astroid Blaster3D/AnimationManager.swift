@@ -525,18 +525,23 @@ extension GameViewController {
         
         // Zum Schluss die Variablen für Bonus Round setzten
         let setNewStatusVariables = SCNAction.run { [self] node in
-            isGamePaused = false
+            gameState = .running
             bonusState = .active
+            
             // Enemies und Asteroids wieder starten
             cameraNode.camera?.zNear = 10 // Nahe Clipping-Ebene (muss > 0 sein)
             cameraNode.camera?.zFar = 6000
             // Da jetzt Richtung X+ geflogen wird
             // FIXME: Für LevelRunde wieder auf 300 setzten
             asteroidStartPositionX = 2000 // Startposition ganz Tief im All
+            
             // Bonusrunde aktivieren (muss im Main-Thread laufen!)
             DispatchQueue.main.async { [self] in
-                showOverlay()   // Steuerkreuz usw. einblenden
-                animateCollisionDisplayWithScale()
+                // Overlays
+                if currentMode.contains(.overlay) {
+                    showOverlay()
+                }
+                showCollisionDisplay()
             }
             
             for asteroid in asteroidNode.prefix(20) {

@@ -4,7 +4,6 @@
     //  Created by Günter Voit on 14.08.24.
     //
 //TODO:
-// isGamePaused zu gameState (enum) einfügen
 
 
 import SceneKit
@@ -53,8 +52,7 @@ class GameViewController: UIViewController, LevelManagerDelegate {
     var parkPositionOfShield: SCNVector3 =          SCNVector3(-400, -100, 0)
     var parkPositionOfSpaceInvader: SCNVector3 =    SCNVector3(-400, 200, 0)
     let asteroidParkPositionX: Float = 400 // Position (Minus) Ende der Bewegung
-    
-    var alternateZ = false  // Variable zum Wechseln zwischen 0.0 und Zufallswert
+
 
     var startQuaternion = SCNVector4(0, 0, 0, 1)
     var endQuaternion = SCNVector4(0, 0, 0, 1)
@@ -63,7 +61,7 @@ class GameViewController: UIViewController, LevelManagerDelegate {
     let interpolationSpeed: Float = 0.1 // Schrittweite pro Frame
     var shipDampingFactor: Float = 0.2  // Je kleiner, desto weicher
     
-    // Chatty neu
+    // Für Touch Steuerung
     var lastDelta: SIMD3<Float> = .zero  // Letzte Bewegungsänderung
     var isTouching: Bool = false  // Ob Touch aktiv ist
     var lastDeltaX: Float = 0.0
@@ -74,9 +72,11 @@ class GameViewController: UIViewController, LevelManagerDelegate {
     var starNodes = [SKShapeNode]()  // Array für Sterne
     var crossOverlay: CrossOverlayView?
     var activeTouches: [UITouch: CGPoint] = [:]  // Speichert die letzte Position jedes aktiven Touches
-
+    var alternateZ = false  // Variable zum Wechseln zwischen 0.0 und Zufallswert
     
-    // moveShipAccelerationBonusRound()
+    var currentMode: ViewMode = [.collision]  // OptionSet
+    
+    // Für moveShipAccelerationBonusRound()
     var twinShipBonusVelocity: SIMD3<Float> = .zero  // Aktuelle Geschwindigkeit
     let accelerationFactor: Float = 2.0         // Wie stark das Schiff beschleunigt
     let dampingFactorAcceleration: Float = 0.95 // Dämpfung (0.0 = keine, 1.0 = sofortiger Stopp)
@@ -451,7 +451,6 @@ class GameViewController: UIViewController, LevelManagerDelegate {
     var ambientLightNode = SCNNode()
     var playerLives: Int = 3
     var gameState: GameState = .ready
-    var isGamePaused: Bool = true   // Nur Sternebewegung
     
 //    var bonusRoundIsReached: Bool = false   // Punkte für mögliche Bonus Runde erreicht
 //    var bonusRoundIsEnabled: Bool = false   // Bonus Runde wurde durch Button freigeschaltet
@@ -750,8 +749,6 @@ class GameViewController: UIViewController, LevelManagerDelegate {
         readyLabel.alpha = 0
         readyLabel.isHidden = false
         readyLabel.run(sequence)
-        // Spiel wurde gestartet
-        gameState = .running
         
         secondsCounter = 0  // Reset Variable
         startTimerUpdateHUD()
@@ -790,14 +787,17 @@ class GameViewController: UIViewController, LevelManagerDelegate {
 //                ) {
 //                    self.scheduleNextEnemy()
 //                }
-                isGamePaused = false
+                gameState = .running
                 scheduleNextEnemy()
                 startTimerAsteroid()
                 startTimerBallWall()
-                //#21
+            
                 DispatchQueue.main.async { [self] in
-                    showOverlay() //TODO: Wieder einschalten
-                    animateCollisionDisplayWithScale()
+                    // Overlays
+                    if currentMode.contains(.overlay) {
+                        showOverlay()
+                    }
+                    showCollisionDisplay()
                 }
             }
         }

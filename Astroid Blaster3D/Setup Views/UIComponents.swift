@@ -265,6 +265,11 @@ extension GameViewController {
         nextLevelUpdate() // Zuweisung der restlichen let/var und Level let/var
         levelClear = false
         gameState = .running
+        //Overlays
+        showCollisionDisplay()
+        if currentMode.contains(.overlay) {
+            showOverlay()
+        }
         
         //NextLevelButton ausblenden
         UIView.animate(withDuration: 1.0, delay: 1.0, options: .curveEaseInOut, animations: { [self] in
@@ -335,7 +340,7 @@ extension GameViewController {
     
     func levelClearDisplay() {
         
-        hideCollisionDisplayWithScale() // Collisions Display Animiert ausblenden
+        hideCollisionDisplay() // Collisions Display Animiert ausblenden
         hideOverlay() // Steuerkreuz ausblenden
         
         twinShipNode.physicsBody?.collisionBitMask = CollisionCategory.none.bitMask
@@ -418,7 +423,7 @@ extension GameViewController {
     @objc func bonusRoundButtonTapped() {
         // Für Next Level bestimmte Variable zurücksetzten
         secondsCounter = 0      // Zeitzähler
-        isGamePaused = true     // Schiff nicht mehr steuerbar
+        gameState = .paused     
         invalidateTimer()       // Alle Timer löschen
         despawnAllEnemies()     // Alle Objekte verschwinden lassen
         
@@ -885,45 +890,9 @@ extension GameViewController {
         cameraDisplayNode.addChildNode(crossNode)
         crossNode.position = SCNVector3(0, 0, -50)
     }
-    
-    // Farbige Hilfspfeile für die Achsen des TwinShips
-    func addDebugAxes(to node: SCNNode) {
-        
-        let xAxis = SCNNode(geometry: SCNCylinder(radius: 1.0, height: 75)) // Stab
-        let arrowXAxis = SCNNode(geometry: SCNCone(topRadius: 0, bottomRadius: 3, height: 10))  // Pfeilspitze
-        // Materialien setzten
-        xAxis.geometry?.firstMaterial?.diffuse.contents = UIColor.red
-        arrowXAxis.geometry?.firstMaterial?.diffuse.contents = UIColor.red
-        // Position und Orientierung anpassen
-        xAxis.eulerAngles.z = -.pi / 2
-        arrowXAxis.eulerAngles.y = -.pi / 2
-        arrowXAxis.position = SCNVector3(x: 0, y: 40, z: 0)
-        // Beide Nodes zur Szene hinzufügen - Der Arrow ist ein Child des Stabes (xAxis)
-        xAxis.addChildNode(arrowXAxis)
-        node.addChildNode(xAxis)
-        
-        let yAxis = SCNNode(geometry: SCNCylinder(radius: 1.0, height: 75))
-        let arrowYAxis = SCNNode(geometry: SCNCone(topRadius: 0, bottomRadius: 3, height: 10))
-        yAxis.geometry?.firstMaterial?.diffuse.contents = UIColor.green
-        arrowYAxis.geometry?.firstMaterial?.diffuse.contents = UIColor.green
-        arrowYAxis.position = SCNVector3(x: 0, y: 40, z: 0)
-        yAxis.addChildNode(arrowYAxis)
-        node.addChildNode(yAxis)
-        
-        let zAxis = SCNNode(geometry: SCNCylinder(radius: 1.0, height: 75))
-        let arrowZAxis = SCNNode(geometry: SCNCone(topRadius: 0, bottomRadius: 3, height: 10))
-        zAxis.geometry?.firstMaterial?.diffuse.contents = UIColor.blue
-        zAxis.eulerAngles.x = .pi / 2
-        zAxis.geometry?.firstMaterial?.diffuse.contents = UIColor.blue
-        arrowZAxis.geometry?.firstMaterial?.diffuse.contents = UIColor.blue
-        arrowZAxis.eulerAngles.y = -.pi / 2
-        arrowZAxis.position = SCNVector3(x: 0, y: 40, z: 0)
-        zAxis.addChildNode(arrowZAxis)
-        node.addChildNode(zAxis)
-    }
-    
+
     // MARK: Animiertes ein- und ausblenden des Collision Displays
-    func animateCollisionDisplayWithScale() {
+    func showCollisionDisplay() {
         DispatchQueue.main.async { [self] in
             displayView.transform = CGAffineTransform(scaleX: 0, y: 0) // Start: Null Höhe
             displayView.isHidden = false
@@ -934,7 +903,7 @@ extension GameViewController {
         }
     }
     
-    func hideCollisionDisplayWithScale() {
+    func hideCollisionDisplay() {
         DispatchQueue.main.async {
             UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseIn) { [self] in
                 displayView.transform = CGAffineTransform(scaleX: 0.01, y: 0.01)
@@ -1097,6 +1066,42 @@ extension GameViewController {
         UIView.animate(withDuration: 0.3) {
             self.debugHUD.alpha = targetAlpha
         }
+    }
+    
+    // Farbige Hilfspfeile für die Achsen des TwinShips
+    func addDebugAxes(to node: SCNNode) {
+        
+        let xAxis = SCNNode(geometry: SCNCylinder(radius: 1.0, height: 75)) // Stab
+        let arrowXAxis = SCNNode(geometry: SCNCone(topRadius: 0, bottomRadius: 3, height: 10))  // Pfeilspitze
+        // Materialien setzten
+        xAxis.geometry?.firstMaterial?.diffuse.contents = UIColor.red
+        arrowXAxis.geometry?.firstMaterial?.diffuse.contents = UIColor.red
+        // Position und Orientierung anpassen
+        xAxis.eulerAngles.z = -.pi / 2
+        arrowXAxis.eulerAngles.y = -.pi / 2
+        arrowXAxis.position = SCNVector3(x: 0, y: 40, z: 0)
+        // Beide Nodes zur Szene hinzufügen - Der Arrow ist ein Child des Stabes (xAxis)
+        xAxis.addChildNode(arrowXAxis)
+        node.addChildNode(xAxis)
+        
+        let yAxis = SCNNode(geometry: SCNCylinder(radius: 1.0, height: 75))
+        let arrowYAxis = SCNNode(geometry: SCNCone(topRadius: 0, bottomRadius: 3, height: 10))
+        yAxis.geometry?.firstMaterial?.diffuse.contents = UIColor.green
+        arrowYAxis.geometry?.firstMaterial?.diffuse.contents = UIColor.green
+        arrowYAxis.position = SCNVector3(x: 0, y: 40, z: 0)
+        yAxis.addChildNode(arrowYAxis)
+        node.addChildNode(yAxis)
+        
+        let zAxis = SCNNode(geometry: SCNCylinder(radius: 1.0, height: 75))
+        let arrowZAxis = SCNNode(geometry: SCNCone(topRadius: 0, bottomRadius: 3, height: 10))
+        zAxis.geometry?.firstMaterial?.diffuse.contents = UIColor.blue
+        zAxis.eulerAngles.x = .pi / 2
+        zAxis.geometry?.firstMaterial?.diffuse.contents = UIColor.blue
+        arrowZAxis.geometry?.firstMaterial?.diffuse.contents = UIColor.blue
+        arrowZAxis.eulerAngles.y = -.pi / 2
+        arrowZAxis.position = SCNVector3(x: 0, y: 40, z: 0)
+        zAxis.addChildNode(arrowZAxis)
+        node.addChildNode(zAxis)
     }
     
     // Log-Ausgabe mit Zeit

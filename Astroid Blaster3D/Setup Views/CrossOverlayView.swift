@@ -14,7 +14,7 @@ import UIKit
     class CrossOverlayView: UIView {
 
         private let crossLayer    = CAShapeLayer()   // Kreuz unten rechts
-        private let verticalLayer = CAShapeLayer()   // Vertikaler Balken unten links
+        private let pointLayer = CAShapeLayer()   // Vertikaler Balken unten links
 
         // MARK: ‑ Lautstärke‑Slider
         private let volumeSlider: UISlider = {
@@ -44,7 +44,7 @@ import UIKit
         // MARK: ‑ Overlay‑Aufbau
         private func setupOverlay() {
             drawControlCross()          // unten rechts
-            drawVerticalBar()           // unten links
+            drawFirePoint()           // unten links
             addVolumeSlider()           // links oben
         }
 
@@ -80,26 +80,54 @@ import UIKit
             crossLayer.fillColor = UIColor.white.withAlphaComponent(0.2).cgColor
             layer.addSublayer(crossLayer)
         }
-
-        private func drawVerticalBar() {
-            // Vertikale Steuerleiste unten links
-            let vPath = UIBezierPath()
+        
+        private func drawFirePoint() {
+            // Mittelpunkt berechnen (gleich wie vorher)
             let center = CGPoint(
-                x: DeviceConfig.margin + DeviceConfig.crossSize*0.5,
+                x: DeviceConfig.margin + DeviceConfig.crossSize * 0.5,
                 y: bounds.maxY - DeviceConfig.crossSize - DeviceConfig.margin
             )
-            let rect = CGRect(
-                x: center.x - DeviceConfig.lineWidth/2,
-                y: center.y - DeviceConfig.crossSize/2,
-                width: DeviceConfig.lineWidth,
-                height: DeviceConfig.crossSize
+            
+            // Durchmesser des Punktes
+            let diameter: CGFloat = DeviceConfig.crossSize * 0.2   // Größe nach Wunsch
+            
+            // Kreis als CGRect
+            let pointRect = CGRect(
+                x: center.x - diameter/2,
+                y: center.y - diameter/2,
+                width: diameter,
+                height: diameter
             )
-            vPath.append(UIBezierPath(roundedRect: rect, cornerRadius: DeviceConfig.cornerRadius))
-
-            verticalLayer.path = vPath.cgPath
-            verticalLayer.fillColor = UIColor.white.withAlphaComponent(0.2).cgColor
-            layer.addSublayer(verticalLayer)
+            
+            // Kreis zeichnen
+            let circlePath = UIBezierPath(ovalIn: pointRect)
+            
+            pointLayer.path = circlePath.cgPath
+            pointLayer.fillColor = UIColor.white.withAlphaComponent(0.2).cgColor
+            
+            layer.addSublayer(pointLayer)
         }
+
+//
+//        private func drawVerticalBar() {
+//            // Vertikale Steuerleiste unten links
+//            let vPath = UIBezierPath()
+//            let center = CGPoint(
+//                x: DeviceConfig.margin + DeviceConfig.crossSize*0.5,
+//                y: bounds.maxY - DeviceConfig.crossSize - DeviceConfig.margin
+//            )
+//            let rect = CGRect(
+//                x: center.x - DeviceConfig.lineWidth/2,
+//                y: center.y - DeviceConfig.crossSize/2,
+//                width: DeviceConfig.lineWidth,
+//                height: DeviceConfig.crossSize
+//            )
+//            vPath.append(UIBezierPath(roundedRect: rect, cornerRadius: DeviceConfig.cornerRadius))
+//
+//            verticalLayer.path = vPath.cgPath
+//            verticalLayer.fillColor = UIColor.white.withAlphaComponent(0.2).cgColor
+//            layer.addSublayer(verticalLayer)
+//        }
 
         private func addVolumeSlider() {
             // Slider nach LINKS OBEN legen

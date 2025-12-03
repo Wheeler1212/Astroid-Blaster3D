@@ -52,7 +52,6 @@ enum BonusState {
     case active           // Schiff wird gerade im Bonus gespielt
 }
 
-
 enum CollisionCategory {
     case none
     case asteroid
@@ -80,6 +79,15 @@ enum CollisionCategory {
         }
     }
 }
+
+struct ViewMode: OptionSet {
+    let rawValue: Int
+
+    static let overlay   = ViewMode(rawValue: 1 << 0)
+    static let collision = ViewMode(rawValue: 1 << 1)
+    static let button    = ViewMode(rawValue: 1 << 2)
+}
+
 
 //MARK: - Tags
 struct ViewTags {

@@ -13,7 +13,7 @@ extension GameViewController {
 // MARK: Touch Steuerung
     // --------- Wenn du den Finger auf das Display legst -----------
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        guard !isGamePaused else { return }
+        guard gameState == .running else { return }
         
         if let touch = touches.first {
             lastTouchPosition = touch.location(in: self.view)
@@ -40,7 +40,7 @@ extension GameViewController {
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        guard !isGamePaused else { return }
+        guard gameState == .running else { return }
         // For LevelRound
         if let lastPosition = lastTouchPosition {
             
