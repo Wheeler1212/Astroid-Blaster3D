@@ -4,6 +4,9 @@
     //  Created by Günter Voit on 14.08.24.
     //
 //TODO:
+// bonusRound TwinShip zittert in der Bewegung
+// Auf welcher Ebene in Z bewegen sich die Asteroiden?
+// bonusRound Fire defekt
 
 
 import SceneKit
@@ -74,7 +77,7 @@ class GameViewController: UIViewController, LevelManagerDelegate {
     var activeTouches: [UITouch: CGPoint] = [:]  // Speichert die letzte Position jedes aktiven Touches
     var alternateZ = false  // Variable zum Wechseln zwischen 0.0 und Zufallswert
     
-    var currentMode: ViewMode = [.collision]  // OptionSet
+    var viewMode: ViewMode = [.overlay]  // OptionSet
     
     // Für moveShipAccelerationBonusRound()
     var twinShipBonusVelocity: SIMD3<Float> = .zero  // Aktuelle Geschwindigkeit
@@ -794,7 +797,7 @@ class GameViewController: UIViewController, LevelManagerDelegate {
             
                 DispatchQueue.main.async { [self] in
                     // Overlays
-                    if currentMode.contains(.overlay) {
+                    if viewMode.contains(.overlay) {
                         showOverlay()
                     }
                     showCollisionDisplay()

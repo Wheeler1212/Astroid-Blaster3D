@@ -527,6 +527,7 @@ extension GameViewController {
         let setNewStatusVariables = SCNAction.run { [self] node in
             gameState = .running
             bonusState = .active
+            levelClear = false      // Wegen Punktezählung
             
             // Enemies und Asteroids wieder starten
             cameraNode.camera?.zNear = 10 // Nahe Clipping-Ebene (muss > 0 sein)
@@ -538,7 +539,7 @@ extension GameViewController {
             // Bonusrunde aktivieren (muss im Main-Thread laufen!)
             DispatchQueue.main.async { [self] in
                 // Overlays
-                if currentMode.contains(.overlay) {
+                if viewMode.contains(.overlay) {
                     showOverlay()
                 }
                 showCollisionDisplay()

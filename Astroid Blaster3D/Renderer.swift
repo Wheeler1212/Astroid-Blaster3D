@@ -40,13 +40,6 @@ extension GameViewController: SCNSceneRendererDelegate {
                lastDeltaX = 0.0
            }
        }
-       if gameState == .running {
-           // Wegen des Einlaufens des TwinShips
-           dampenShipMotionLevelRound() // In Level und Bonusrunde aktive
-           if bonusState != .active {
-               resetShipOrientationLevelRound() // In Levelrunde aktive
-           }
-       }
        
        if bonusState == .active {
            //TwinShip bei Pitch und Roll auf/ab und links/rechts bewegen
@@ -74,6 +67,12 @@ extension GameViewController: SCNSceneRendererDelegate {
  
        // Ab hier nur wenn Spiel läuft
        guard gameState == .running else { return }
+       
+       // Wegen des Einlaufens des TwinShips
+       dampenShipMotionLevelRound() // In Level und Bonusrunde aktive
+       if bonusState != .active {
+           resetShipOrientationLevelRound() // In Levelrunde aktive
+       }
        
        // Ab hier nur wenn Spiel läuft
        if levelClear {

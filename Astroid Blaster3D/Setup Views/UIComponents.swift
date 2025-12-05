@@ -267,7 +267,7 @@ extension GameViewController {
         gameState = .running
         //Overlays
         showCollisionDisplay()
-        if currentMode.contains(.overlay) {
+        if viewMode.contains(.overlay) {
             showOverlay()
         }
         
@@ -423,7 +423,7 @@ extension GameViewController {
     @objc func bonusRoundButtonTapped() {
         // Für Next Level bestimmte Variable zurücksetzten
         secondsCounter = 0      // Zeitzähler
-        gameState = .paused     
+        gameState = .paused
         invalidateTimer()       // Alle Timer löschen
         despawnAllEnemies()     // Alle Objekte verschwinden lassen
         
